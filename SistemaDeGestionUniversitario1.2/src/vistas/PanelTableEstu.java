@@ -13,12 +13,12 @@ import modelo.Estudiante;
  *
  * @author JORGE
  */
-public class PanelTable extends javax.swing.JFrame {
+public class PanelTableEstu extends javax.swing.JFrame {
     ControladorPrincipal controladorPrincipal;
     /**
      * Creates new form PanelTable
      */
-    public PanelTable(ControladorPrincipal controladorPrincipal) {
+    public PanelTableEstu(ControladorPrincipal controladorPrincipal) {
         initComponents();
         setLocationRelativeTo(this);
         this.controladorPrincipal = controladorPrincipal;

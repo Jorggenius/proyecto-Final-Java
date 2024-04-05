@@ -83,6 +83,11 @@ ControladorPrincipal controladorPrincipal;
 
         btnInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/inicio.png"))); // NOI18N
         btnInicio.setBorderPainted(false);
+        btnInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInicioActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 50, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Fondo.png"))); // NOI18N
@@ -118,6 +123,13 @@ ControladorPrincipal controladorPrincipal;
        panelIngresarAdministrador.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnIngresarAdministradorActionPerformed
+
+    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
+        // TODO add your handling code here:
+        PanelPrincipal panelPrincipal = new PanelPrincipal(controladorPrincipal);
+        panelPrincipal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnInicioActionPerformed
 
     /**
      * @param args the command line arguments

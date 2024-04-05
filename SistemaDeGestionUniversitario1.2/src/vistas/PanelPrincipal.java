@@ -86,6 +86,7 @@ public class PanelPrincipal extends javax.swing.JFrame {
             Estudiante aux = controladorPrincipal.validarAcceso(usuario, contraseña);
             if(aux != null){
                 JOptionPane.showMessageDialog(null, "ACCESO PERMITIDO");
+                
                 limpiarCampos();
             }else{
                 JOptionPane.showMessageDialog(null, "ACCESO DENEGADO");
