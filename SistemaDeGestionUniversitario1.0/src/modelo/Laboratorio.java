@@ -10,12 +10,12 @@ package modelo;
  */
 public class Laboratorio {
     private int id;
-    private int caatidadPersonas;
+    private int cantidadPersonas;
     private boolean [] disponibilidad = new boolean[15];
 
     public Laboratorio(int id, int caatidadPersonas) {
         this.id = id;
-        this.caatidadPersonas = caatidadPersonas;
+        this.cantidadPersonas = caatidadPersonas;
     }
     
     

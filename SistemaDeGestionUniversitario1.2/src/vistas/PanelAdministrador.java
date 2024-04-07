@@ -35,6 +35,7 @@ public class PanelAdministrador extends javax.swing.JFrame {
         lblAdministradorSistema = new javax.swing.JLabel();
         btnIngresarEstudiante = new javax.swing.JButton();
         btnIngresarDocente = new javax.swing.JButton();
+        btnIngresarAdministrativo = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,7 +61,16 @@ public class PanelAdministrador extends javax.swing.JFrame {
                 btnIngresarDocenteActionPerformed(evt);
             }
         });
-        getContentPane().add(btnIngresarDocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 220, -1));
+        getContentPane().add(btnIngresarDocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 220, -1));
+
+        btnIngresarAdministrativo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnIngresarAdministrativo.setText("Ingresar administrador");
+        btnIngresarAdministrativo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarAdministrativoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnIngresarAdministrativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 220, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Fondo.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 280));
@@ -82,11 +92,18 @@ public class PanelAdministrador extends javax.swing.JFrame {
          this.dispose();
     }//GEN-LAST:event_btnIngresarDocenteActionPerformed
 
+    private void btnIngresarAdministrativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarAdministrativoActionPerformed
+        PanelIngresarAdministrativo panelIngresarAdministrativo = new PanelIngresarAdministrativo(controladorPrincipal);
+        panelIngresarAdministrativo.setVisible(true);
+        this.dispose();      
+    }//GEN-LAST:event_btnIngresarAdministrativoActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnIngresarAdministrativo;
     private javax.swing.JButton btnIngresarDocente;
     private javax.swing.JButton btnIngresarEstudiante;
     private javax.swing.JLabel jLabel1;

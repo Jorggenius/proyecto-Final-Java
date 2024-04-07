@@ -138,7 +138,7 @@ public class PanelIngresarDocente extends javax.swing.JFrame {
 
     private void btnTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTableActionPerformed
         // TODO add your handling code here:
-        PanelTableDoce panelTableDoce = new PanelTableDoce(controladorPrincipal);
+        TableDoce panelTableDoce = new TableDoce(controladorPrincipal);
         panelTableDoce.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnTableActionPerformed

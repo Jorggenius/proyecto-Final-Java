@@ -5,6 +5,7 @@
 package controladores;
 
 import java.util.ArrayList;
+import modelo.Administrativo;
 import modelo.Docente;
 import modelo.Estudiante;
 
@@ -15,10 +16,12 @@ import modelo.Estudiante;
 public class ControladorPrincipal {
     ArrayList<Estudiante> ests;
     ArrayList<Docente> docens;
+    ArrayList<Administrativo> admins;
 
     public ControladorPrincipal() {
         ests = new ArrayList<>();
         docens = new ArrayList<>();
+        admins = new ArrayList<>();
     }
 
     public ArrayList<Estudiante> getEsts() {
@@ -36,6 +39,16 @@ public class ControladorPrincipal {
     public void setDocens(ArrayList<Docente> docens) {
         this.docens = docens;
     }
+
+    public ArrayList<Administrativo> getAdmins() {
+        return admins;
+    }
+
+    public void setAdmins(ArrayList<Administrativo> admins) {
+        this.admins = admins;
+    }
+    
+    
     
     
     /**
@@ -83,12 +96,45 @@ public class ControladorPrincipal {
         return null;
     }
      
-    public Estudiante validarAcceso(String usuario, String contraseña){
-        for (int i = 0; i < ests.size(); i++) {
-            if(usuario.equals(ests.get(i).getNombre()) && contraseña.equals(ests.get(i).getContraseña())){
-                return ests.get(i);
+      /**
+       * This the method for add administrativos to the ArrayList
+       * @param d
+       * @return 
+       */
+      public boolean agregaAdministrativo(Administrativo a){
+         Administrativo aux = buscarAdministrativo(a.getId());
+        if(aux == null){
+            admins.add(a);
+            return true;
+        }
+        return false; 
+    }
+    
+     public Administrativo buscarAdministrativo(int id){
+        for (int i = 0; i < admins.size(); i++) {
+            if(admins.get(i).getId() == id){
+                return admins.get(i);
             }
         }
         return null;
+    }
+     
+    public boolean validarAcceso(String usuario, String contraseña){
+        for (int i = 0; i < ests.size(); i++) {
+            if(usuario.equals(ests.get(i).getNombre()) && contraseña.equals(ests.get(i).getContraseña())){
+                return true;
+            }
+        }
+        for (int i = 0; i < docens.size() ; i++) {
+            if(usuario.equals(docens.get(i).getNombre()) && contraseña.equals(docens.get(i).getContraseña())){
+                return true;
+            }
+        }
+        for (int i = 0; i < admins.size() ; i++) {
+            if(usuario.equals(admins.get(i).getNombre()) && contraseña.equals(admins.get(i).getContraseña())){
+                return true;
+            }
+        }
+        return false;
     }
 }

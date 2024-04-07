@@ -76,14 +76,14 @@ public class PanelIngresarAdministrador extends javax.swing.JFrame {
         btnIngresar.setText("Ingresar");
         getContentPane().add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 204, -1, -1));
 
-        btnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/flecha.png"))); // NOI18N
+        btnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Atras.png"))); // NOI18N
         btnAtras.setBorderPainted(false);
         btnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAtrasActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 40));
+        getContentPane().add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 40));
 
         btnInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/inicio.png"))); // NOI18N
         btnInicio.setBorderPainted(false);
