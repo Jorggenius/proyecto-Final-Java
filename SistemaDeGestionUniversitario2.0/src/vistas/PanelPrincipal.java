@@ -5,6 +5,7 @@
 package vistas;
 
 import controladores.ControladorAdministrador;
+import controladores.ControladorDocente;
 import controladores.ControladorEstudiante;
 import controladores.ControladorPrincipal;
 
@@ -17,8 +18,10 @@ public class PanelPrincipal extends javax.swing.JFrame {
     ControladorPrincipal controlP;
     ControladorAdministrador controlA;
     ControladorEstudiante controlE;
+    ControladorDocente controlD;
     PanelAdministrador panelA;
     PanelIngresarEstudiante panelIE;
+    PanelIngresarDocente panelID;
 
     /**
      * Creates new form PanelPrincipal
@@ -28,22 +31,25 @@ public class PanelPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(this);
         controlP = new ControladorPrincipal(controlA, controlE, controlP, this, panelA, panelIE);
         controlA = new ControladorAdministrador(controlA, controlE, controlP, this, panelA, panelIE);
-        controlE = new ControladorEstudiante(controlA, controlE, controlP, this, panelA, panelIE);
-        panelA = new PanelAdministrador(controlP, controlA, controlE, this, panelIE);
-        panelIE = new PanelIngresarEstudiante();
-
+        controlE = new ControladorEstudiante(controlA, controlD, controlE, controlP, this, panelA, panelIE, panelID);
+        controlD = new ControladorDocente(controlA, controlE, controlP, controlD, this, panelA, panelIE, panelID);
+        panelA = new PanelAdministrador(controlP, controlA, controlE, controlD, this, panelIE, panelID);
+        panelIE = new PanelIngresarEstudiante(controlP, controlA, controlE, controlD, this, panelA, panelID);
+        panelID = new PanelIngresarDocente(controlP, controlA, controlE, controlD, this, panelA, panelIE);
     }
 
     public PanelPrincipal(ControladorPrincipal contrlP, ControladorAdministrador controlA, ControladorEstudiante controlE,
-            PanelAdministrador panelA, PanelIngresarEstudiante panelIE) {
+            ControladorDocente controlD, PanelAdministrador panelA, PanelIngresarEstudiante panelIE,
+            PanelIngresarDocente panelID) {
         initComponents();
         setLocationRelativeTo(this);
         this.controlP = contrlP;
         this.controlA = controlA;
         this.controlE = controlE;
+        this.controlD = controlD;
         this.panelA = panelA;
         this.panelIE = panelIE;
-
+        this.panelID = panelID;
     }
 
     /**
@@ -102,7 +108,7 @@ public class PanelPrincipal extends javax.swing.JFrame {
         String usuario = txtUsuario.getText();
         String contraseña = txtContraseña.getText();
         if ("".equals(usuario) && "".equals(contraseña)) {
-            PanelAdministrador panelAdministrador = new PanelAdministrador(controlP, controlA, controlE, this, panelIE);
+            PanelAdministrador panelAdministrador = new PanelAdministrador(controlP, controlA, controlE, controlD, this, panelIE, panelID);
             panelAdministrador.setVisible(true);
             this.dispose();
         }

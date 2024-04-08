@@ -4,17 +4,39 @@
  */
 package vistas;
 
+import controladores.ControladorAdministrador;
+import controladores.ControladorDocente;
+import controladores.ControladorEstudiante;
+import controladores.ControladorPrincipal;
+
 /**
  *
  * @author JORGE
  */
 public class PanelIngresarDocente extends javax.swing.JFrame {
 
+    ControladorPrincipal controlP;
+    ControladorAdministrador controlA;
+    ControladorEstudiante controlE;
+    ControladorDocente controlD;
+    PanelPrincipal panelP;
+    PanelAdministrador panelA;
+    PanelIngresarEstudiante panelIE;
+
     /**
      * Creates new form PanelIngresarDocente
      */
-    public PanelIngresarDocente() {
+    public PanelIngresarDocente(ControladorPrincipal controlP, ControladorAdministrador controlA, ControladorEstudiante controlE,
+        ControladorDocente controlD, PanelPrincipal panelP, PanelAdministrador panelA, PanelIngresarEstudiante panelIE ) {
         initComponents();
+        setLocationRelativeTo(this);
+        this.controlP = controlP;
+        this.controlA = controlA;
+        this.controlE = controlE;
+        this.controlD = controlD;
+        this.panelP = panelP;
+        this.panelA = panelA;
+        this.panelIE = panelIE;
     }
 
     /**
@@ -26,27 +48,135 @@ public class PanelIngresarDocente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        lblIngresarDocente = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        lblId = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
+        lblAsignatura = new javax.swing.JLabel();
+        txtAsignatura = new javax.swing.JTextField();
+        lblBirthDate = new javax.swing.JLabel();
+        txtBithDate = new javax.swing.JTextField();
+        lblContraseña = new javax.swing.JLabel();
+        txtContraseña = new javax.swing.JTextField();
+        btnIngresar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        btnInicio = new javax.swing.JButton();
+        btnAtras = new javax.swing.JButton();
+        btnListar = new javax.swing.JButton();
+        lblFondo = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 380, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblIngresarDocente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblIngresarDocente.setText("Ingresar docente");
+        getContentPane().add(lblIngresarDocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 69, -1, -1));
+
+        lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblNombre.setText("Nombre:");
+        getContentPane().add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 112, 118, -1));
+        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 112, 100, -1));
+
+        lblId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblId.setText("Id:");
+        getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 146, 118, -1));
+        getContentPane().add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 146, 100, -1));
+
+        lblAsignatura.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblAsignatura.setText("Asignatura:");
+        getContentPane().add(lblAsignatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 180, 118, -1));
+        getContentPane().add(txtAsignatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 180, 100, -1));
+
+        lblBirthDate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblBirthDate.setText("Año de nacimiento:");
+        getContentPane().add(lblBirthDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 214, -1, -1));
+        getContentPane().add(txtBithDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 214, 100, -1));
+
+        lblContraseña.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblContraseña.setText("Contraseña:");
+        getContentPane().add(lblContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 248, 118, -1));
+        getContentPane().add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 248, 100, -1));
+
+        btnIngresar.setText("Ingresar");
+        getContentPane().add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 282, -1, -1));
+
+        btnBuscar.setText("Buscar");
+        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 282, -1, -1));
+
+        btnEditar.setText("Editar");
+        getContentPane().add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(257, 282, -1, -1));
+
+        btnDelete.setText("Borrar");
+        getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(335, 282, -1, -1));
+
+        btnInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/house.png"))); // NOI18N
+        btnInicio.setBorderPainted(false);
+        btnInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInicioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 342, 34, 32));
+
+        btnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Atras.png"))); // NOI18N
+        btnAtras.setBorderPainted(false);
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 65, 36));
+
+        btnListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Listar.png"))); // NOI18N
+        btnListar.setBorderPainted(false);
+        getContentPane().add(btnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(451, 6, 43, 45));
+
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Fondo.png"))); // NOI18N
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        // TODO add your handling code here:
+        PanelAdministrador panelA = new PanelAdministrador(controlP, controlA, controlE, controlD, panelP, panelIE, this);
+        panelA.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAtrasActionPerformed
+
+    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
+        // TODO add your handling code here:
+        PanelPrincipal panelP = new PanelPrincipal(controlP, controlA, controlE, controlD, panelA, panelIE, this);
+        panelP.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnInicioActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAtras;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnIngresar;
+    private javax.swing.JButton btnInicio;
+    private javax.swing.JButton btnListar;
+    private javax.swing.JLabel lblAsignatura;
+    private javax.swing.JLabel lblBirthDate;
+    private javax.swing.JLabel lblContraseña;
+    private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel lblId;
+    private javax.swing.JLabel lblIngresarDocente;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JTextField txtAsignatura;
+    private javax.swing.JTextField txtBithDate;
+    private javax.swing.JTextField txtContraseña;
+    private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
