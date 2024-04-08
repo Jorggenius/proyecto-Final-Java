@@ -4,6 +4,8 @@
  */
 package vistas;
 
+import controladores.ControlTablaDocente;
+import controladores.ControlTablaEstudiante;
 import controladores.ControladorAdministrador;
 import controladores.ControladorDocente;
 import controladores.ControladorEstudiante;
@@ -19,6 +21,8 @@ public class PanelPrincipal extends javax.swing.JFrame {
     ControladorAdministrador controlA;
     ControladorEstudiante controlE;
     ControladorDocente controlD;
+    ControlTablaEstudiante controlTE;
+    ControlTablaDocente controlTD;
     PanelAdministrador panelA;
     PanelIngresarEstudiante panelIE;
     PanelIngresarDocente panelID;
@@ -33,20 +37,24 @@ public class PanelPrincipal extends javax.swing.JFrame {
         controlA = new ControladorAdministrador(controlA, controlE, controlP, this, panelA, panelIE);
         controlE = new ControladorEstudiante(controlA, controlD, controlE, controlP, this, panelA, panelIE, panelID);
         controlD = new ControladorDocente(controlA, controlE, controlP, controlD, this, panelA, panelIE, panelID);
-        panelA = new PanelAdministrador(controlP, controlA, controlE, controlD, this, panelIE, panelID);
-        panelIE = new PanelIngresarEstudiante(controlP, controlA, controlE, controlD, this, panelA, panelID);
-        panelID = new PanelIngresarDocente(controlP, controlA, controlE, controlD, this, panelA, panelIE);
+        controlTE = new ControlTablaEstudiante(controlA, controlE, controlP, controlD, controlTE, controlTD, this, panelA, panelIE, panelID);
+        controlTD = new ControlTablaDocente(controlA, controlE, controlP, controlD, controlTE, controlTD, this, panelA, panelIE, panelID);
+        panelA = new PanelAdministrador(controlP, controlA, controlE, controlD, controlTE, controlTD, this, panelIE, panelID);
+        panelIE = new PanelIngresarEstudiante(controlP, controlA, controlE, controlD, controlTE, controlTD, this, panelA, panelID);
+        panelID = new PanelIngresarDocente(controlP, controlA, controlE, controlD, controlTE, controlTD, this, panelA, panelIE);
     }
 
     public PanelPrincipal(ControladorPrincipal contrlP, ControladorAdministrador controlA, ControladorEstudiante controlE,
-            ControladorDocente controlD, PanelAdministrador panelA, PanelIngresarEstudiante panelIE,
-            PanelIngresarDocente panelID) {
+            ControladorDocente controlD, ControlTablaEstudiante controlTE,ControlTablaDocente controlTD, PanelAdministrador panelA, 
+            PanelIngresarEstudiante panelIE, PanelIngresarDocente panelID) {
         initComponents();
         setLocationRelativeTo(this);
         this.controlP = contrlP;
         this.controlA = controlA;
         this.controlE = controlE;
         this.controlD = controlD;
+        this.controlTE = controlTE;
+        this.controlTD = controlTD;
         this.panelA = panelA;
         this.panelIE = panelIE;
         this.panelID = panelID;
@@ -108,7 +116,7 @@ public class PanelPrincipal extends javax.swing.JFrame {
         String usuario = txtUsuario.getText();
         String contraseña = txtContraseña.getText();
         if ("".equals(usuario) && "".equals(contraseña)) {
-            PanelAdministrador panelAdministrador = new PanelAdministrador(controlP, controlA, controlE, controlD, this, panelIE, panelID);
+            PanelAdministrador panelAdministrador = new PanelAdministrador(controlP, controlA, controlE, controlD, controlTE, controlTD, this, panelIE, panelID);
             panelAdministrador.setVisible(true);
             this.dispose();
         }

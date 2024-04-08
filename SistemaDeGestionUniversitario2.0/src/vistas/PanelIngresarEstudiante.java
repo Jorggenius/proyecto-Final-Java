@@ -4,6 +4,8 @@
  */
 package vistas;
 
+import controladores.ControlTablaDocente;
+import controladores.ControlTablaEstudiante;
 import controladores.ControladorAdministrador;
 import controladores.ControladorDocente;
 import controladores.ControladorEstudiante;
@@ -20,6 +22,8 @@ public class PanelIngresarEstudiante extends javax.swing.JFrame {
     ControladorAdministrador controlA;
     ControladorEstudiante controlE;
     ControladorDocente controlD;
+    ControlTablaEstudiante controlTE;
+    ControlTablaDocente controlTD;
     PanelPrincipal panelP;
     PanelAdministrador panelA;
     PanelIngresarDocente panelID;
@@ -28,14 +32,16 @@ public class PanelIngresarEstudiante extends javax.swing.JFrame {
      * Creates new form PanelIngresarEstudiante
      */
     public PanelIngresarEstudiante(ControladorPrincipal controlP, ControladorAdministrador controlA,
-            ControladorEstudiante controlE, ControladorDocente controlD, PanelPrincipal panelP, PanelAdministrador panelA,
-            PanelIngresarDocente panelID) {
+            ControladorEstudiante controlE, ControladorDocente controlD, ControlTablaEstudiante controlTE,
+            ControlTablaDocente controlTD,PanelPrincipal panelP, PanelAdministrador panelA, PanelIngresarDocente panelID) {
         initComponents();
         setLocationRelativeTo(this);
         this.controlP = controlP;
         this.controlA = controlA;
         this.controlE = controlE;
         this.controlD = controlD;
+        this.controlTE = controlTE;
+        this.controlTD = controlTD;
         this.panelP = panelP;
         this.panelA = panelA;
         this.panelID = panelID;
@@ -147,21 +153,21 @@ public class PanelIngresarEstudiante extends javax.swing.JFrame {
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         // TODO add your handling code here:
-        PanelPrincipal panelP = new PanelPrincipal(controlP, controlA, controlE, controlD, panelA, this, panelID);
+        PanelPrincipal panelP = new PanelPrincipal(controlP, controlA, controlE, controlD, controlTE, controlTD, panelA, this, panelID);
         panelP.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         // TODO add your handling code here:
-        PanelAdministrador panelA = new PanelAdministrador(controlP, controlA, controlE, controlD, panelP, this, panelID);
+        PanelAdministrador panelA = new PanelAdministrador(controlP, controlA, controlE, controlD, controlTE, controlTD, panelP, this, panelID);
         panelA.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
         // TODO add your handling code here:
-        TablaEstudiantes tablaE = new TablaEstudiantes(controlP, controlA, controlE, controlD, panelID, panelP, panelA, this);
+        TablaEstudiantes tablaE = new TablaEstudiantes(controlP, controlA, controlE, controlD, controlTE, controlTD, panelID, panelP, panelA, this);
         tablaE.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnListarActionPerformed

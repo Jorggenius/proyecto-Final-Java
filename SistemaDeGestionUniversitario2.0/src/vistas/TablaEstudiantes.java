@@ -4,10 +4,13 @@
  */
 package vistas;
 
+import controladores.ControlTablaDocente;
+import controladores.ControlTablaEstudiante;
 import controladores.ControladorAdministrador;
 import controladores.ControladorDocente;
 import controladores.ControladorEstudiante;
 import controladores.ControladorPrincipal;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import modelo.Estudiante;
@@ -22,6 +25,8 @@ public class TablaEstudiantes extends javax.swing.JFrame {
     ControladorAdministrador controlA;
     ControladorEstudiante controlE;
     ControladorDocente controlD;
+    ControlTablaEstudiante controlTE;
+    ControlTablaDocente controlTD;
     PanelPrincipal panelP;
     PanelAdministrador panelA;
     PanelIngresarEstudiante panelIE;
@@ -31,13 +36,16 @@ public class TablaEstudiantes extends javax.swing.JFrame {
      * Creates new form TablaEstudiantes
      */
     public TablaEstudiantes(ControladorPrincipal controlP, ControladorAdministrador controlA, ControladorEstudiante controlE,
-            ControladorDocente controlD,PanelIngresarDocente panelID ,PanelPrincipal panelP,
-            PanelAdministrador panelA, PanelIngresarEstudiante panelIE) {
+            ControladorDocente controlD, ControlTablaEstudiante controlTE, ControlTablaDocente controlTD,
+            PanelIngresarDocente panelID, PanelPrincipal panelP, PanelAdministrador panelA,
+            PanelIngresarEstudiante panelIE) {
         initComponents();
         setLocationRelativeTo(this);
         this.controlP = controlP;
         this.controlA = controlA;
         this.controlE = controlE;
+        this.controlTE = controlTE;
+        this.controlTD = controlTD;
         this.panelP = panelP;
         this.panelA = panelA;
         this.panelIE = panelIE;
@@ -108,16 +116,17 @@ public class TablaEstudiantes extends javax.swing.JFrame {
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         // TODO add your handling code here:
-        PanelIngresarEstudiante panelIE = new PanelIngresarEstudiante(controlP, controlA, controlE, controlD, panelP, panelA, panelID);
+        PanelIngresarEstudiante panelIE = new PanelIngresarEstudiante(controlP, controlA, controlE, controlD, controlTE, controlTD, panelP, panelA, panelID);
         panelIE.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed
     private void llenarTabla() {
-        DefaultTableModel modelo = new DefaultTableModel(new String[]{"Nombre", "Id", "BirthDate", "Contraseña"}, controlE.getEsts().size());
+        ArrayList<Estudiante> ests = controlTE.listaEsts();
+        DefaultTableModel modelo = new DefaultTableModel(new String[]{"Nombre", "Id", "BirthDate", "Contraseña"}, ests.size());
         tablaEst.setModel(modelo);
 
         TableModel modeloEstudiantes = tablaEst.getModel();
-        for (int i = 0; i < controlE.getEsts().size(); i++) {
+        for (int i = 0; i < ests.size(); i++) {
             Estudiante estudiante = controlE.getEsts().get(i);
             modeloEstudiantes.setValueAt(estudiante.getNombre(), i, 0);
             modeloEstudiantes.setValueAt(estudiante.getId(), i, 1);

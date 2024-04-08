@@ -4,10 +4,13 @@
  */
 package vistas;
 
+import controladores.ControlTablaDocente;
+import controladores.ControlTablaEstudiante;
 import controladores.ControladorAdministrador;
 import controladores.ControladorDocente;
 import controladores.ControladorEstudiante;
 import controladores.ControladorPrincipal;
+import modelo.Docente;
 
 /**
  *
@@ -19,6 +22,8 @@ public class PanelIngresarDocente extends javax.swing.JFrame {
     ControladorAdministrador controlA;
     ControladorEstudiante controlE;
     ControladorDocente controlD;
+    ControlTablaEstudiante controlTE;
+    ControlTablaDocente controlTD;
     PanelPrincipal panelP;
     PanelAdministrador panelA;
     PanelIngresarEstudiante panelIE;
@@ -27,13 +32,16 @@ public class PanelIngresarDocente extends javax.swing.JFrame {
      * Creates new form PanelIngresarDocente
      */
     public PanelIngresarDocente(ControladorPrincipal controlP, ControladorAdministrador controlA, ControladorEstudiante controlE,
-        ControladorDocente controlD, PanelPrincipal panelP, PanelAdministrador panelA, PanelIngresarEstudiante panelIE ) {
+        ControladorDocente controlD, ControlTablaEstudiante controlTE, ControlTablaDocente controlTD,
+        PanelPrincipal panelP, PanelAdministrador panelA, PanelIngresarEstudiante panelIE ) {
         initComponents();
         setLocationRelativeTo(this);
         this.controlP = controlP;
         this.controlA = controlA;
         this.controlE = controlE;
         this.controlD = controlD;
+        this.controlTE = controlTE;
+        this.controlTD = controlTD;
         this.panelP = panelP;
         this.panelA = panelA;
         this.panelIE = panelIE;
@@ -56,7 +64,7 @@ public class PanelIngresarDocente extends javax.swing.JFrame {
         lblAsignatura = new javax.swing.JLabel();
         txtAsignatura = new javax.swing.JTextField();
         lblBirthDate = new javax.swing.JLabel();
-        txtBithDate = new javax.swing.JTextField();
+        txtBirthDate = new javax.swing.JTextField();
         lblContraseña = new javax.swing.JLabel();
         txtContraseña = new javax.swing.JTextField();
         btnIngresar = new javax.swing.JButton();
@@ -93,7 +101,7 @@ public class PanelIngresarDocente extends javax.swing.JFrame {
         lblBirthDate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblBirthDate.setText("Año de nacimiento:");
         getContentPane().add(lblBirthDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 214, -1, -1));
-        getContentPane().add(txtBithDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 214, 100, -1));
+        getContentPane().add(txtBirthDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 214, 100, -1));
 
         lblContraseña.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblContraseña.setText("Contraseña:");
@@ -101,6 +109,11 @@ public class PanelIngresarDocente extends javax.swing.JFrame {
         getContentPane().add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 248, 100, -1));
 
         btnIngresar.setText("Ingresar");
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 282, -1, -1));
 
         btnBuscar.setText("Buscar");
@@ -132,6 +145,11 @@ public class PanelIngresarDocente extends javax.swing.JFrame {
 
         btnListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Listar.png"))); // NOI18N
         btnListar.setBorderPainted(false);
+        btnListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(451, 6, 43, 45));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Fondo.png"))); // NOI18N
@@ -142,18 +160,46 @@ public class PanelIngresarDocente extends javax.swing.JFrame {
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         // TODO add your handling code here:
-        PanelAdministrador panelA = new PanelAdministrador(controlP, controlA, controlE, controlD, panelP, panelIE, this);
+        PanelAdministrador panelA = new PanelAdministrador(controlP, controlA, controlE, controlD, controlTE, controlTD, panelP, panelIE, this);
         panelA.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         // TODO add your handling code here:
-        PanelPrincipal panelP = new PanelPrincipal(controlP, controlA, controlE, controlD, panelA, panelIE, this);
+        PanelPrincipal panelP = new PanelPrincipal(controlP, controlA, controlE, controlD, controlTE, controlTD, panelA, panelIE, this);
         panelP.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnInicioActionPerformed
 
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+        // TODO add your handling code here:
+        TablaDocentes tablaD = new TablaDocentes(controlP, controlA, controlE, controlD, controlTE, controlTD, panelP, panelA, panelIE, this);
+        tablaD.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnListarActionPerformed
+
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        // TODO add your handling code here:
+        String nombre = txtNombre.getText();
+        int id = Integer.parseInt(txtId.getText());
+        String asignatura = txtAsignatura.getText();
+        int birthDate = Integer.parseInt(txtBirthDate.getText());
+        String contraseña = txtContraseña.getText();
+        Docente docente = new Docente(asignatura, birthDate, nombre, id, contraseña);
+        controlD.agregarDocente(docente);
+        limpiarCampos();
+    }//GEN-LAST:event_btnIngresarActionPerformed
+    
+    
+    private void limpiarCampos() {
+        txtNombre.setText("");
+        txtId.setText("");
+        txtAsignatura.setText("");
+        txtBirthDate.setText("");
+        txtContraseña.setText("");
+
+    }
     /**
      * @param args the command line arguments
      */
@@ -174,7 +220,7 @@ public class PanelIngresarDocente extends javax.swing.JFrame {
     private javax.swing.JLabel lblIngresarDocente;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JTextField txtAsignatura;
-    private javax.swing.JTextField txtBithDate;
+    private javax.swing.JTextField txtBirthDate;
     private javax.swing.JTextField txtContraseña;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;

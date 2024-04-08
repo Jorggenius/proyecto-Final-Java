@@ -4,17 +4,54 @@
  */
 package vistas;
 
+import controladores.ControlTablaDocente;
+import controladores.ControlTablaEstudiante;
+import controladores.ControladorAdministrador;
+import controladores.ControladorDocente;
+import controladores.ControladorEstudiante;
+import controladores.ControladorPrincipal;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import modelo.Docente;
+
 /**
  *
  * @author JORGE
  */
 public class TablaDocentes extends javax.swing.JFrame {
 
+    ControladorPrincipal controlP;
+    ControladorAdministrador controlA;
+    ControladorEstudiante controlE;
+    ControladorDocente controlD;
+    ControlTablaEstudiante controlTE;
+    ControlTablaDocente controlTD;
+    PanelPrincipal panelP;
+    PanelAdministrador panelA;
+    PanelIngresarEstudiante panelIE;
+    PanelIngresarDocente panelID;
+
     /**
      * Creates new form TablaDocentes
      */
-    public TablaDocentes() {
+    public TablaDocentes(ControladorPrincipal controlP, ControladorAdministrador controlA, ControladorEstudiante controlE,
+            ControladorDocente controlD, ControlTablaEstudiante controlTE, ControlTablaDocente controlTD, PanelPrincipal panelP,
+            PanelAdministrador panelA, PanelIngresarEstudiante panelIE, PanelIngresarDocente panelID) {
         initComponents();
+        setLocationRelativeTo(this);
+        this.controlP = controlP;
+        this.controlA = controlA;
+        this.controlE = controlE;
+        this.controlD = controlD;
+        this.controlTE = controlTE;
+        this.controlTD = controlTD;
+        this.panelP = panelP;
+        this.panelA = panelA;
+        this.panelIE = panelIE;
+        this.panelID = panelA.panelID;
+        llenarTabla();
+
     }
 
     /**
@@ -27,12 +64,12 @@ public class TablaDocentes extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaDocens = new javax.swing.JTable();
         btnAtras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaDocens.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -48,9 +85,14 @@ public class TablaDocentes extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaDocens);
 
         btnAtras.setText("Atras");
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,14 +116,36 @@ public class TablaDocentes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        // TODO add your handling code here:
+        PanelIngresarDocente panelID = new PanelIngresarDocente(controlP, controlA, controlE, controlD, controlTE, controlTD, panelP, panelA, panelIE);
+        panelID.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAtrasActionPerformed
+   
+    
+    private void llenarTabla() {
+        ArrayList<Docente> docens = controlTD.listaDocens();
+        DefaultTableModel modelo = new DefaultTableModel(new String[]{"Nombre", "Id", "Asignatura", "BirthDate", "Contraseña"}, docens.size());
+        tablaDocens.setModel(modelo);
+
+        TableModel modeloDocentes = tablaDocens.getModel();
+        for (int i = 0; i < docens.size(); i++) {
+            Docente docente = docens.get(i);
+            modeloDocentes.setValueAt(docente.getNombre(), i, 0);
+            modeloDocentes.setValueAt(docente.getId(), i, 1);
+            modeloDocentes.setValueAt(docente.getAsignatura(), i,2);
+            modeloDocentes.setValueAt(docente.getBirthDate(), i, 3);
+            modeloDocentes.setValueAt(docente.getContraseña(), i, 4);
+        }
+    }
     /**
      * @param args the command line arguments
      */
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtras;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaDocens;
     // End of variables declaration//GEN-END:variables
 }

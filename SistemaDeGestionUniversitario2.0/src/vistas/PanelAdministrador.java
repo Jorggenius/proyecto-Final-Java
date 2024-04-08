@@ -4,6 +4,8 @@
  */
 package vistas;
 
+import controladores.ControlTablaDocente;
+import controladores.ControlTablaEstudiante;
 import controladores.ControladorAdministrador;
 import controladores.ControladorDocente;
 import controladores.ControladorEstudiante;
@@ -19,6 +21,8 @@ public class PanelAdministrador extends javax.swing.JFrame {
     ControladorAdministrador controlA;
     ControladorEstudiante controlE;
     ControladorDocente controlD;
+    ControlTablaEstudiante controlTE;
+    ControlTablaDocente controlTD;
     PanelPrincipal panelP;
     PanelIngresarEstudiante panelIE;
     PanelIngresarDocente panelID;
@@ -27,14 +31,16 @@ public class PanelAdministrador extends javax.swing.JFrame {
      * Creates new form PanelAdministardor
      */
     public PanelAdministrador(ControladorPrincipal controlP, ControladorAdministrador controlA,
-            ControladorEstudiante controlE,ControladorDocente controlD, PanelPrincipal panelP,
-            PanelIngresarEstudiante panelIE, PanelIngresarDocente panelID) {
+            ControladorEstudiante controlE,ControladorDocente controlD, ControlTablaEstudiante controlTE,
+            ControlTablaDocente controlTD, PanelPrincipal panelP, PanelIngresarEstudiante panelIE, PanelIngresarDocente panelID) {
         initComponents();
         setLocationRelativeTo(this);
         this.controlP = controlP;
         this.controlA = controlA;
         this.controlE = controlE;
         this.controlD = controlD;
+        this.controlTE = controlTE;
+        this.controlTD = controlTD;
         this.panelP = panelP;
         this.panelIE = panelIE;
         this.panelID = panelID;
@@ -55,7 +61,7 @@ public class PanelAdministrador extends javax.swing.JFrame {
         btnIngresarDocente = new javax.swing.JButton();
         btnIngresarAdministrativo = new javax.swing.JButton();
         btnIngresarAdminLab = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnInicio = new javax.swing.JButton();
         lblFondo = new javax.swing.JLabel();
 
         jButton4.setText("jButton4");
@@ -93,14 +99,14 @@ public class PanelAdministrador extends javax.swing.JFrame {
         btnIngresarAdminLab.setText("Ingresar adminLab");
         getContentPane().add(btnIngresarAdminLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 272, 285, -1));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/house.png"))); // NOI18N
-        jButton1.setBorderPainted(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/house.png"))); // NOI18N
+        btnInicio.setBorderPainted(false);
+        btnInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnInicioActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 40, 40));
+        getContentPane().add(btnInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 40, 40));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Fondo.png"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 380));
@@ -110,21 +116,21 @@ public class PanelAdministrador extends javax.swing.JFrame {
 
     private void btnIngresarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarEstudianteActionPerformed
         // TODO add your handling code here:
-        PanelIngresarEstudiante panelIE = new PanelIngresarEstudiante(controlP, controlA, controlE, controlD, panelP, this, panelID);
+        PanelIngresarEstudiante panelIE = new PanelIngresarEstudiante(controlP, controlA, controlE, controlD, controlTE, controlTD, panelP, this, panelID);
         panelIE.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnIngresarEstudianteActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         // TODO add your handling code here:
-        PanelPrincipal panelP = new PanelPrincipal(controlP, controlA, controlE, controlD, this, panelIE, panelID);
+        PanelPrincipal panelP = new PanelPrincipal(controlP, controlA, controlE, controlD, controlTE, controlTD, this, panelIE, panelID);
         panelP.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnIngresarDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarDocenteActionPerformed
         // TODO add your handling code here:
-        PanelIngresarDocente panelID = new PanelIngresarDocente(controlP, controlA, controlE, controlD, panelP, this, panelIE);
+        PanelIngresarDocente panelID = new PanelIngresarDocente(controlP, controlA, controlE, controlD, controlTE, controlTD, panelP, this, panelIE);
         panelID.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnIngresarDocenteActionPerformed
@@ -138,7 +144,7 @@ public class PanelAdministrador extends javax.swing.JFrame {
     private javax.swing.JButton btnIngresarAdministrativo;
     private javax.swing.JButton btnIngresarDocente;
     private javax.swing.JButton btnIngresarEstudiante;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnInicio;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel lblAdministrador;
     private javax.swing.JLabel lblFondo;

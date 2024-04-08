@@ -43,8 +43,8 @@ public class ControladorDocente {
         this.docens = docens;
     }
     
-      public boolean agregarEstudiante(Docente e){
-         Docente aux = buscarEstudiante(e.getId());
+      public boolean agregarDocente(Docente e){
+         Docente aux = buscarDocente(e.getId());
         if(aux == null){
             docens.add(e);
             return true;
@@ -52,7 +52,7 @@ public class ControladorDocente {
         return false; 
     }
     
-     public Docente buscarEstudiante(int id){
+     public Docente buscarDocente(int id){
         for (int i = 0; i < docens.size(); i++) {
             if(docens.get(i).getId() == id){
                 return docens.get(i);

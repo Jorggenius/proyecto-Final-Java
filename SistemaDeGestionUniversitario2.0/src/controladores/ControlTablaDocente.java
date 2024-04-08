@@ -5,7 +5,7 @@
 package controladores;
 
 import java.util.ArrayList;
-import modelo.Estudiante;
+import modelo.Docente;
 import vistas.PanelAdministrador;
 import vistas.PanelIngresarDocente;
 import vistas.PanelIngresarEstudiante;
@@ -15,7 +15,7 @@ import vistas.PanelPrincipal;
  *
  * @author JORGE
  */
-public class ControlTablaEstudiante {
+public class ControlTablaDocente {
 
     ControladorAdministrador contrrlA;
     ControladorEstudiante controlE;
@@ -28,10 +28,10 @@ public class ControlTablaEstudiante {
     PanelIngresarEstudiante panelIE;
     PanelIngresarDocente panelID;
 
-    public ControlTablaEstudiante(ControladorAdministrador contrrlA, ControladorEstudiante controlE, 
+    public ControlTablaDocente(ControladorAdministrador contrrlA, ControladorEstudiante controlE, 
             ControladorPrincipal controlP, ControladorDocente controlD, ControlTablaEstudiante controlTE,
-            ControlTablaDocente controlTD, PanelPrincipal panelP, PanelAdministrador panelA, 
-            PanelIngresarEstudiante panelIE, PanelIngresarDocente panelID) {
+            ControlTablaDocente controlTD, PanelPrincipal panelP, PanelAdministrador panelA, PanelIngresarEstudiante panelIE,
+            PanelIngresarDocente panelID) {
         this.contrrlA = contrrlA;
         this.controlE = controlE;
         this.controlP = controlP;
@@ -44,11 +44,8 @@ public class ControlTablaEstudiante {
         this.panelID = panelID;
     }
     
-    
-
-    public ArrayList<Estudiante> listaEsts() {
-        ArrayList<Estudiante> ests = controlE.ests;
+     public ArrayList<Docente> listaDocens() {
+        ArrayList<Docente> ests = controlD.docens;
         return ests;
     }
-
 }
