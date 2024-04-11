@@ -4,9 +4,17 @@
  */
 package vistas;
 
+import controladores.ControlTablaAdminLab;
+import controladores.ControlTablaAdministrativo;
 import controladores.ControlTablaDocente;
 import controladores.ControlTablaEstudiante;
+import controladores.ControlVentanaAdminLab;
+import controladores.ControlVentanaAdministrativo;
+import controladores.ControlVentanaDocente;
+import controladores.ControlVentanaEstudiante;
+import controladores.ControladorAdminLab;
 import controladores.ControladorAdministrador;
+import controladores.ControladorAdministrativo;
 import controladores.ControladorDocente;
 import controladores.ControladorEstudiante;
 import controladores.ControladorPrincipal;
@@ -22,29 +30,62 @@ public class PanelIngresarEstudiante extends javax.swing.JFrame {
     ControladorAdministrador controlA;
     ControladorEstudiante controlE;
     ControladorDocente controlD;
+    ControladorAdministrativo controlUA;
+    ControladorAdminLab controlAL;
+    ControlVentanaEstudiante controlVE;
+    ControlVentanaDocente controlVD;
+    ControlVentanaAdministrativo controlVA;
+    ControlVentanaAdminLab controlVAL;
     ControlTablaEstudiante controlTE;
     ControlTablaDocente controlTD;
+    ControlTablaAdministrativo controlTA;
+    ControlTablaAdminLab controlTAL;
     PanelPrincipal panelP;
     PanelAdministrador panelA;
     PanelIngresarDocente panelID;
+    PanelIngresarAdministrativo panelIA;
+    PanelIngresarAdminLab panelIAL;
+    VentanaUsEstudiante ventanaE;
+    VentanaUsDocente ventanaD;
+    VentanaUsAdministrativo ventanaA;
+    VentanaUsAdminLab ventanaAL;
 
     /**
      * Creates new form PanelIngresarEstudiante
      */
     public PanelIngresarEstudiante(ControladorPrincipal controlP, ControladorAdministrador controlA,
-            ControladorEstudiante controlE, ControladorDocente controlD, ControlTablaEstudiante controlTE,
-            ControlTablaDocente controlTD,PanelPrincipal panelP, PanelAdministrador panelA, PanelIngresarDocente panelID) {
+            ControladorEstudiante controlE, ControladorDocente controlD, ControladorAdministrativo controlUA,
+            ControladorAdminLab controlAL, ControlVentanaEstudiante controlVE, ControlVentanaDocente controlVD,
+            ControlVentanaAdministrativo controlVA, ControlVentanaAdminLab controlVAL, ControlTablaEstudiante controlTE,
+            ControlTablaDocente controlTD, ControlTablaAdministrativo controlTA, ControlTablaAdminLab controlTAL,
+            PanelPrincipal panelP, PanelAdministrador panelA, PanelIngresarDocente panelID,
+            PanelIngresarAdministrativo panelIA, PanelIngresarAdminLab panelIAL, VentanaUsEstudiante ventanaE,
+            VentanaUsDocente ventanaD, VentanaUsAdministrativo ventanaA, VentanaUsAdminLab ventanaAL) {
         initComponents();
         setLocationRelativeTo(this);
         this.controlP = controlP;
         this.controlA = controlA;
         this.controlE = controlE;
         this.controlD = controlD;
+        this.controlUA = controlUA;
+        this.controlAL = controlAL;
+        this.controlVE = controlVE;
+        this.controlVD = controlVD;
+        this.controlVA = controlVA;
+        this.controlVAL = controlVAL;
         this.controlTE = controlTE;
         this.controlTD = controlTD;
+        this.controlTA = controlTA;
+        this.controlTAL = controlTAL;
         this.panelP = panelP;
         this.panelA = panelA;
         this.panelID = panelID;
+        this.panelIA = panelIA;
+        this.panelIAL = panelIAL;
+        this.ventanaE = ventanaE;
+        this.ventanaD = ventanaD;
+        this.ventanaA = ventanaA;
+        this.ventanaAL = ventanaAL;
     }
 
     /**
@@ -153,21 +194,21 @@ public class PanelIngresarEstudiante extends javax.swing.JFrame {
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         // TODO add your handling code here:
-        PanelPrincipal panelP = new PanelPrincipal(controlP, controlA, controlE, controlD, controlTE, controlTD, panelA, this, panelID);
+        PanelPrincipal panelP = new PanelPrincipal(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, panelA, this, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
         panelP.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         // TODO add your handling code here:
-        PanelAdministrador panelA = new PanelAdministrador(controlP, controlA, controlE, controlD, controlTE, controlTD, panelP, this, panelID);
+        PanelAdministrador panelA = new PanelAdministrador(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, panelP, this, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
         panelA.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
         // TODO add your handling code here:
-        TablaEstudiantes tablaE = new TablaEstudiantes(controlP, controlA, controlE, controlD, controlTE, controlTD, panelID, panelP, panelA, this);
+        TablaEstudiantes tablaE = new TablaEstudiantes(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, panelP, panelA, this, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
         tablaE.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnListarActionPerformed
@@ -182,8 +223,7 @@ public class PanelIngresarEstudiante extends javax.swing.JFrame {
         controlE.agregarEstudiante(estudiante);
         limpiarCampos();
     }//GEN-LAST:event_btnIngresarActionPerformed
-   
-    
+
     private void limpiarCampos() {
         txtNombre.setText("");
         txtId.setText("");

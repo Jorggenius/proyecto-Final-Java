@@ -1,5 +1,11 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package controladores;
 
+import java.util.ArrayList;
+import modelo.AdminLab;
 import vistas.PanelAdministrador;
 import vistas.PanelIngresarAdminLab;
 import vistas.PanelIngresarAdministrativo;
@@ -15,7 +21,7 @@ import vistas.VentanaUsEstudiante;
  *
  * @author JORGE
  */
-public class ControladorPrincipal {
+public class ControlTablaAdminLab {
 
     ControladorPrincipal controlP;
     ControladorAdministrador controlA;
@@ -42,7 +48,7 @@ public class ControladorPrincipal {
     VentanaUsAdministrativo ventanaA;
     VentanaUsAdminLab ventanaAL;
 
-    public ControladorPrincipal(ControladorPrincipal controlP, ControladorAdministrador controlA,
+    public ControlTablaAdminLab(ControladorPrincipal controlP, ControladorAdministrador controlA,
             ControladorEstudiante controlE, ControladorDocente controlD, ControladorAdministrativo controlUA,
             ControladorAdminLab controlAL, ControlVentanaEstudiante controlVE, ControlVentanaDocente controlVD,
             ControlVentanaAdministrativo controlVA, ControlVentanaAdminLab controlVAL, ControlTablaEstudiante controlTE,
@@ -76,4 +82,8 @@ public class ControladorPrincipal {
         this.ventanaAL = ventanaAL;
     }
 
+    public ArrayList<AdminLab> listaDocens() {
+        ArrayList<AdminLab> adminLabs = controlAL.getAdminLabs();
+        return adminLabs;
+    }
 }

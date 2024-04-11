@@ -4,9 +4,17 @@
  */
 package vistas;
 
+import controladores.ControlTablaAdminLab;
+import controladores.ControlTablaAdministrativo;
 import controladores.ControlTablaDocente;
 import controladores.ControlTablaEstudiante;
+import controladores.ControlVentanaAdminLab;
+import controladores.ControlVentanaAdministrativo;
+import controladores.ControlVentanaDocente;
+import controladores.ControlVentanaEstudiante;
+import controladores.ControladorAdminLab;
 import controladores.ControladorAdministrador;
+import controladores.ControladorAdministrativo;
 import controladores.ControladorDocente;
 import controladores.ControladorEstudiante;
 import controladores.ControladorPrincipal;
@@ -21,29 +29,62 @@ public class PanelAdministrador extends javax.swing.JFrame {
     ControladorAdministrador controlA;
     ControladorEstudiante controlE;
     ControladorDocente controlD;
+    ControladorAdministrativo controlUA;
+    ControladorAdminLab controlAL;
+    ControlVentanaEstudiante controlVE;
+    ControlVentanaDocente controlVD;
+    ControlVentanaAdministrativo controlVA;
+    ControlVentanaAdminLab controlVAL;
     ControlTablaEstudiante controlTE;
     ControlTablaDocente controlTD;
-    PanelPrincipal panelP;
+    ControlTablaAdministrativo controlTA;
+    ControlTablaAdminLab controlTAL;
+    PanelPrincipal panelP;    
     PanelIngresarEstudiante panelIE;
     PanelIngresarDocente panelID;
+    PanelIngresarAdministrativo panelIA;
+    PanelIngresarAdminLab panelIAL;
+    VentanaUsEstudiante ventanaE;
+    VentanaUsDocente ventanaD;
+    VentanaUsAdministrativo ventanaA;
+    VentanaUsAdminLab ventanaAL;
 
     /**
      * Creates new form PanelAdministardor
      */
     public PanelAdministrador(ControladorPrincipal controlP, ControladorAdministrador controlA,
-            ControladorEstudiante controlE,ControladorDocente controlD, ControlTablaEstudiante controlTE,
-            ControlTablaDocente controlTD, PanelPrincipal panelP, PanelIngresarEstudiante panelIE, PanelIngresarDocente panelID) {
+            ControladorEstudiante controlE, ControladorDocente controlD, ControladorAdministrativo controlUA,
+            ControladorAdminLab controlAL, ControlVentanaEstudiante controlVE, ControlVentanaDocente controlVD,
+            ControlVentanaAdministrativo controlVA, ControlVentanaAdminLab controlVAL, ControlTablaEstudiante controlTE,
+            ControlTablaDocente controlTD, ControlTablaAdministrativo controlTA, ControlTablaAdminLab controlTAL,
+            PanelPrincipal panelP, PanelIngresarEstudiante panelIE, PanelIngresarDocente panelID,
+            PanelIngresarAdministrativo panelIA, PanelIngresarAdminLab panelIAL, VentanaUsEstudiante ventanaE,
+            VentanaUsDocente ventanaD, VentanaUsAdministrativo ventanaA, VentanaUsAdminLab ventanaAL) {
         initComponents();
         setLocationRelativeTo(this);
         this.controlP = controlP;
         this.controlA = controlA;
         this.controlE = controlE;
         this.controlD = controlD;
+        this.controlUA = controlUA;
+        this.controlAL = controlAL;
+        this.controlVE = controlVE;
+        this.controlVD = controlVD;
+        this.controlVA = controlVA;
+        this.controlVAL = controlVAL;
         this.controlTE = controlTE;
         this.controlTD = controlTD;
-        this.panelP = panelP;
+        this.controlTA = controlTA;
+        this.controlTAL = controlTAL;
+        this.panelP = panelP;        
         this.panelIE = panelIE;
         this.panelID = panelID;
+        this.panelIA = panelIA;
+        this.panelIAL = panelIAL;
+        this.ventanaE = ventanaE;
+        this.ventanaD = ventanaD;
+        this.ventanaA = ventanaA;
+        this.ventanaAL = ventanaAL;
     }
 
     /**
@@ -93,10 +134,20 @@ public class PanelAdministrador extends javax.swing.JFrame {
 
         btnIngresarAdministrativo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnIngresarAdministrativo.setText("Ingresar administrativo");
+        btnIngresarAdministrativo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarAdministrativoActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnIngresarAdministrativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 217, 285, -1));
 
         btnIngresarAdminLab.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnIngresarAdminLab.setText("Ingresar adminLab");
+        btnIngresarAdminLab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarAdminLabActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnIngresarAdminLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 272, 285, -1));
 
         btnInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/house.png"))); // NOI18N
@@ -116,24 +167,38 @@ public class PanelAdministrador extends javax.swing.JFrame {
 
     private void btnIngresarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarEstudianteActionPerformed
         // TODO add your handling code here:
-        PanelIngresarEstudiante panelIE = new PanelIngresarEstudiante(controlP, controlA, controlE, controlD, controlTE, controlTD, panelP, this, panelID);
+        PanelIngresarEstudiante panelIE = new PanelIngresarEstudiante(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, panelP, this, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
         panelIE.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnIngresarEstudianteActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         // TODO add your handling code here:
-        PanelPrincipal panelP = new PanelPrincipal(controlP, controlA, controlE, controlD, controlTE, controlTD, this, panelIE, panelID);
+        PanelPrincipal panelP = new PanelPrincipal(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
         panelP.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnIngresarDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarDocenteActionPerformed
         // TODO add your handling code here:
-        PanelIngresarDocente panelID = new PanelIngresarDocente(controlP, controlA, controlE, controlD, controlTE, controlTD, panelP, this, panelIE);
+        PanelIngresarDocente panelID = new PanelIngresarDocente(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, panelP, this, panelIE, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
         panelID.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnIngresarDocenteActionPerformed
+
+    private void btnIngresarAdministrativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarAdministrativoActionPerformed
+        // TODO add your handling code here:
+        PanelIngresarAdministrativo panelIA = new PanelIngresarAdministrativo(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, panelP, this, panelIE, panelID, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
+        panelIA.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnIngresarAdministrativoActionPerformed
+
+    private void btnIngresarAdminLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarAdminLabActionPerformed
+        // TODO add your handling code here:
+        PanelIngresarAdminLab panelIAL = new PanelIngresarAdminLab(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, panelP, this, panelIE, panelID, panelIA, ventanaE, ventanaD, ventanaA, ventanaAL);
+        panelIAL.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnIngresarAdminLabActionPerformed
 
     /**
      * @param args the command line arguments
