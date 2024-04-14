@@ -164,7 +164,7 @@ public class TablaAdminLab extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtrasActionPerformed
     
     private void llenarTabla() {
-        ArrayList<AdminLab> adminLabs = controlAL.getAdminLabs();
+        ArrayList<AdminLab> adminLabs = controlTAL.listaAdminLabs();
         DefaultTableModel modelo = new DefaultTableModel(new String[]{"Nombre", "Id", "BirthDate", "Contraseña"}, adminLabs.size());
         tablaAdminLabs.setModel(modelo);
 

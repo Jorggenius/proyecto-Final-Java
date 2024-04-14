@@ -18,16 +18,14 @@ import controladores.ControladorAdministrativo;
 import controladores.ControladorDocente;
 import controladores.ControladorEstudiante;
 import controladores.ControladorPrincipal;
-import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import modelo.AdminLab;
+import modelo.Administrativo;
+
 
 /**
  *
  * @author JORGE
  */
-public class TablaAdminLab extends javax.swing.JFrame {
+public class VentanaUsAdministrativo extends javax.swing.JFrame {
 
     ControladorPrincipal controlP;
     ControladorAdministrador controlA;
@@ -51,20 +49,19 @@ public class TablaAdminLab extends javax.swing.JFrame {
     PanelIngresarAdminLab panelIAL;
     VentanaUsEstudiante ventanaE;
     VentanaUsDocente ventanaD;
-    VentanaUsAdministrativo ventanaA;
     VentanaUsAdminLab ventanaAL;
 
     /**
-     * Creates new form TablaAdminLab
+     * Creates new form VentanaUsAdministrativo
      */
-    public TablaAdminLab(ControladorPrincipal controlP, ControladorAdministrador controlA,
+    public VentanaUsAdministrativo(ControladorPrincipal controlP, ControladorAdministrador controlA,
             ControladorEstudiante controlE, ControladorDocente controlD, ControladorAdministrativo controlUA,
             ControladorAdminLab controlAL, ControlVentanaEstudiante controlVE, ControlVentanaDocente controlVD,
             ControlVentanaAdministrativo controlVA, ControlVentanaAdminLab controlVAL, ControlTablaEstudiante controlTE,
             ControlTablaDocente controlTD, ControlTablaAdministrativo controlTA, ControlTablaAdminLab controlTAL,
             PanelPrincipal panelP, PanelAdministrador panelA, PanelIngresarEstudiante panelIE, PanelIngresarDocente panelID,
             PanelIngresarAdministrativo panelIA, PanelIngresarAdminLab panelIAL, VentanaUsEstudiante ventanaE,
-            VentanaUsDocente ventanaD, VentanaUsAdministrativo ventanaA, VentanaUsAdminLab ventanaAL) {
+            VentanaUsDocente ventanaD, VentanaUsAdminLab ventanaAL) {
         initComponents();
         setLocationRelativeTo(this);
         this.controlP = controlP;
@@ -89,9 +86,7 @@ public class TablaAdminLab extends javax.swing.JFrame {
         this.panelIAL = panelIAL;
         this.ventanaE = ventanaE;
         this.ventanaD = ventanaD;
-        this.ventanaA = ventanaA;
         this.ventanaAL = ventanaAL;
-        llenarTabla();
     }
 
     /**
@@ -103,87 +98,99 @@ public class TablaAdminLab extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaAdminLabs = new javax.swing.JTable();
-        btnAtras = new javax.swing.JButton();
+        lblAdministrativo = new javax.swing.JLabel();
+        lblNombreAdministrativo = new javax.swing.JLabel();
+        btnCerrarSecion = new javax.swing.JButton();
+        LblBirthDate = new javax.swing.JLabel();
+        lblBirthDateAdmin = new javax.swing.JLabel();
+        lblEdad = new javax.swing.JLabel();
+        lblEdadAdmin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tablaAdminLabs.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        lblAdministrativo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblAdministrativo.setText("Administrativo:");
 
-            },
-            new String [] {
-                "Nombre", "Id", "BirthDate", "Contraseña"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tablaAdminLabs);
-
-        btnAtras.setText("Atras");
-        btnAtras.addActionListener(new java.awt.event.ActionListener() {
+        btnCerrarSecion.setText("Cerrar secion");
+        btnCerrarSecion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAtrasActionPerformed(evt);
+                btnCerrarSecionActionPerformed(evt);
             }
         });
+
+        LblBirthDate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        LblBirthDate.setText("Año de nacimiento:");
+
+        lblEdad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblEdad.setText("Edad:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(195, 195, 195)
-                .addComponent(btnAtras)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCerrarSecion)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LblBirthDate)
+                            .addComponent(lblAdministrativo)
+                            .addComponent(lblEdad))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblEdadAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblNombreAdministrativo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblBirthDateAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(209, 209, 209))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblAdministrativo)
+                    .addComponent(lblNombreAdministrativo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAtras)
-                .addGap(0, 8, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LblBirthDate)
+                    .addComponent(lblBirthDateAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblEdad)
+                    .addComponent(lblEdadAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 393, Short.MAX_VALUE)
+                .addComponent(btnCerrarSecion)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+    private void btnCerrarSecionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSecionActionPerformed
         // TODO add your handling code here:
-        PanelIngresarAdminLab panelIAL = new PanelIngresarAdminLab(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, panelP, panelA, panelIE, panelID, panelIA, ventanaE, ventanaD, ventanaA, ventanaAL);
-        panelIAL.setVisible(true);
+        PanelPrincipal panelP = new PanelPrincipal(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, this, ventanaAL);
+        panelP.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnAtrasActionPerformed
-    
-    private void llenarTabla() {
-        ArrayList<AdminLab> adminLabs = controlAL.getAdminLabs();
-        DefaultTableModel modelo = new DefaultTableModel(new String[]{"Nombre", "Id", "BirthDate", "Contraseña"}, adminLabs.size());
-        tablaAdminLabs.setModel(modelo);
-
-        TableModel modeloAdminLabs = tablaAdminLabs.getModel();
-        for (int i = 0; i < adminLabs.size(); i++) {
-            AdminLab adminLab = adminLabs.get(i);
-            modeloAdminLabs.setValueAt(adminLab.getNombre(), i, 0);
-            modeloAdminLabs.setValueAt(adminLab.getId(), i, 1);
-            modeloAdminLabs.setValueAt(adminLab.getBirthDate(), i, 2);
-            modeloAdminLabs.setValueAt(adminLab.getContraseña(), i, 3);
-        }
+    }//GEN-LAST:event_btnCerrarSecionActionPerformed
+ public void informacionAdministrativo(Administrativo admin) {
+        Administrativo aux = admin;
+        lblNombreAdministrativo.setText(aux.getNombre());
+        lblBirthDateAdmin.setText(String.valueOf(aux.getBirthDate()));
+        lblEdadAdmin.setText(String.valueOf(2024 - aux.getBirthDate()));
+        
     }
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAtras;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablaAdminLabs;
+    private javax.swing.JLabel LblBirthDate;
+    private javax.swing.JButton btnCerrarSecion;
+    private javax.swing.JLabel lblAdministrativo;
+    private javax.swing.JLabel lblBirthDateAdmin;
+    private javax.swing.JLabel lblEdad;
+    private javax.swing.JLabel lblEdadAdmin;
+    private javax.swing.JLabel lblNombreAdministrativo;
     // End of variables declaration//GEN-END:variables
 }

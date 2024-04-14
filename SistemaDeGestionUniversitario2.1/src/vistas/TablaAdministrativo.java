@@ -21,13 +21,13 @@ import controladores.ControladorPrincipal;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import modelo.AdminLab;
+import modelo.Administrativo;
 
 /**
  *
  * @author JORGE
  */
-public class TablaAdminLab extends javax.swing.JFrame {
+public class TablaAdministrativo extends javax.swing.JFrame {
 
     ControladorPrincipal controlP;
     ControladorAdministrador controlA;
@@ -55,9 +55,9 @@ public class TablaAdminLab extends javax.swing.JFrame {
     VentanaUsAdminLab ventanaAL;
 
     /**
-     * Creates new form TablaAdminLab
+     * Creates new form TablaAdministrativo
      */
-    public TablaAdminLab(ControladorPrincipal controlP, ControladorAdministrador controlA,
+    public TablaAdministrativo(ControladorPrincipal controlP, ControladorAdministrador controlA,
             ControladorEstudiante controlE, ControladorDocente controlD, ControladorAdministrativo controlUA,
             ControladorAdminLab controlAL, ControlVentanaEstudiante controlVE, ControlVentanaDocente controlVD,
             ControlVentanaAdministrativo controlVA, ControlVentanaAdminLab controlVAL, ControlTablaEstudiante controlTE,
@@ -104,12 +104,12 @@ public class TablaAdminLab extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaAdminLabs = new javax.swing.JTable();
+        tablaAdmins = new javax.swing.JTable();
         btnAtras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tablaAdminLabs.setModel(new javax.swing.table.DefaultTableModel(
+        tablaAdmins.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -125,7 +125,7 @@ public class TablaAdminLab extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tablaAdminLabs);
+        jScrollPane1.setViewportView(tablaAdmins);
 
         btnAtras.setText("Atras");
         btnAtras.addActionListener(new java.awt.event.ActionListener() {
@@ -140,7 +140,7 @@ public class TablaAdminLab extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(195, 195, 195)
+                .addGap(190, 190, 190)
                 .addComponent(btnAtras)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -158,23 +158,23 @@ public class TablaAdminLab extends javax.swing.JFrame {
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         // TODO add your handling code here:
-        PanelIngresarAdminLab panelIAL = new PanelIngresarAdminLab(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, panelP, panelA, panelIE, panelID, panelIA, ventanaE, ventanaD, ventanaA, ventanaAL);
-        panelIAL.setVisible(true);
+        PanelIngresarAdministrativo panelIA = new PanelIngresarAdministrativo(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, panelP, panelA, panelIE, panelID, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
+        panelIA.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed
-    
-    private void llenarTabla() {
-        ArrayList<AdminLab> adminLabs = controlAL.getAdminLabs();
-        DefaultTableModel modelo = new DefaultTableModel(new String[]{"Nombre", "Id", "BirthDate", "Contraseña"}, adminLabs.size());
-        tablaAdminLabs.setModel(modelo);
 
-        TableModel modeloAdminLabs = tablaAdminLabs.getModel();
-        for (int i = 0; i < adminLabs.size(); i++) {
-            AdminLab adminLab = adminLabs.get(i);
-            modeloAdminLabs.setValueAt(adminLab.getNombre(), i, 0);
-            modeloAdminLabs.setValueAt(adminLab.getId(), i, 1);
-            modeloAdminLabs.setValueAt(adminLab.getBirthDate(), i, 2);
-            modeloAdminLabs.setValueAt(adminLab.getContraseña(), i, 3);
+    private void llenarTabla() {
+        ArrayList<Administrativo> admins = controlTA.listaUsuarioAdmins();
+        DefaultTableModel modelo = new DefaultTableModel(new String[]{"Nombre", "Id", "BirthDate", "Contraseña"}, admins.size());
+        tablaAdmins.setModel(modelo);
+
+        TableModel modeloAdministrativos = tablaAdmins.getModel();
+        for (int i = 0; i < admins.size(); i++) {
+            Administrativo administrativo = admins.get(i);
+            modeloAdministrativos.setValueAt(administrativo.getNombre(), i, 0);
+            modeloAdministrativos.setValueAt(administrativo.getId(), i, 1);
+            modeloAdministrativos.setValueAt(administrativo.getBirthDate(), i, 2);
+            modeloAdministrativos.setValueAt(administrativo.getContraseña(), i, 3);
         }
     }
     /**
@@ -184,6 +184,6 @@ public class TablaAdminLab extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtras;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablaAdminLabs;
+    private javax.swing.JTable tablaAdmins;
     // End of variables declaration//GEN-END:variables
 }

@@ -21,13 +21,13 @@ import controladores.ControladorPrincipal;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import modelo.AdminLab;
+import modelo.Docente;
 
 /**
  *
  * @author JORGE
  */
-public class TablaAdminLab extends javax.swing.JFrame {
+public class TablaDocentes extends javax.swing.JFrame {
 
     ControladorPrincipal controlP;
     ControladorAdministrador controlA;
@@ -55,9 +55,9 @@ public class TablaAdminLab extends javax.swing.JFrame {
     VentanaUsAdminLab ventanaAL;
 
     /**
-     * Creates new form TablaAdminLab
+     * Creates new form TablaDocentes
      */
-    public TablaAdminLab(ControladorPrincipal controlP, ControladorAdministrador controlA,
+    public TablaDocentes(ControladorPrincipal controlP, ControladorAdministrador controlA,
             ControladorEstudiante controlE, ControladorDocente controlD, ControladorAdministrativo controlUA,
             ControladorAdminLab controlAL, ControlVentanaEstudiante controlVE, ControlVentanaDocente controlVD,
             ControlVentanaAdministrativo controlVA, ControlVentanaAdminLab controlVAL, ControlTablaEstudiante controlTE,
@@ -92,6 +92,7 @@ public class TablaAdminLab extends javax.swing.JFrame {
         this.ventanaA = ventanaA;
         this.ventanaAL = ventanaAL;
         llenarTabla();
+
     }
 
     /**
@@ -104,28 +105,28 @@ public class TablaAdminLab extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaAdminLabs = new javax.swing.JTable();
+        tablaDocens = new javax.swing.JTable();
         btnAtras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tablaAdminLabs.setModel(new javax.swing.table.DefaultTableModel(
+        tablaDocens.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nombre", "Id", "BirthDate", "Contraseña"
+                "Nombre", "Id", "Asignatura", "Año de nacimiento", "Contraseña"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tablaAdminLabs);
+        jScrollPane1.setViewportView(tablaDocens);
 
         btnAtras.setText("Atras");
         btnAtras.addActionListener(new java.awt.event.ActionListener() {
@@ -140,17 +141,17 @@ public class TablaAdminLab extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(195, 195, 195)
+                .addGap(190, 190, 190)
                 .addComponent(btnAtras)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAtras)
-                .addGap(0, 8, Short.MAX_VALUE))
+                .addGap(0, 9, Short.MAX_VALUE))
         );
 
         pack();
@@ -158,23 +159,24 @@ public class TablaAdminLab extends javax.swing.JFrame {
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         // TODO add your handling code here:
-        PanelIngresarAdminLab panelIAL = new PanelIngresarAdminLab(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, panelP, panelA, panelIE, panelID, panelIA, ventanaE, ventanaD, ventanaA, ventanaAL);
-        panelIAL.setVisible(true);
+        PanelIngresarDocente panelID = new PanelIngresarDocente(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, panelP, panelA, panelIE, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
+        panelID.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed
-    
-    private void llenarTabla() {
-        ArrayList<AdminLab> adminLabs = controlAL.getAdminLabs();
-        DefaultTableModel modelo = new DefaultTableModel(new String[]{"Nombre", "Id", "BirthDate", "Contraseña"}, adminLabs.size());
-        tablaAdminLabs.setModel(modelo);
 
-        TableModel modeloAdminLabs = tablaAdminLabs.getModel();
-        for (int i = 0; i < adminLabs.size(); i++) {
-            AdminLab adminLab = adminLabs.get(i);
-            modeloAdminLabs.setValueAt(adminLab.getNombre(), i, 0);
-            modeloAdminLabs.setValueAt(adminLab.getId(), i, 1);
-            modeloAdminLabs.setValueAt(adminLab.getBirthDate(), i, 2);
-            modeloAdminLabs.setValueAt(adminLab.getContraseña(), i, 3);
+    private void llenarTabla() {
+        ArrayList<Docente> docens = controlTD.listaDocens();
+        DefaultTableModel modelo = new DefaultTableModel(new String[]{"Nombre", "Id", "Asignatura", "BirthDate", "Contraseña"}, docens.size());
+        tablaDocens.setModel(modelo);
+
+        TableModel modeloDocentes = tablaDocens.getModel();
+        for (int i = 0; i < docens.size(); i++) {
+            Docente docente = docens.get(i);
+            modeloDocentes.setValueAt(docente.getNombre(), i, 0);
+            modeloDocentes.setValueAt(docente.getId(), i, 1);
+            modeloDocentes.setValueAt(docente.getAsignatura(), i, 2);
+            modeloDocentes.setValueAt(docente.getBirthDate(), i, 3);
+            modeloDocentes.setValueAt(docente.getContraseña(), i, 4);
         }
     }
     /**
@@ -184,6 +186,6 @@ public class TablaAdminLab extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtras;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablaAdminLabs;
+    private javax.swing.JTable tablaDocens;
     // End of variables declaration//GEN-END:variables
 }
