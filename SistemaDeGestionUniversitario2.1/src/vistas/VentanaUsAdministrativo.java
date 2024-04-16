@@ -8,10 +8,14 @@ import controladores.ControlTablaAdminLab;
 import controladores.ControlTablaAdministrativo;
 import controladores.ControlTablaDocente;
 import controladores.ControlTablaEstudiante;
+import controladores.ControlTablaUsuarioDocente;
+import controladores.ControlTablaUsuarioEstudiante;
 import controladores.ControlVentanaAdminLab;
 import controladores.ControlVentanaAdministrativo;
+import controladores.ControlVentanaCursos;
 import controladores.ControlVentanaDocente;
 import controladores.ControlVentanaEstudiante;
+import controladores.ControlVentanaLaboratorios;
 import controladores.ControladorAdminLab;
 import controladores.ControladorAdministrador;
 import controladores.ControladorAdministrativo;
@@ -27,7 +31,7 @@ import modelo.Administrativo;
  */
 public class VentanaUsAdministrativo extends javax.swing.JFrame {
 
-    ControladorPrincipal controlP;
+     ControladorPrincipal controlP;
     ControladorAdministrador controlA;
     ControladorEstudiante controlE;
     ControladorDocente controlD;
@@ -37,10 +41,14 @@ public class VentanaUsAdministrativo extends javax.swing.JFrame {
     ControlVentanaDocente controlVD;
     ControlVentanaAdministrativo controlVA;
     ControlVentanaAdminLab controlVAL;
+    ControlVentanaCursos controlVC;
+    ControlVentanaLaboratorios controlVL;
     ControlTablaEstudiante controlTE;
     ControlTablaDocente controlTD;
     ControlTablaAdministrativo controlTA;
     ControlTablaAdminLab controlTAL;
+    ControlTablaUsuarioEstudiante controlTUE;
+    ControlTablaUsuarioDocente controlTUD;
     PanelPrincipal panelP;
     PanelAdministrador panelA;
     PanelIngresarEstudiante panelIE;
@@ -50,6 +58,8 @@ public class VentanaUsAdministrativo extends javax.swing.JFrame {
     VentanaUsEstudiante ventanaE;
     VentanaUsDocente ventanaD;
     VentanaUsAdminLab ventanaAL;
+    VentanaCursos ventanaC;
+    VentanaLaboratorios ventanaL;
 
     /**
      * Creates new form VentanaUsAdministrativo
@@ -57,11 +67,13 @@ public class VentanaUsAdministrativo extends javax.swing.JFrame {
     public VentanaUsAdministrativo(ControladorPrincipal controlP, ControladorAdministrador controlA,
             ControladorEstudiante controlE, ControladorDocente controlD, ControladorAdministrativo controlUA,
             ControladorAdminLab controlAL, ControlVentanaEstudiante controlVE, ControlVentanaDocente controlVD,
-            ControlVentanaAdministrativo controlVA, ControlVentanaAdminLab controlVAL, ControlTablaEstudiante controlTE,
-            ControlTablaDocente controlTD, ControlTablaAdministrativo controlTA, ControlTablaAdminLab controlTAL,
-            PanelPrincipal panelP, PanelAdministrador panelA, PanelIngresarEstudiante panelIE, PanelIngresarDocente panelID,
-            PanelIngresarAdministrativo panelIA, PanelIngresarAdminLab panelIAL, VentanaUsEstudiante ventanaE,
-            VentanaUsDocente ventanaD, VentanaUsAdminLab ventanaAL) {
+            ControlVentanaAdministrativo controlVA, ControlVentanaAdminLab controlVAL, ControlVentanaCursos controlVC,
+            ControlVentanaLaboratorios controlVL, ControlTablaEstudiante controlTE, ControlTablaDocente controlTD,
+            ControlTablaAdministrativo controlTA, ControlTablaAdminLab controlTAL, ControlTablaUsuarioEstudiante controlTUE,
+            ControlTablaUsuarioDocente controlTUD,PanelPrincipal panelP, PanelAdministrador panelA, PanelIngresarEstudiante panelIE,
+            PanelIngresarDocente panelID, PanelIngresarAdministrativo panelIA, PanelIngresarAdminLab panelIAL,
+            VentanaUsEstudiante ventanaE, VentanaUsDocente ventanaD, VentanaUsAdminLab ventanaAL,
+            VentanaCursos ventanaC, VentanaLaboratorios ventanaL) {
         initComponents();
         setLocationRelativeTo(this);
         this.controlP = controlP;
@@ -74,10 +86,14 @@ public class VentanaUsAdministrativo extends javax.swing.JFrame {
         this.controlVD = controlVD;
         this.controlVA = controlVA;
         this.controlVAL = controlVAL;
+        this.controlVC = controlVC;
+        this.controlVL = controlVL;
         this.controlTE = controlTE;
         this.controlTD = controlTD;
         this.controlTA = controlTA;
         this.controlTAL = controlTAL;
+        this.controlTUE = controlTUE;
+        this.controlTUD = controlTUD;
         this.panelP = panelP;
         this.panelA = panelA;
         this.panelIE = panelIE;
@@ -87,6 +103,8 @@ public class VentanaUsAdministrativo extends javax.swing.JFrame {
         this.ventanaE = ventanaE;
         this.ventanaD = ventanaD;
         this.ventanaAL = ventanaAL;
+        this.ventanaC = ventanaC;
+        this.ventanaL = ventanaL;
     }
 
     /**
@@ -98,18 +116,19 @@ public class VentanaUsAdministrativo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblAdministrativo = new javax.swing.JLabel();
-        lblNombreAdministrativo = new javax.swing.JLabel();
         btnCerrarSecion = new javax.swing.JButton();
+        lblAdministrativo = new javax.swing.JLabel();
         LblBirthDate = new javax.swing.JLabel();
-        lblBirthDateAdmin = new javax.swing.JLabel();
         lblEdad = new javax.swing.JLabel();
         lblEdadAdmin = new javax.swing.JLabel();
+        lblBirthDateAdmin = new javax.swing.JLabel();
+        lblNombreAdministrativo = new javax.swing.JLabel();
+        lblInformacionDeUsuario = new javax.swing.JLabel();
+        LblLineaLimite = new javax.swing.JLabel();
+        lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        lblAdministrativo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblAdministrativo.setText("Administrativo:");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnCerrarSecion.setText("Cerrar secion");
         btnCerrarSecion.addActionListener(new java.awt.event.ActionListener() {
@@ -117,59 +136,38 @@ public class VentanaUsAdministrativo extends javax.swing.JFrame {
                 btnCerrarSecionActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCerrarSecion, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 471, -1, -1));
+
+        lblAdministrativo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblAdministrativo.setText("Administrativo:");
+        getContentPane().add(lblAdministrativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 34, -1, -1));
 
         LblBirthDate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         LblBirthDate.setText("Año de nacimiento:");
+        getContentPane().add(LblBirthDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 60, -1, -1));
 
         lblEdad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblEdad.setText("Edad:");
+        getContentPane().add(lblEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 86, -1, -1));
+        getContentPane().add(lblEdadAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(217, 86, 109, 20));
+        getContentPane().add(lblBirthDateAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(217, 60, 109, 20));
+        getContentPane().add(lblNombreAdministrativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(217, 34, 110, 20));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCerrarSecion)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LblBirthDate)
-                            .addComponent(lblAdministrativo)
-                            .addComponent(lblEdad))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblEdadAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblNombreAdministrativo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblBirthDateAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(209, 209, 209))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAdministrativo)
-                    .addComponent(lblNombreAdministrativo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LblBirthDate)
-                    .addComponent(lblBirthDateAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblEdad)
-                    .addComponent(lblEdadAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 393, Short.MAX_VALUE)
-                .addComponent(btnCerrarSecion)
-                .addContainerGap())
-        );
+        lblInformacionDeUsuario.setText("Informacion de usuario------------------------------------------------------------");
+        getContentPane().add(lblInformacionDeUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
+
+        LblLineaLimite.setText("________________________________________________________________________________________");
+        getContentPane().add(LblLineaLimite, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 112, 441, -1));
+
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Fondo2.png"))); // NOI18N
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, -4, 460, 510));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCerrarSecionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSecionActionPerformed
         // TODO add your handling code here:
-        PanelPrincipal panelP = new PanelPrincipal(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, this, ventanaAL);
+        PanelPrincipal panelP = new PanelPrincipal(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, this, ventanaAL, ventanaC, ventanaL);
         panelP.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCerrarSecionActionPerformed
@@ -186,11 +184,14 @@ public class VentanaUsAdministrativo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LblBirthDate;
+    private javax.swing.JLabel LblLineaLimite;
     private javax.swing.JButton btnCerrarSecion;
     private javax.swing.JLabel lblAdministrativo;
     private javax.swing.JLabel lblBirthDateAdmin;
     private javax.swing.JLabel lblEdad;
     private javax.swing.JLabel lblEdadAdmin;
+    private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel lblInformacionDeUsuario;
     private javax.swing.JLabel lblNombreAdministrativo;
     // End of variables declaration//GEN-END:variables
 }

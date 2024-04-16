@@ -8,10 +8,14 @@ import controladores.ControlTablaAdminLab;
 import controladores.ControlTablaAdministrativo;
 import controladores.ControlTablaDocente;
 import controladores.ControlTablaEstudiante;
+import controladores.ControlTablaUsuarioDocente;
+import controladores.ControlTablaUsuarioEstudiante;
 import controladores.ControlVentanaAdminLab;
 import controladores.ControlVentanaAdministrativo;
+import controladores.ControlVentanaCursos;
 import controladores.ControlVentanaDocente;
 import controladores.ControlVentanaEstudiante;
+import controladores.ControlVentanaLaboratorios;
 import controladores.ControladorAdminLab;
 import controladores.ControladorAdministrador;
 import controladores.ControladorAdministrativo;
@@ -41,10 +45,14 @@ public class PanelPrincipal extends javax.swing.JFrame {
     ControlVentanaDocente controlVD;
     ControlVentanaAdministrativo controlVA;
     ControlVentanaAdminLab controlVAL;
+    ControlVentanaCursos controlVC;
+    ControlVentanaLaboratorios controlVL;
     ControlTablaEstudiante controlTE;
     ControlTablaDocente controlTD;
     ControlTablaAdministrativo controlTA;
     ControlTablaAdminLab controlTAL;
+    ControlTablaUsuarioEstudiante controlTUE;
+    ControlTablaUsuarioDocente controlTUD;
     PanelAdministrador panelA;
     PanelIngresarEstudiante panelIE;
     PanelIngresarDocente panelID;
@@ -54,6 +62,8 @@ public class PanelPrincipal extends javax.swing.JFrame {
     VentanaUsDocente ventanaD;
     VentanaUsAdministrativo ventanaA;
     VentanaUsAdminLab ventanaAL;
+    VentanaCursos ventanaC;
+    VentanaLaboratorios ventanaL;
 
     /**
      * Creates new form PanelPrincipal
@@ -61,39 +71,47 @@ public class PanelPrincipal extends javax.swing.JFrame {
     public PanelPrincipal() {
         initComponents();
         setLocationRelativeTo(this);
-        controlP = new ControladorPrincipal(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
-        controlA = new ControladorAdministrador(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
-        controlE = new ControladorEstudiante(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
-        controlD = new ControladorDocente(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
-        controlUA = new ControladorAdministrativo(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
-        controlAL = new ControladorAdminLab(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
-        controlVE = new ControlVentanaEstudiante(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
-        controlVD = new ControlVentanaDocente(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
-        controlVA = new ControlVentanaAdministrativo(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
-        controlVAL = new ControlVentanaAdminLab(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
-        controlTE = new ControlTablaEstudiante(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
-        controlTD = new ControlTablaDocente(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
-        controlTA = new ControlTablaAdministrativo(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
-        controlTAL = new ControlTablaAdminLab(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
-        panelA = new PanelAdministrador(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
-        panelIE = new PanelIngresarEstudiante(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelA, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
-        panelID = new PanelIngresarDocente(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelA, panelIE, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
-        panelIA = new PanelIngresarAdministrativo(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelA, panelIE, panelID, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
-        panelIAL = new PanelIngresarAdminLab(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelA, panelIE, panelID, panelIA, ventanaE, ventanaD, ventanaA, ventanaAL);
-        ventanaE = new VentanaUsEstudiante(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaD, ventanaA, ventanaAL);
-        ventanaD = new VentanaUsDocente(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaA, ventanaAL);
-        ventanaA = new VentanaUsAdministrativo(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaAL);
-        ventanaAL = new VentanaUsAdminLab(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA);
+        controlP = new ControladorPrincipal(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        controlA = new ControladorAdministrador(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        controlE = new ControladorEstudiante(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        controlD = new ControladorDocente(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        controlUA = new ControladorAdministrativo(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        controlAL = new ControladorAdminLab(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        controlVC = new ControlVentanaCursos(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        controlVL = new ControlVentanaLaboratorios(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        controlVE = new ControlVentanaEstudiante(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        controlVD = new ControlVentanaDocente(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        controlVA = new ControlVentanaAdministrativo(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        controlVAL = new ControlVentanaAdminLab(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        controlTE = new ControlTablaEstudiante(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        controlTD = new ControlTablaDocente(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        controlTA = new ControlTablaAdministrativo(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        controlTAL = new ControlTablaAdminLab(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        controlTUE = new ControlTablaUsuarioEstudiante(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        controlTUD = new ControlTablaUsuarioDocente(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        panelA = new PanelAdministrador(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        panelIE = new PanelIngresarEstudiante(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        panelID = new PanelIngresarDocente(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        panelIA = new PanelIngresarAdministrativo(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        panelIAL = new PanelIngresarAdminLab(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        ventanaE = new VentanaUsEstudiante(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        ventanaD = new VentanaUsDocente(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaA, ventanaAL, ventanaC, ventanaL);
+        ventanaA = new VentanaUsAdministrativo(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaAL, ventanaC, ventanaL);
+        ventanaAL = new VentanaUsAdminLab(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaC, ventanaL);
+        ventanaC = new VentanaCursos(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaL);
+        ventanaL = new VentanaLaboratorios(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC);
     }
 
     public PanelPrincipal(ControladorPrincipal controlP, ControladorAdministrador controlA,
             ControladorEstudiante controlE, ControladorDocente controlD, ControladorAdministrativo controlUA,
             ControladorAdminLab controlAL, ControlVentanaEstudiante controlVE, ControlVentanaDocente controlVD,
-            ControlVentanaAdministrativo controlVA, ControlVentanaAdminLab controlVAL, ControlTablaEstudiante controlTE,
-            ControlTablaDocente controlTD, ControlTablaAdministrativo controlTA, ControlTablaAdminLab controlTAL,
-            PanelAdministrador panelA, PanelIngresarEstudiante panelIE, PanelIngresarDocente panelID,
-            PanelIngresarAdministrativo panelIA, PanelIngresarAdminLab panelIAL, VentanaUsEstudiante ventanaE,
-            VentanaUsDocente ventanaD, VentanaUsAdministrativo ventanaA, VentanaUsAdminLab ventanaAL) {
+            ControlVentanaAdministrativo controlVA, ControlVentanaAdminLab controlVAL, ControlVentanaCursos controlVC,
+            ControlVentanaLaboratorios controlVL, ControlTablaEstudiante controlTE, ControlTablaDocente controlTD,
+            ControlTablaAdministrativo controlTA, ControlTablaAdminLab controlTAL, ControlTablaUsuarioEstudiante controlTUE,
+            ControlTablaUsuarioDocente controlTUD, PanelAdministrador panelA, PanelIngresarEstudiante panelIE,
+            PanelIngresarDocente panelID, PanelIngresarAdministrativo panelIA, PanelIngresarAdminLab panelIAL,
+            VentanaUsEstudiante ventanaE, VentanaUsDocente ventanaD, VentanaUsAdministrativo ventanaA,
+            VentanaUsAdminLab ventanaAL, VentanaCursos ventanaC, VentanaLaboratorios ventanaL) {
         initComponents();
         setLocationRelativeTo(this);
         this.controlP = controlP;
@@ -106,10 +124,14 @@ public class PanelPrincipal extends javax.swing.JFrame {
         this.controlVD = controlVD;
         this.controlVA = controlVA;
         this.controlVAL = controlVAL;
+        this.controlVC = controlVC;
+        this.controlVL = controlVL;
         this.controlTE = controlTE;
         this.controlTD = controlTD;
         this.controlTA = controlTA;
         this.controlTAL = controlTAL;
+        this.controlTUE = controlTUE;
+        this.controlTUD = controlTUD;
         this.panelA = panelA;
         this.panelIE = panelIE;
         this.panelID = panelID;
@@ -119,6 +141,9 @@ public class PanelPrincipal extends javax.swing.JFrame {
         this.ventanaD = ventanaD;
         this.ventanaA = ventanaA;
         this.ventanaAL = ventanaAL;
+        this.ventanaC = ventanaC;
+        this.ventanaL = ventanaL;
+        
     }
 
     /**
@@ -177,7 +202,7 @@ public class PanelPrincipal extends javax.swing.JFrame {
         String usuario = txtUsuario.getText();
         String contraseña = txtContraseña.getText();
         if ("".equals(usuario) && "".equals(contraseña)) {
-            PanelAdministrador panelAdministrador = new PanelAdministrador(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
+            PanelAdministrador panelAdministrador = new PanelAdministrador(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
             panelAdministrador.setVisible(true);
             this.dispose();
         } else {
@@ -187,24 +212,24 @@ public class PanelPrincipal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "ACCESO PERMITIDO");
                 if (aux instanceof Estudiante) {
 //                    controlVE.abrirVentana((Estudiante)aux);
-                    VentanaUsEstudiante ventanaE = new VentanaUsEstudiante(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaD, ventanaA, ventanaAL);
+                    VentanaUsEstudiante ventanaE = new VentanaUsEstudiante(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
                     ventanaE.setVisible(true);
-                    ventanaE.informacionEstudiante((Estudiante)aux);
+                    ventanaE.informacionEstudiante((Estudiante) aux);
                     this.dispose();
                 } else if (aux instanceof Docente) {
-                    VentanaUsDocente ventanaD = new VentanaUsDocente(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaA, ventanaAL);
+                    VentanaUsDocente ventanaD = new VentanaUsDocente(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaA, ventanaAL, ventanaC, ventanaL);
                     ventanaD.setVisible(true);
-                    ventanaD.informacionDocente((Docente)aux);
+                    ventanaD.informacionDocente((Docente) aux);
                     this.dispose();
                 } else if (aux instanceof Administrativo) {
-                    VentanaUsAdministrativo ventanaA = new VentanaUsAdministrativo(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaAL);
+                    VentanaUsAdministrativo ventanaA = new VentanaUsAdministrativo(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaAL, ventanaC, ventanaL);
                     ventanaA.setVisible(true);
-                    ventanaA.informacionAdministrativo((Administrativo)aux);
+                    ventanaA.informacionAdministrativo((Administrativo) aux);
                     this.dispose();
                 } else if (aux instanceof AdminLab) {
-                    VentanaUsAdminLab ventanaAL = new VentanaUsAdminLab(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA);
+                    VentanaUsAdminLab ventanaAL = new VentanaUsAdminLab(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaC, ventanaL);
                     ventanaAL.setVisible(true);
-                    ventanaAL.informacionAdminLab((AdminLab)aux);
+                    ventanaAL.informacionAdminLab((AdminLab) aux);
                     this.dispose();
                 }
                 limpiarCampos();

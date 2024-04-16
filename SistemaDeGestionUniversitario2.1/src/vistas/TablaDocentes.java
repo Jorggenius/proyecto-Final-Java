@@ -8,10 +8,14 @@ import controladores.ControlTablaAdminLab;
 import controladores.ControlTablaAdministrativo;
 import controladores.ControlTablaDocente;
 import controladores.ControlTablaEstudiante;
+import controladores.ControlTablaUsuarioDocente;
+import controladores.ControlTablaUsuarioEstudiante;
 import controladores.ControlVentanaAdminLab;
 import controladores.ControlVentanaAdministrativo;
+import controladores.ControlVentanaCursos;
 import controladores.ControlVentanaDocente;
 import controladores.ControlVentanaEstudiante;
+import controladores.ControlVentanaLaboratorios;
 import controladores.ControladorAdminLab;
 import controladores.ControladorAdministrador;
 import controladores.ControladorAdministrativo;
@@ -39,10 +43,14 @@ public class TablaDocentes extends javax.swing.JFrame {
     ControlVentanaDocente controlVD;
     ControlVentanaAdministrativo controlVA;
     ControlVentanaAdminLab controlVAL;
+    ControlVentanaCursos controlVC;
+    ControlVentanaLaboratorios controlVL;
     ControlTablaEstudiante controlTE;
     ControlTablaDocente controlTD;
     ControlTablaAdministrativo controlTA;
     ControlTablaAdminLab controlTAL;
+    ControlTablaUsuarioEstudiante controlTUE;
+    ControlTablaUsuarioDocente controlTUD;
     PanelPrincipal panelP;
     PanelAdministrador panelA;
     PanelIngresarEstudiante panelIE;
@@ -53,6 +61,8 @@ public class TablaDocentes extends javax.swing.JFrame {
     VentanaUsDocente ventanaD;
     VentanaUsAdministrativo ventanaA;
     VentanaUsAdminLab ventanaAL;
+    VentanaCursos ventanaC;
+    VentanaLaboratorios ventanaL;
 
     /**
      * Creates new form TablaDocentes
@@ -60,11 +70,13 @@ public class TablaDocentes extends javax.swing.JFrame {
     public TablaDocentes(ControladorPrincipal controlP, ControladorAdministrador controlA,
             ControladorEstudiante controlE, ControladorDocente controlD, ControladorAdministrativo controlUA,
             ControladorAdminLab controlAL, ControlVentanaEstudiante controlVE, ControlVentanaDocente controlVD,
-            ControlVentanaAdministrativo controlVA, ControlVentanaAdminLab controlVAL, ControlTablaEstudiante controlTE,
-            ControlTablaDocente controlTD, ControlTablaAdministrativo controlTA, ControlTablaAdminLab controlTAL,
-            PanelPrincipal panelP, PanelAdministrador panelA, PanelIngresarEstudiante panelIE, PanelIngresarDocente panelID,
-            PanelIngresarAdministrativo panelIA, PanelIngresarAdminLab panelIAL, VentanaUsEstudiante ventanaE,
-            VentanaUsDocente ventanaD, VentanaUsAdministrativo ventanaA, VentanaUsAdminLab ventanaAL) {
+            ControlVentanaAdministrativo controlVA, ControlVentanaAdminLab controlVAL, ControlVentanaCursos controlVC,
+            ControlVentanaLaboratorios controlVL, ControlTablaEstudiante controlTE, ControlTablaDocente controlTD,
+            ControlTablaAdministrativo controlTA, ControlTablaAdminLab controlTAL, ControlTablaUsuarioEstudiante controlTUE,
+            ControlTablaUsuarioDocente controlTUD, PanelPrincipal panelP, PanelAdministrador panelA, PanelIngresarEstudiante panelIE,
+            PanelIngresarDocente panelID, PanelIngresarAdministrativo panelIA, PanelIngresarAdminLab panelIAL,
+            VentanaUsEstudiante ventanaE, VentanaUsDocente ventanaD, VentanaUsAdministrativo ventanaA,
+            VentanaUsAdminLab ventanaAL, VentanaCursos ventanaC, VentanaLaboratorios ventanaL) {
         initComponents();
         setLocationRelativeTo(this);
         this.controlP = controlP;
@@ -77,10 +89,14 @@ public class TablaDocentes extends javax.swing.JFrame {
         this.controlVD = controlVD;
         this.controlVA = controlVA;
         this.controlVAL = controlVAL;
+        this.controlVC = controlVC;
+        this.controlVL = controlVL;
         this.controlTE = controlTE;
         this.controlTD = controlTD;
         this.controlTA = controlTA;
         this.controlTAL = controlTAL;
+        this.controlTUE = controlTUE;
+        this.controlTUD = controlTUD;
         this.panelP = panelP;
         this.panelA = panelA;
         this.panelIE = panelIE;
@@ -91,6 +107,8 @@ public class TablaDocentes extends javax.swing.JFrame {
         this.ventanaD = ventanaD;
         this.ventanaA = ventanaA;
         this.ventanaAL = ventanaAL;
+        this.ventanaC = ventanaC;
+        this.ventanaL = ventanaL;
         llenarTabla();
 
     }
@@ -159,7 +177,7 @@ public class TablaDocentes extends javax.swing.JFrame {
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         // TODO add your handling code here:
-        PanelIngresarDocente panelID = new PanelIngresarDocente(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, panelP, panelA, panelIE, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL);
+        PanelIngresarDocente panelID = new PanelIngresarDocente(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, panelP, panelA, panelIE, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
         panelID.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed

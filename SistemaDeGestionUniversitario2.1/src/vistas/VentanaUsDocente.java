@@ -8,10 +8,14 @@ import controladores.ControlTablaAdminLab;
 import controladores.ControlTablaAdministrativo;
 import controladores.ControlTablaDocente;
 import controladores.ControlTablaEstudiante;
+import controladores.ControlTablaUsuarioDocente;
+import controladores.ControlTablaUsuarioEstudiante;
 import controladores.ControlVentanaAdminLab;
 import controladores.ControlVentanaAdministrativo;
+import controladores.ControlVentanaCursos;
 import controladores.ControlVentanaDocente;
 import controladores.ControlVentanaEstudiante;
+import controladores.ControlVentanaLaboratorios;
 import controladores.ControladorAdminLab;
 import controladores.ControladorAdministrador;
 import controladores.ControladorAdministrativo;
@@ -26,7 +30,7 @@ import modelo.Docente;
  */
 public class VentanaUsDocente extends javax.swing.JFrame {
 
-    ControladorPrincipal controlP;
+     ControladorPrincipal controlP;
     ControladorAdministrador controlA;
     ControladorEstudiante controlE;
     ControladorDocente controlD;
@@ -36,10 +40,14 @@ public class VentanaUsDocente extends javax.swing.JFrame {
     ControlVentanaDocente controlVD;
     ControlVentanaAdministrativo controlVA;
     ControlVentanaAdminLab controlVAL;
+    ControlVentanaCursos controlVC;
+    ControlVentanaLaboratorios controlVL;
     ControlTablaEstudiante controlTE;
     ControlTablaDocente controlTD;
     ControlTablaAdministrativo controlTA;
     ControlTablaAdminLab controlTAL;
+    ControlTablaUsuarioEstudiante controlTUE;
+    ControlTablaUsuarioDocente controlTUD;
     PanelPrincipal panelP;
     PanelAdministrador panelA;
     PanelIngresarEstudiante panelIE;
@@ -49,6 +57,8 @@ public class VentanaUsDocente extends javax.swing.JFrame {
     VentanaUsEstudiante ventanaE;
     VentanaUsAdministrativo ventanaA;
     VentanaUsAdminLab ventanaAL;
+    VentanaCursos ventanaC;
+    VentanaLaboratorios ventanaL;
 
     /**
      * Creates new form VentanaUsDocente
@@ -56,11 +66,13 @@ public class VentanaUsDocente extends javax.swing.JFrame {
     public VentanaUsDocente(ControladorPrincipal controlP, ControladorAdministrador controlA,
             ControladorEstudiante controlE, ControladorDocente controlD, ControladorAdministrativo controlUA,
             ControladorAdminLab controlAL, ControlVentanaEstudiante controlVE, ControlVentanaDocente controlVD,
-            ControlVentanaAdministrativo controlVA, ControlVentanaAdminLab controlVAL, ControlTablaEstudiante controlTE,
-            ControlTablaDocente controlTD, ControlTablaAdministrativo controlTA, ControlTablaAdminLab controlTAL,
-            PanelPrincipal panelP, PanelAdministrador panelA, PanelIngresarEstudiante panelIE, PanelIngresarDocente panelID,
-            PanelIngresarAdministrativo panelIA, PanelIngresarAdminLab panelIAL, VentanaUsEstudiante ventanaE,
-            VentanaUsAdministrativo ventanaA, VentanaUsAdminLab ventanaAL) {
+            ControlVentanaAdministrativo controlVA, ControlVentanaAdminLab controlVAL, ControlVentanaCursos controlVC,
+            ControlVentanaLaboratorios controlVL, ControlTablaEstudiante controlTE, ControlTablaDocente controlTD,
+            ControlTablaAdministrativo controlTA, ControlTablaAdminLab controlTAL, ControlTablaUsuarioEstudiante controlTUE,
+            ControlTablaUsuarioDocente controlTUD,PanelPrincipal panelP, PanelAdministrador panelA, PanelIngresarEstudiante panelIE,
+            PanelIngresarDocente panelID, PanelIngresarAdministrativo panelIA, PanelIngresarAdminLab panelIAL,
+            VentanaUsEstudiante ventanaE, VentanaUsAdministrativo ventanaA,
+            VentanaUsAdminLab ventanaAL, VentanaCursos ventanaC, VentanaLaboratorios ventanaL) {
         initComponents();
         setLocationRelativeTo(this);
         this.controlP = controlP;
@@ -73,10 +85,14 @@ public class VentanaUsDocente extends javax.swing.JFrame {
         this.controlVD = controlVD;
         this.controlVA = controlVA;
         this.controlVAL = controlVAL;
+        this.controlVC = controlVC;
+        this.controlVL = controlVL;
         this.controlTE = controlTE;
         this.controlTD = controlTD;
         this.controlTA = controlTA;
         this.controlTAL = controlTAL;
+        this.controlTUE = controlTUE;
+        this.controlTUD = controlTUD;
         this.panelP = panelP;
         this.panelA = panelA;
         this.panelIE = panelIE;
@@ -86,6 +102,8 @@ public class VentanaUsDocente extends javax.swing.JFrame {
         this.ventanaE = ventanaE;
         this.ventanaA = ventanaA;
         this.ventanaAL = ventanaAL;
+        this.ventanaC = ventanaC;
+        this.ventanaL = ventanaL;
     }
 
     /**
@@ -97,20 +115,21 @@ public class VentanaUsDocente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblDocente = new javax.swing.JLabel();
-        lblNombreDocente = new javax.swing.JLabel();
         btnCerrarSecion = new javax.swing.JButton();
-        LblBirthDate = new javax.swing.JLabel();
+        lblNombreDocente = new javax.swing.JLabel();
         lblBirthDateDocente = new javax.swing.JLabel();
-        lblEdad = new javax.swing.JLabel();
         lblEdadDocente = new javax.swing.JLabel();
-        lblAsignatura = new javax.swing.JLabel();
         lblAsignaturaDocente = new javax.swing.JLabel();
+        lblDocente = new javax.swing.JLabel();
+        LblBirthDate = new javax.swing.JLabel();
+        lblEdad = new javax.swing.JLabel();
+        lblAsignatura = new javax.swing.JLabel();
+        lblInformacionUsuario = new javax.swing.JLabel();
+        lblLineaDeLimite = new javax.swing.JLabel();
+        lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        lblDocente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblDocente.setText("Docente:");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnCerrarSecion.setText("Cerrar secion");
         btnCerrarSecion.addActionListener(new java.awt.event.ActionListener() {
@@ -118,75 +137,43 @@ public class VentanaUsDocente extends javax.swing.JFrame {
                 btnCerrarSecionActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCerrarSecion, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 471, -1, -1));
+        getContentPane().add(lblNombreDocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 34, 111, 20));
+        getContentPane().add(lblBirthDateDocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 60, 109, 20));
+        getContentPane().add(lblEdadDocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 86, 109, 20));
+        getContentPane().add(lblAsignaturaDocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 115, 111, 20));
+
+        lblDocente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblDocente.setText("Docente:");
+        getContentPane().add(lblDocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 28, -1, 29));
 
         LblBirthDate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         LblBirthDate.setText("Año de nacimiento:");
+        getContentPane().add(LblBirthDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 63, -1, -1));
 
         lblEdad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblEdad.setText("Edad:");
+        getContentPane().add(lblEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 89, -1, -1));
 
         lblAsignatura.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblAsignatura.setText("Asignatura:");
+        getContentPane().add(lblAsignatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 115, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblDocente)
-                                .addGap(70, 70, 70)
-                                .addComponent(lblNombreDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnCerrarSecion))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LblBirthDate)
-                            .addComponent(lblEdad)
-                            .addComponent(lblAsignatura))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblEdadDocente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblBirthDateDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(lblAsignaturaDocente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(209, 209, 209))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblDocente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblNombreDocente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LblBirthDate)
-                    .addComponent(lblBirthDateDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblEdad)
-                    .addComponent(lblEdadDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblAsignatura)
-                    .addComponent(lblAsignaturaDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 367, Short.MAX_VALUE)
-                .addComponent(btnCerrarSecion)
-                .addContainerGap())
-        );
+        lblInformacionUsuario.setText("Informacion de usuario----------------------------------------------------------------");
+        getContentPane().add(lblInformacionUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 450, -1));
+
+        lblLineaDeLimite.setText("__________________________________________________________________________________");
+        getContentPane().add(lblLineaDeLimite, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 460, 20));
+
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Fondo2.png"))); // NOI18N
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCerrarSecionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSecionActionPerformed
         // TODO add your handling code here:
-        PanelPrincipal panelP = new PanelPrincipal(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlTE, controlTD, controlTA, controlTAL, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, this, ventanaA, ventanaAL);
+        PanelPrincipal panelP = new PanelPrincipal(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, this, ventanaA, ventanaAL, ventanaC, ventanaL);
         panelP.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCerrarSecionActionPerformed
@@ -210,6 +197,9 @@ public class VentanaUsDocente extends javax.swing.JFrame {
     private javax.swing.JLabel lblDocente;
     private javax.swing.JLabel lblEdad;
     private javax.swing.JLabel lblEdadDocente;
+    private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel lblInformacionUsuario;
+    private javax.swing.JLabel lblLineaDeLimite;
     private javax.swing.JLabel lblNombreDocente;
     // End of variables declaration//GEN-END:variables
 }
