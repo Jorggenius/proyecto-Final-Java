@@ -22,6 +22,11 @@ import controladores.ControladorAdministrativo;
 import controladores.ControladorDocente;
 import controladores.ControladorEstudiante;
 import controladores.ControladorPrincipal;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import modelo.Curso;
+import modelo.Horario;
+import modelo.Laboratorio;
 
 /**
  *
@@ -29,6 +34,7 @@ import controladores.ControladorPrincipal;
  */
 public class VentanaLaboratorios extends javax.swing.JFrame {
 
+    ArrayList<Curso> cursosLab;
     ControladorPrincipal controlP;
     ControladorAdministrador controlA;
     ControladorEstudiante controlE;
@@ -73,6 +79,7 @@ public class VentanaLaboratorios extends javax.swing.JFrame {
             VentanaUsAdminLab ventanaAL, VentanaCursos ventanaC) {
         initComponents();
         setLocationRelativeTo(this);
+        cursosLab = new ArrayList<>();
         this.controlP = controlP;
         this.controlA = controlA;
         this.controlE = controlE;
@@ -112,26 +119,116 @@ public class VentanaLaboratorios extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        lblCrearCursos = new javax.swing.JLabel();
+        lblIdCurso = new javax.swing.JLabel();
+        lblNumeroPersonas = new javax.swing.JLabel();
+        lblCursos = new javax.swing.JLabel();
+        txtIdLab = new javax.swing.JTextField();
+        txtNumeroPersonas = new javax.swing.JTextField();
+        txtIdCurso = new javax.swing.JTextField();
+        btnCrearLab = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
+        btnAñadirCursos = new javax.swing.JButton();
+        lblFondo = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblCrearCursos.setText("Crear cursos------------------------------------------------------------------------------------");
+        getContentPane().add(lblCrearCursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, -1, -1));
+
+        lblIdCurso.setText("Id:");
+        getContentPane().add(lblIdCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 95, -1, -1));
+
+        lblNumeroPersonas.setText("Numero de personas:");
+        getContentPane().add(lblNumeroPersonas, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 132, -1, -1));
+
+        lblCursos.setText("Cursos:");
+        getContentPane().add(lblCursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 172, -1, -1));
+        getContentPane().add(txtIdLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 89, 100, -1));
+        getContentPane().add(txtNumeroPersonas, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 129, 100, -1));
+        getContentPane().add(txtIdCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 169, 100, -1));
+
+        btnCrearLab.setText("Validar Lab");
+        btnCrearLab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearLabActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCrearLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, -1, -1));
+
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 351, -1, -1));
+
+        btnAñadirCursos.setText("Añadir");
+        btnAñadirCursos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAñadirCursosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAñadirCursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 197, -1, -1));
+
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Fondo.png"))); // NOI18N
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 0, -1, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAñadirCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirCursosActionPerformed
+        // TODO add your handling code here:
+        int idCurso = Integer.parseInt(txtIdLab.getText());
+        Curso curso = controlVL.inscribirCurso(idCurso);
+        if (curso != null) {
+            cursosLab.add(curso);
+            JOptionPane.showMessageDialog(null, "Curso inscrito");
+        } else {
+            JOptionPane.showMessageDialog(null, "Imposible inscribir");
+        }
+    }//GEN-LAST:event_btnAñadirCursosActionPerformed
+
+    private void btnCrearLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearLabActionPerformed
+        // TODO add your handling code here:
+        int idLaboratorios = Integer.parseInt(txtIdLab.getText());
+        int numeroPersonas = Integer.parseInt(txtNumeroPersonas.getText());
+        Laboratorio lab = new Laboratorio(idLaboratorios, numeroPersonas);
+        lab.setCursos(cursosLab);
+        lab.setHoras(integrarHorario());
+        lab.isMantenimiento();
+        
+    }//GEN-LAST:event_btnCrearLabActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        // TODO add your handling code here:
+        ventanaAL.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnRegresarActionPerformed
+    public ArrayList<Horario> integrarHorario() {
+        ArrayList<Horario> horario = new ArrayList<>();
+        for (int i = 0; i < cursosLab.size(); i++) {
+            horario.add(cursosLab.get(i).getHorario());
+        }
+        return horario;
+    }
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAñadirCursos;
+    private javax.swing.JButton btnCrearLab;
+    private javax.swing.JButton btnRegresar;
+    private javax.swing.JLabel lblCrearCursos;
+    private javax.swing.JLabel lblCursos;
+    private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel lblIdCurso;
+    private javax.swing.JLabel lblNumeroPersonas;
+    private javax.swing.JTextField txtIdCurso;
+    private javax.swing.JTextField txtIdLab;
+    private javax.swing.JTextField txtNumeroPersonas;
     // End of variables declaration//GEN-END:variables
 }

@@ -22,6 +22,7 @@ import controladores.ControladorAdministrativo;
 import controladores.ControladorDocente;
 import controladores.ControladorEstudiante;
 import controladores.ControladorPrincipal;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import modelo.AdminLab;
 import modelo.Administrativo;
@@ -125,9 +126,9 @@ public class PanelIngresarAdministrativo extends javax.swing.JFrame {
         lblId = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
         lblBirthDate = new javax.swing.JLabel();
-        txtBirthDate = new javax.swing.JTextField();
         lblContraseña = new javax.swing.JLabel();
         txtContraseña = new javax.swing.JTextField();
+        datebirthDate = new com.toedter.calendar.JDateChooser();
         btnIngresar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
@@ -157,12 +158,12 @@ public class PanelIngresarAdministrativo extends javax.swing.JFrame {
         lblBirthDate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblBirthDate.setText("Año de nacimiento:");
         getContentPane().add(lblBirthDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 200, -1, -1));
-        getContentPane().add(txtBirthDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(286, 200, 114, -1));
 
         lblContraseña.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblContraseña.setText("Contraseña:");
         getContentPane().add(lblContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 234, 118, -1));
         getContentPane().add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(286, 234, 114, -1));
+        getContentPane().add(datebirthDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, 110, -1));
 
         btnIngresar.setText("Ingresar");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -218,7 +219,7 @@ public class PanelIngresarAdministrativo extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nombre = txtNombre.getText();
         int id = Integer.parseInt(txtId.getText());
-        int BirthDate = Integer.parseInt(txtBirthDate.getText());
+        Date BirthDate = datebirthDate.getDate();
         String contraseña = txtContraseña.getText();
         Administrativo administrativo = new Administrativo(BirthDate, nombre, id, contraseña);
         boolean respuesta = controlD.agregarDocente(administrativo);
@@ -254,7 +255,7 @@ public class PanelIngresarAdministrativo extends javax.swing.JFrame {
     private void limpiarCampos() {
         txtNombre.setText("");
         txtId.setText(controlP.contadorId());
-        txtBirthDate.setText("");
+        datebirthDate.setDate(null);
         txtContraseña.setText("");
 
     }
@@ -270,13 +271,13 @@ public class PanelIngresarAdministrativo extends javax.swing.JFrame {
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnInicio;
     private javax.swing.JButton btnListar;
+    private com.toedter.calendar.JDateChooser datebirthDate;
     private javax.swing.JLabel lblBirthDate;
     private javax.swing.JLabel lblContraseña;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblIngresarAdministrativo;
     private javax.swing.JLabel lblNombre;
-    private javax.swing.JTextField txtBirthDate;
     private javax.swing.JTextField txtContraseña;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;

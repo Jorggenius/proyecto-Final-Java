@@ -22,6 +22,7 @@ import controladores.ControladorAdministrativo;
 import controladores.ControladorDocente;
 import controladores.ControladorEstudiante;
 import controladores.ControladorPrincipal;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import modelo.AdminLab;
 
@@ -125,7 +126,7 @@ public class PanelIngresarAdminLab extends javax.swing.JFrame {
         lblContraseña = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txtId = new javax.swing.JTextField();
-        txtBirthDate = new javax.swing.JTextField();
+        datebirthDate = new com.toedter.calendar.JDateChooser();
         txtContraseña = new javax.swing.JTextField();
         btnIngresar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
@@ -160,7 +161,7 @@ public class PanelIngresarAdminLab extends javax.swing.JFrame {
         getContentPane().add(lblContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 118, -1));
         getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 120, -1));
         getContentPane().add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 120, -1));
-        getContentPane().add(txtBirthDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 120, -1));
+        getContentPane().add(datebirthDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 120, -1));
         getContentPane().add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, 120, -1));
 
         btnIngresar.setText("Ingresar");
@@ -238,7 +239,7 @@ public class PanelIngresarAdminLab extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nombre = txtNombre.getText();
         int id = Integer.parseInt(txtId.getText());
-        int birthdate = Integer.parseInt(txtBirthDate.getText());
+        Date birthdate = datebirthDate.getDate();
         String contraseña = txtContraseña.getText();
         AdminLab adminlab = new AdminLab(birthdate, nombre, id, contraseña);
         boolean respuesta = controlAL.agregarAdminLab(adminlab);
@@ -253,7 +254,7 @@ public class PanelIngresarAdminLab extends javax.swing.JFrame {
     private void limpiarCampos() {
         txtNombre.setText("");
         txtId.setText(controlP.contadorId());
-        txtBirthDate.setText("");
+        datebirthDate.setDate(null);
         txtContraseña.setText("");
 
     }
@@ -269,13 +270,13 @@ public class PanelIngresarAdminLab extends javax.swing.JFrame {
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnInicio;
     private javax.swing.JButton btnListar;
+    private com.toedter.calendar.JDateChooser datebirthDate;
     private javax.swing.JLabel lblBirthDate;
     private javax.swing.JLabel lblContraseña;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblIngresarAdminLab;
     private javax.swing.JLabel lblNombre;
-    private javax.swing.JTextField txtBirthDate;
     private javax.swing.JTextField txtContraseña;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;

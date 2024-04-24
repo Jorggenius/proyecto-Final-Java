@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelo.AdminLab;
 import modelo.Administrativo;
+import modelo.Curso;
 import modelo.Docente;
 import modelo.Estudiante;
+import modelo.Laboratorio;
 import modelo.Usuario;
 import vistas.PanelAdministrador;
 import vistas.PanelIngresarAdminLab;
@@ -27,7 +29,10 @@ import vistas.VentanaUsEstudiante;
 public class ControladorPrincipal {
 
     int contIds = 0;
+    int contIdsCursos = 0;
     ArrayList<Usuario> usuarios;
+    ArrayList<Curso> cursos;
+    ArrayList<Laboratorio> labs;
     ControladorPrincipal controlP;
     ControladorAdministrador controlA;
     ControladorEstudiante controlE;
@@ -71,6 +76,8 @@ public class ControladorPrincipal {
             VentanaUsAdministrativo ventanaA, VentanaUsAdminLab ventanaAL, VentanaCursos ventanaC,
             VentanaLaboratorios ventanaL) {
         usuarios = new ArrayList<>();
+        cursos = new ArrayList<>();
+        labs = new ArrayList<>();
         this.controlP = controlP;
         this.controlA = controlA;
         this.controlE = controlE;
@@ -117,6 +124,22 @@ public class ControladorPrincipal {
 
     public void setContIds(int contIds) {
         this.contIds = contIds;
+    }
+
+    public ArrayList<Curso> getCursos() {
+        return cursos;
+    }
+
+    public void setCursos(ArrayList<Curso> cursos) {
+        this.cursos = cursos;
+    }
+
+    public int getContIdsCursos() {
+        return contIdsCursos;
+    }
+
+    public void setContIdsCursos(int contIdsCursos) {
+        this.contIdsCursos = contIdsCursos;
     }
 
     public ArrayList<Estudiante> listaUsuarioEsts() {
@@ -176,6 +199,32 @@ public class ControladorPrincipal {
         String contador = "00" + String.valueOf(usuarios.size() + 1);
         contIds++;
         return contador;
+    }
+
+    public String contadorIdCursos() {
+        String contador = "00" + String.valueOf(cursos.size() + 1);
+        contIdsCursos++;
+        return contador;
+    }
+
+    public boolean agregarCurso(Curso curso) {
+        boolean aux = buscarCurso(curso);
+        if (aux) {
+            cursos.add(curso);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean buscarCurso(Curso curso) {
+        for (int i = 0; i < cursos.size(); i++) {
+            if (curso.getPrograma().equals(cursos.get(i).getPrograma())
+                    && curso.getJornada().equals(cursos.get(i).getJornada())
+                    && curso.getPeriodo() == cursos.get(i).getPeriodo()) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

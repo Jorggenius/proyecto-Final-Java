@@ -22,6 +22,7 @@ import controladores.ControladorAdministrativo;
 import controladores.ControladorDocente;
 import controladores.ControladorEstudiante;
 import controladores.ControladorPrincipal;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import modelo.Docente;
 
@@ -126,13 +127,13 @@ public class PanelIngresarDocente extends javax.swing.JFrame {
         lblAsignatura = new javax.swing.JLabel();
         txtAsignatura = new javax.swing.JTextField();
         lblBirthDate = new javax.swing.JLabel();
-        txtBirthDate = new javax.swing.JTextField();
         lblContraseña = new javax.swing.JLabel();
         txtContraseña = new javax.swing.JTextField();
         btnIngresar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        datebirthDate = new com.toedter.calendar.JDateChooser();
         btnInicio = new javax.swing.JButton();
         btnAtras = new javax.swing.JButton();
         btnListar = new javax.swing.JButton();
@@ -148,27 +149,26 @@ public class PanelIngresarDocente extends javax.swing.JFrame {
         lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNombre.setText("Nombre:");
         getContentPane().add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 112, 118, -1));
-        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 112, 100, -1));
+        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 100, -1));
 
         lblId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblId.setText("Id:");
         getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 146, 118, -1));
-        getContentPane().add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 146, 100, -1));
+        getContentPane().add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 100, -1));
 
         lblAsignatura.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblAsignatura.setText("Asignatura:");
         getContentPane().add(lblAsignatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 180, 118, -1));
-        getContentPane().add(txtAsignatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 180, 100, -1));
+        getContentPane().add(txtAsignatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 100, -1));
 
         lblBirthDate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblBirthDate.setText("Año de nacimiento:");
         getContentPane().add(lblBirthDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 214, -1, -1));
-        getContentPane().add(txtBirthDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 214, 100, -1));
 
         lblContraseña.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblContraseña.setText("Contraseña:");
         getContentPane().add(lblContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 248, 118, -1));
-        getContentPane().add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 248, 100, -1));
+        getContentPane().add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 100, -1));
 
         btnIngresar.setText("Ingresar");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -186,6 +186,7 @@ public class PanelIngresarDocente extends javax.swing.JFrame {
 
         btnDelete.setText("Borrar");
         getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(335, 282, -1, -1));
+        getContentPane().add(datebirthDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 100, -1));
 
         btnInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/house.png"))); // NOI18N
         btnInicio.setBorderPainted(false);
@@ -246,7 +247,7 @@ public class PanelIngresarDocente extends javax.swing.JFrame {
         String nombre = txtNombre.getText();
         int id = Integer.parseInt(txtId.getText());
         String asignatura = txtAsignatura.getText();
-        int birthDate = Integer.parseInt(txtBirthDate.getText());
+        Date birthDate = datebirthDate.getDate();
         String contraseña = txtContraseña.getText();
         Docente docente = new Docente(asignatura, birthDate, nombre, id, contraseña);
         boolean respuesta = controlD.agregarDocente(docente);
@@ -263,7 +264,7 @@ public class PanelIngresarDocente extends javax.swing.JFrame {
         txtNombre.setText("");
         txtId.setText(controlP.contadorId());
         txtAsignatura.setText("");
-        txtBirthDate.setText("");
+        datebirthDate.setDate(null);
         txtContraseña.setText("");
 
     }
@@ -279,6 +280,7 @@ public class PanelIngresarDocente extends javax.swing.JFrame {
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnInicio;
     private javax.swing.JButton btnListar;
+    private com.toedter.calendar.JDateChooser datebirthDate;
     private javax.swing.JLabel lblAsignatura;
     private javax.swing.JLabel lblBirthDate;
     private javax.swing.JLabel lblContraseña;
@@ -287,7 +289,6 @@ public class PanelIngresarDocente extends javax.swing.JFrame {
     private javax.swing.JLabel lblIngresarDocente;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JTextField txtAsignatura;
-    private javax.swing.JTextField txtBirthDate;
     private javax.swing.JTextField txtContraseña;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;

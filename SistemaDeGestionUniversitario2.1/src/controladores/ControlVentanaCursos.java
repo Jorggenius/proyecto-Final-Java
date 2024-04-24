@@ -4,6 +4,10 @@
  */
 package controladores;
 
+import modelo.Curso;
+import java.util.ArrayList;
+import modelo.Docente;
+import modelo.Estudiante;
 import vistas.PanelAdministrador;
 import vistas.PanelIngresarAdminLab;
 import vistas.PanelIngresarAdministrativo;
@@ -98,4 +102,33 @@ public class ControlVentanaCursos {
         this.ventanaL = ventanaL;
     }
 
+    public Docente integrarDocente(int docenteId) {
+        ArrayList<Docente> docens = controlP.listaUsuarioDocens();
+        for (int i = 0; i < docens.size(); i++) {
+            if (docenteId == docens.get(i).getId()) {
+                Docente docente = docens.get(i);
+                return docente;
+            }
+        }
+        return null;
+    }
+
+    public Estudiante inscribirEstudiante(int idEst) {
+        ArrayList<Estudiante> ests = controlP.listaUsuarioEsts();
+        for (int i = 0; i < ests.size(); i++) {
+            if (idEst == ests.get(i).getId()) {
+                Estudiante est = ests.get(i);
+                return est;
+            }
+        }
+        return null;
+    }
+
+    public boolean agregarCurso(Curso curso){
+        boolean aux = controlP.agregarCurso(curso);
+        if(aux){
+            return true;
+        }
+        return false;
+    }
 }

@@ -22,6 +22,12 @@ import controladores.ControladorAdministrativo;
 import controladores.ControladorDocente;
 import controladores.ControladorEstudiante;
 import controladores.ControladorPrincipal;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import modelo.Curso;
+import modelo.Docente;
+import modelo.Estudiante;
+import modelo.Horario;
 
 /**
  *
@@ -29,6 +35,7 @@ import controladores.ControladorPrincipal;
  */
 public class VentanaCursos extends javax.swing.JFrame {
 
+    ArrayList<Estudiante> estsCurso;
     ControladorPrincipal controlP;
     ControladorAdministrador controlA;
     ControladorEstudiante controlE;
@@ -47,6 +54,7 @@ public class VentanaCursos extends javax.swing.JFrame {
     ControlTablaAdminLab controlTAL;
     ControlTablaUsuarioEstudiante controlTUE;
     ControlTablaUsuarioDocente controlTUD;
+    PanelPrincipal panelP;
     PanelAdministrador panelA;
     PanelIngresarEstudiante panelIE;
     PanelIngresarDocente panelID;
@@ -67,12 +75,13 @@ public class VentanaCursos extends javax.swing.JFrame {
             ControlVentanaAdministrativo controlVA, ControlVentanaAdminLab controlVAL, ControlVentanaCursos controlVC,
             ControlVentanaLaboratorios controlVL, ControlTablaEstudiante controlTE, ControlTablaDocente controlTD,
             ControlTablaAdministrativo controlTA, ControlTablaAdminLab controlTAL, ControlTablaUsuarioEstudiante controlTUE,
-            ControlTablaUsuarioDocente controlTUD, PanelAdministrador panelA, PanelIngresarEstudiante panelIE,
-            PanelIngresarDocente panelID, PanelIngresarAdministrativo panelIA, PanelIngresarAdminLab panelIAL,
-            VentanaUsEstudiante ventanaE, VentanaUsDocente ventanaD, VentanaUsAdministrativo ventanaA,
-            VentanaUsAdminLab ventanaAL, VentanaLaboratorios ventanaL) {
+            ControlTablaUsuarioDocente controlTUD, PanelPrincipal panelP, PanelAdministrador panelA,
+            PanelIngresarEstudiante panelIE, PanelIngresarDocente panelID, PanelIngresarAdministrativo panelIA,
+            PanelIngresarAdminLab panelIAL, VentanaUsEstudiante ventanaE, VentanaUsDocente ventanaD,
+            VentanaUsAdministrativo ventanaA, VentanaUsAdminLab ventanaAL, VentanaLaboratorios ventanaL) {
         initComponents();
-          setLocationRelativeTo(this);
+        setLocationRelativeTo(this);
+        estsCurso = new ArrayList<>();
         this.controlP = controlP;
         this.controlA = controlA;
         this.controlE = controlE;
@@ -91,6 +100,7 @@ public class VentanaCursos extends javax.swing.JFrame {
         this.controlTAL = controlTAL;
         this.controlTUE = controlTUE;
         this.controlTUD = controlTUD;
+        this.panelP = panelP;
         this.panelA = panelA;
         this.panelIE = panelIE;
         this.panelID = panelID;
@@ -101,6 +111,8 @@ public class VentanaCursos extends javax.swing.JFrame {
         this.ventanaA = ventanaA;
         this.ventanaAL = ventanaAL;
         this.ventanaL = ventanaL;
+        txtId.setText(controlP.contadorIdCursos());
+        txtId.setEnabled(false);
     }
 
     /**
@@ -112,26 +124,250 @@ public class VentanaCursos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jCalendar1 = new com.toedter.calendar.JCalendar();
+        lblCrearCursos = new javax.swing.JLabel();
+        txtPeriodo = new javax.swing.JTextField();
+        lblDocente = new javax.swing.JLabel();
+        txtDocenteId = new javax.swing.JTextField();
+        btnListaDocentes = new javax.swing.JButton();
+        lblPrograma = new javax.swing.JLabel();
+        txtPrograma = new javax.swing.JTextField();
+        lblMateria = new javax.swing.JLabel();
+        txtMateria = new javax.swing.JTextField();
+        lblJornada = new javax.swing.JLabel();
+        txtJornada = new javax.swing.JTextField();
+        lblPeriodo = new javax.swing.JLabel();
+        lblId = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
+        lblHoraInicio = new javax.swing.JLabel();
+        txtHoraInicio = new javax.swing.JTextField();
+        lblHoraFinal = new javax.swing.JLabel();
+        txtHoraFinal = new javax.swing.JTextField();
+        lblLineaLimite1 = new javax.swing.JLabel();
+        lblLineaLimite2 = new javax.swing.JLabel();
+        lblIdEstudiantes = new javax.swing.JLabel();
+        txtIdEstudiante = new javax.swing.JTextField();
+        btnInscribirEstudiante = new javax.swing.JButton();
+        btnEstudiantes = new javax.swing.JButton();
+        btnCrear = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnBorrar = new javax.swing.JButton();
+        lblLineaLimite3 = new javax.swing.JLabel();
+        btnRegresar = new javax.swing.JButton();
+        lblFondo = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblCrearCursos.setText("Crear curso----------------------------------------------------------------------------");
+        getContentPane().add(lblCrearCursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
+        getContentPane().add(txtPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 98, -1));
+
+        lblDocente.setText("Id docente:");
+        getContentPane().add(lblDocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, 22));
+        getContentPane().add(txtDocenteId, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 98, -1));
+
+        btnListaDocentes.setText("Docentes");
+        btnListaDocentes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListaDocentesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnListaDocentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 90, -1));
+
+        lblPrograma.setText("Programa:");
+        getContentPane().add(lblPrograma, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 43, -1, -1));
+        getContentPane().add(txtPrograma, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 98, -1));
+
+        lblMateria.setText("Materia:");
+        getContentPane().add(lblMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+        getContentPane().add(txtMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 98, -1));
+
+        lblJornada.setText("Jornada:");
+        getContentPane().add(lblJornada, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+        getContentPane().add(txtJornada, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 98, -1));
+
+        lblPeriodo.setText("Periodo:");
+        getContentPane().add(lblPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
+
+        lblId.setText("Id:");
+        getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
+        getContentPane().add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 100, -1));
+
+        lblHoraInicio.setText("Hora inicio:");
+        getContentPane().add(lblHoraInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
+        getContentPane().add(txtHoraInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 97, -1));
+
+        lblHoraFinal.setText("Hora final:");
+        getContentPane().add(lblHoraFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
+        getContentPane().add(txtHoraFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 97, -1));
+
+        lblLineaLimite1.setText("__________________________________________________________________________________");
+        getContentPane().add(lblLineaLimite1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 420, -1));
+
+        lblLineaLimite2.setText("Ingresar estudiante---------------------------------------------------------------");
+        getContentPane().add(lblLineaLimite2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 420, -1));
+
+        lblIdEstudiantes.setText("Id estudiante:");
+        getContentPane().add(lblIdEstudiantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
+        getContentPane().add(txtIdEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, 98, -1));
+
+        btnInscribirEstudiante.setText("Inscribir");
+        btnInscribirEstudiante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInscribirEstudianteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnInscribirEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 380, -1, -1));
+
+        btnEstudiantes.setText("Estudiantes");
+        btnEstudiantes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEstudiantesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEstudiantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, -1, -1));
+
+        btnCrear.setText("Crear");
+        btnCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, -1, -1));
+
+        btnBuscar.setText("Buscar");
+        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 430, -1, -1));
+
+        btnEditar.setText("Editar");
+        getContentPane().add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 430, -1, -1));
+
+        btnBorrar.setText("Borrar");
+        getContentPane().add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, -1, -1));
+
+        lblLineaLimite3.setText("__________________________________________________________________________________");
+        getContentPane().add(lblLineaLimite3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 420, -1));
+
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 471, -1, -1));
+
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Fondo2.png"))); // NOI18N
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 0, 460, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        // TODO add your handling code here:
+        VentanaUsAdminLab ventanaAL = new VentanaUsAdminLab(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, panelP, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, this, ventanaL);
+        ventanaAL.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnListaDocentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaDocentesActionPerformed
+        // TODO add your handling code here:
+        TablaUsuarioDocente tablaUD = new TablaUsuarioDocente(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, this, ventanaL);
+        tablaUD.setVisible(true);
+
+    }//GEN-LAST:event_btnListaDocentesActionPerformed
+
+    private void btnEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstudiantesActionPerformed
+        // TODO add your handling code here:
+        TablaUsuarioEstudiante tablaUE = new TablaUsuarioEstudiante(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, this, ventanaL);
+        tablaUE.setVisible(true);
+    }//GEN-LAST:event_btnEstudiantesActionPerformed
+
+    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+        // TODO add your handling code here:
+        String programa = txtPrograma.getText();
+        int id = Integer.parseInt(txtId.getText());
+        String materia = txtMateria.getText();
+        String jornada = txtJornada.getText();
+        int periodo = Integer.parseInt(txtPeriodo.getText());
+        int docenteId = Integer.parseInt(txtDocenteId.getText());
+        Docente docente = controlVC.integrarDocente(docenteId);
+        int horaInicio = Integer.parseInt(txtHoraInicio.getText());
+        int horaFinal = Integer.parseInt(txtHoraFinal.getText());
+        Horario horario = new Horario(horaInicio, horaFinal);
+        ArrayList<Estudiante> eCurso = new ArrayList<>();
+        Curso curso = new Curso(docente, materia, horario, jornada, periodo, programa, id);
+        curso.setEstudiantes(estsCurso);
+        boolean cursoAbierto = controlVC.agregarCurso(curso);
+        if(cursoAbierto){
+            JOptionPane.showMessageDialog(null, "Curso abierto");
+            limpiarCampos();
+        }else{
+            JOptionPane.showMessageDialog(null, "Curso desaprobado");
+            limpiarCampos();
+        }
+        
+    }//GEN-LAST:event_btnCrearActionPerformed
+
+    private void btnInscribirEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInscribirEstudianteActionPerformed
+        // TODO add your handling code here:
+        int idEst = Integer.parseInt(txtIdEstudiante.getText());
+        Estudiante aux = controlVC.inscribirEstudiante(idEst);
+        if (aux != null) {
+            estsCurso.add(aux);
+            JOptionPane.showMessageDialog(null, "Estudiante inscrito");
+        } else {
+            JOptionPane.showMessageDialog(null, "Imposible inscribir");
+        }
+    }//GEN-LAST:event_btnInscribirEstudianteActionPerformed
+
+    private void limpiarCampos() {
+        txtPrograma.setText("");
+        txtId.setText(controlP.contadorIdCursos());
+        txtMateria.setText("");
+        txtJornada.setText("");
+        txtPeriodo.setText("");
+        txtDocenteId.setText("");
+        txtHoraInicio.setText("");
+        txtHoraFinal.setText("");
+        txtIdEstudiante.setText("");
+    }
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBorrar;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCrear;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEstudiantes;
+    private javax.swing.JButton btnInscribirEstudiante;
+    private javax.swing.JButton btnListaDocentes;
+    private javax.swing.JButton btnRegresar;
+    private com.toedter.calendar.JCalendar jCalendar1;
+    private javax.swing.JLabel lblCrearCursos;
+    private javax.swing.JLabel lblDocente;
+    private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel lblHoraFinal;
+    private javax.swing.JLabel lblHoraInicio;
+    private javax.swing.JLabel lblId;
+    private javax.swing.JLabel lblIdEstudiantes;
+    private javax.swing.JLabel lblJornada;
+    private javax.swing.JLabel lblLineaLimite1;
+    private javax.swing.JLabel lblLineaLimite2;
+    private javax.swing.JLabel lblLineaLimite3;
+    private javax.swing.JLabel lblMateria;
+    private javax.swing.JLabel lblPeriodo;
+    private javax.swing.JLabel lblPrograma;
+    private javax.swing.JTextField txtDocenteId;
+    private javax.swing.JTextField txtHoraFinal;
+    private javax.swing.JTextField txtHoraInicio;
+    private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtIdEstudiante;
+    private javax.swing.JTextField txtJornada;
+    private javax.swing.JTextField txtMateria;
+    private javax.swing.JTextField txtPeriodo;
+    private javax.swing.JTextField txtPrograma;
     // End of variables declaration//GEN-END:variables
 }

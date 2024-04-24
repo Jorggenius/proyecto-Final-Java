@@ -4,6 +4,8 @@
  */
 package controladores;
 
+import java.util.ArrayList;
+import modelo.Curso;
 import vistas.PanelAdministrador;
 import vistas.PanelIngresarAdminLab;
 import vistas.PanelIngresarAdministrativo;
@@ -97,5 +99,14 @@ public class ControlVentanaLaboratorios {
         this.ventanaC = ventanaC;
         this.ventanaL = ventanaL;
     }
-
+ public Curso inscribirCurso(int idCurso) {
+        ArrayList<Curso> cursos = controlP.getCursos();
+        for (int i = 0; i < cursos.size(); i++) {
+            if (idCurso == cursos.get(i).getId()) {
+                Curso curso = cursos.get(i);
+                return curso;
+            }
+        }
+        return null;
+    }
 }
