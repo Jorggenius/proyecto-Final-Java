@@ -4,6 +4,7 @@
  */
 package vistas;
 
+import controladores.ControlGestionCursos;
 import controladores.ControlTablaAdminLab;
 import controladores.ControlTablaAdministrativo;
 import controladores.ControlTablaDocente;
@@ -56,6 +57,7 @@ public class VentanaCursos extends javax.swing.JFrame {
     ControlTablaAdminLab controlTAL;
     ControlTablaUsuarioEstudiante controlTUE;
     ControlTablaUsuarioDocente controlTUD;
+    ControlGestionCursos controlGC;
     PanelPrincipal panelP;
     PanelAdministrador panelA;
     PanelIngresarEstudiante panelIE;
@@ -77,7 +79,7 @@ public class VentanaCursos extends javax.swing.JFrame {
             ControlVentanaAdministrativo controlVA, ControlVentanaAdminLab controlVAL, ControlVentanaCursos controlVC,
             ControlVentanaLaboratorios controlVL, ControlTablaEstudiante controlTE, ControlTablaDocente controlTD,
             ControlTablaAdministrativo controlTA, ControlTablaAdminLab controlTAL, ControlTablaUsuarioEstudiante controlTUE,
-            ControlTablaUsuarioDocente controlTUD, PanelPrincipal panelP, PanelAdministrador panelA,
+            ControlTablaUsuarioDocente controlTUD,ControlGestionCursos controlGC, PanelPrincipal panelP, PanelAdministrador panelA,
             PanelIngresarEstudiante panelIE, PanelIngresarDocente panelID, PanelIngresarAdministrativo panelIA,
             PanelIngresarAdminLab panelIAL, VentanaUsEstudiante ventanaE, VentanaUsDocente ventanaD,
             VentanaUsAdministrativo ventanaA, VentanaUsAdminLab ventanaAL, VentanaLaboratorios ventanaL) {
@@ -102,6 +104,7 @@ public class VentanaCursos extends javax.swing.JFrame {
         this.controlTAL = controlTAL;
         this.controlTUE = controlTUE;
         this.controlTUD = controlTUD;
+        this.controlGC = controlGC;
         this.panelP = panelP;
         this.panelA = panelA;
         this.panelIE = panelIE;
@@ -121,6 +124,7 @@ public class VentanaCursos extends javax.swing.JFrame {
         comboPeriodo.setSelectedItem(null);
         JComboEstudiantes.setSelectedItem(null);
         JComboDocentes.setSelectedItem(null);
+        jComboDias.setSelectedItem(null);
 
     }
 
@@ -156,6 +160,7 @@ public class VentanaCursos extends javax.swing.JFrame {
         lblHoraInicio = new javax.swing.JLabel();
         txtHoraInicio = new javax.swing.JTextField();
         lblHoraFinal = new javax.swing.JLabel();
+        jComboDias = new javax.swing.JComboBox<>();
         JComboEstudiantes = new javax.swing.JComboBox<>();
         txtHoraFinal = new javax.swing.JTextField();
         JComboDocentes = new javax.swing.JComboBox<>();
@@ -215,6 +220,9 @@ public class VentanaCursos extends javax.swing.JFrame {
 
         lblHoraFinal.setText("Hora final:");
         getContentPane().add(lblHoraFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
+
+        jComboDias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes" }));
+        getContentPane().add(jComboDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, 90, -1));
 
         getContentPane().add(JComboEstudiantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, 100, -1));
         getContentPane().add(txtHoraFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 97, -1));
@@ -287,7 +295,7 @@ public class VentanaCursos extends javax.swing.JFrame {
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO add your handling code here:
-        VentanaUsAdminLab ventanaAL = new VentanaUsAdminLab(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, panelP, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, this, ventanaL);
+        VentanaUsAdminLab ventanaAL = new VentanaUsAdminLab(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, controlGC, panelP, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, this, ventanaL);
         ventanaAL.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
@@ -314,9 +322,10 @@ public class VentanaCursos extends javax.swing.JFrame {
         int periodo = Integer.parseInt(comboPeriodo.getSelectedItem().toString());
         int nombreDocen = JComboDocentes.getSelectedIndex();
         
+        String dia = String.valueOf(jComboDias.getSelectedItem());
         LocalTime horaInicio = LocalTime.parse(txtHoraInicio.getText());
         LocalTime horaFinal = LocalTime.parse(txtHoraFinal.getText());
-        Horario horario = new Horario(horaInicio, horaFinal);
+        Horario horario = new Horario(horaInicio, horaFinal, dia);
         
         ArrayList<Estudiante> eCurso = new ArrayList<>();
         Curso curso = new Curso(controlP.listaUsuarioDocens().get(nombreDocen), materia, horario, jornada, periodo, programa, id);
@@ -355,6 +364,7 @@ public class VentanaCursos extends javax.swing.JFrame {
         txtHoraFinal.setText("");
         JComboDocentes.setSelectedItem(null);
         JComboEstudiantes.setSelectedItem(null);
+        jComboDias.setSelectedItem(null);
         resetArrayEstCursos();
     }
 
@@ -398,6 +408,7 @@ public class VentanaCursos extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboJornada;
     private javax.swing.JComboBox<String> comboPeriodo;
     private com.toedter.calendar.JCalendar jCalendar1;
+    private javax.swing.JComboBox<String> jComboDias;
     private javax.swing.JLabel lblCrearCursos;
     private javax.swing.JLabel lblDocente;
     private javax.swing.JLabel lblFondo;

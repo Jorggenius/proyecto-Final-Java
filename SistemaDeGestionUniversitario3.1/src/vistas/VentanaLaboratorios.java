@@ -255,7 +255,9 @@ public class VentanaLaboratorios extends javax.swing.JFrame {
         int indiceCurso = JComboCursos.getSelectedIndex();
         for (int i = 0; i < cursosLab.size(); i++) {
             if (controlP.getCursos().get(indiceCurso).getHorario().getHoraInicio()
-                    == cursosLab.get(i).getHorario().getHoraInicio()) {
+                    == cursosLab.get(i).getHorario().getHoraInicio() 
+                    && controlP.getCursos().get(indiceCurso).getHorario().getDia()
+                    == cursosLab.get(i).getHorario().getDia()) {
                 return true;
             }
         }

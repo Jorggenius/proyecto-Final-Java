@@ -1,6 +1,7 @@
 package controladores;
 
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import modelo.AdminLab;
 import modelo.Administrativo;
@@ -109,6 +110,28 @@ public class ControladorPrincipal {
         this.ventanaAL = ventanaAL;
         this.ventanaC = ventanaC;
         this.ventanaL = ventanaL;
+        
+        Date date = new Date(1982, 11, 22);
+        Estudiante estudiante1 = new Estudiante(date, "Jorge", 001, "123", "Ingenieria");
+        Estudiante estudiante2 = new Estudiante(date, "Andrea", 002, "123", "Ingenieria");
+        Estudiante estudiante3 = new Estudiante(date, "Jhoana", 003, "123", "Ingenieria");
+        Estudiante estudiante4 = new Estudiante(date, "Jhon", 004, "123", "Ingenieria");
+        Docente docente1 = new Docente("Fisica", date, "Andres", 005, "123");    
+        Docente docente2 = new Docente("Pricipios", date, "Luisa", 006, "123");    
+        Docente docente3 = new Docente("Matematicas", date, "Maribel", 007, "123");    
+        Docente docente4 = new Docente("Etica", date, "Martha", 010, "123");    
+        Docente docente5 = new Docente("Estadistica", date, "Fernando", 011, "123");    
+        AdminLab adminlab = new AdminLab(date, "Laura", 012, "123");
+        usuarios.add(estudiante1);
+        usuarios.add(estudiante2);
+        usuarios.add(estudiante3);
+        usuarios.add(estudiante4);
+        usuarios.add(docente1);
+        usuarios.add(docente2);
+        usuarios.add(docente3);
+        usuarios.add(docente4);
+        usuarios.add(docente5);
+        usuarios.add(adminlab);
     }
 
     public ArrayList<Laboratorio> getLabs() {
@@ -244,7 +267,8 @@ public class ControladorPrincipal {
         for (int i = 0; i < cursos.size(); i++) {
             if (curso.getPrograma().equals(cursos.get(i).getPrograma())
                     && curso.getJornada().equals(cursos.get(i).getJornada())
-                    && curso.getPeriodo() == cursos.get(i).getPeriodo()) {
+                    && curso.getPeriodo() == cursos.get(i).getPeriodo()
+                    && curso.getMaterial().equals(cursos.get(i).getMaterial())) {
                 return false;
             }
         }

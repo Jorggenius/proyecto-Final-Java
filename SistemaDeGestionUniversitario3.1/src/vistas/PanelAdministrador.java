@@ -4,6 +4,7 @@
  */
 package vistas;
 
+import controladores.ControlGestionCursos;
 import controladores.ControlTablaAdminLab;
 import controladores.ControlTablaAdministrativo;
 import controladores.ControlTablaDocente;
@@ -47,6 +48,7 @@ public class PanelAdministrador extends javax.swing.JFrame {
     ControlTablaAdminLab controlTAL;
     ControlTablaUsuarioEstudiante controlTUE;
     ControlTablaUsuarioDocente controlTUD;
+    ControlGestionCursos controlGC;
     PanelPrincipal panelP;
     PanelIngresarEstudiante panelIE;
     PanelIngresarDocente panelID;
@@ -68,7 +70,7 @@ public class PanelAdministrador extends javax.swing.JFrame {
             ControlVentanaAdministrativo controlVA, ControlVentanaAdminLab controlVAL, ControlVentanaCursos controlVC,
             ControlVentanaLaboratorios controlVL, ControlTablaEstudiante controlTE, ControlTablaDocente controlTD,
             ControlTablaAdministrativo controlTA, ControlTablaAdminLab controlTAL, ControlTablaUsuarioEstudiante controlTUE,
-            ControlTablaUsuarioDocente controlTUD,PanelPrincipal panelP, PanelIngresarEstudiante panelIE,
+            ControlTablaUsuarioDocente controlTUD,ControlGestionCursos controlGC,PanelPrincipal panelP, PanelIngresarEstudiante panelIE,
             PanelIngresarDocente panelID, PanelIngresarAdministrativo panelIA, PanelIngresarAdminLab panelIAL,
             VentanaUsEstudiante ventanaE, VentanaUsDocente ventanaD, VentanaUsAdministrativo ventanaA,
             VentanaUsAdminLab ventanaAL, VentanaCursos ventanaC, VentanaLaboratorios ventanaL) {
@@ -92,6 +94,7 @@ public class PanelAdministrador extends javax.swing.JFrame {
         this.controlTAL = controlTAL;
         this.controlTUE = controlTUE;
         this.controlTUD = controlTUD;
+        this.controlGC = controlGC;
         this.panelP = panelP;
         this.panelIE = panelIE;
         this.panelID = panelID;
@@ -185,35 +188,35 @@ public class PanelAdministrador extends javax.swing.JFrame {
 
     private void btnIngresarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarEstudianteActionPerformed
         // TODO add your handling code here:
-        PanelIngresarEstudiante panelIE = new PanelIngresarEstudiante(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, panelP, this, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        PanelIngresarEstudiante panelIE = new PanelIngresarEstudiante(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, controlGC, panelP, this, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
         panelIE.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnIngresarEstudianteActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         // TODO add your handling code here:
-        PanelPrincipal panelP = new PanelPrincipal(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, this, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        PanelPrincipal panelP = new PanelPrincipal(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, controlGC, this, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
         panelP.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnIngresarDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarDocenteActionPerformed
         // TODO add your handling code here:
-        PanelIngresarDocente panelID = new PanelIngresarDocente(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, panelP, this, panelIE, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        PanelIngresarDocente panelID = new PanelIngresarDocente(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, controlGC, panelP, this, panelIE, panelIA, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
         panelID.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnIngresarDocenteActionPerformed
 
     private void btnIngresarAdministrativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarAdministrativoActionPerformed
         // TODO add your handling code here:
-        PanelIngresarAdministrativo panelIA = new PanelIngresarAdministrativo(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, panelP, this, panelIE, panelID, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        PanelIngresarAdministrativo panelIA = new PanelIngresarAdministrativo(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, controlGC, panelP, this, panelIE, panelID, panelIAL, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
         panelIA.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnIngresarAdministrativoActionPerformed
 
     private void btnIngresarAdminLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarAdminLabActionPerformed
         // TODO add your handling code here:
-        PanelIngresarAdminLab panelIAL = new PanelIngresarAdminLab(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, panelP, this, panelIE, panelID, panelIA, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
+        PanelIngresarAdminLab panelIAL = new PanelIngresarAdminLab(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, controlGC, panelP, this, panelIE, panelID, panelIA, ventanaE, ventanaD, ventanaA, ventanaAL, ventanaC, ventanaL);
         panelIAL.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnIngresarAdminLabActionPerformed

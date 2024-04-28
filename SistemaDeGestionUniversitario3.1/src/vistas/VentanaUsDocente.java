@@ -4,6 +4,7 @@
  */
 package vistas;
 
+import controladores.ControlGestionCursos;
 import controladores.ControlTablaAdminLab;
 import controladores.ControlTablaAdministrativo;
 import controladores.ControlTablaDocente;
@@ -22,8 +23,10 @@ import controladores.ControladorAdministrativo;
 import controladores.ControladorDocente;
 import controladores.ControladorEstudiante;
 import controladores.ControladorPrincipal;
+import java.util.ArrayList;
 import java.util.Calendar;
 import modelo.Docente;
+import modelo.Curso;
 
 /**
  *
@@ -31,7 +34,8 @@ import modelo.Docente;
  */
 public class VentanaUsDocente extends javax.swing.JFrame {
 
-     ControladorPrincipal controlP;
+    ArrayList<Curso> cursosA;
+    ControladorPrincipal controlP;
     ControladorAdministrador controlA;
     ControladorEstudiante controlE;
     ControladorDocente controlD;
@@ -49,6 +53,7 @@ public class VentanaUsDocente extends javax.swing.JFrame {
     ControlTablaAdminLab controlTAL;
     ControlTablaUsuarioEstudiante controlTUE;
     ControlTablaUsuarioDocente controlTUD;
+    ControlGestionCursos controlGC;
     PanelPrincipal panelP;
     PanelAdministrador panelA;
     PanelIngresarEstudiante panelIE;
@@ -70,12 +75,13 @@ public class VentanaUsDocente extends javax.swing.JFrame {
             ControlVentanaAdministrativo controlVA, ControlVentanaAdminLab controlVAL, ControlVentanaCursos controlVC,
             ControlVentanaLaboratorios controlVL, ControlTablaEstudiante controlTE, ControlTablaDocente controlTD,
             ControlTablaAdministrativo controlTA, ControlTablaAdminLab controlTAL, ControlTablaUsuarioEstudiante controlTUE,
-            ControlTablaUsuarioDocente controlTUD,PanelPrincipal panelP, PanelAdministrador panelA, PanelIngresarEstudiante panelIE,
+            ControlTablaUsuarioDocente controlTUD,ControlGestionCursos controlGC, PanelPrincipal panelP, PanelAdministrador panelA, PanelIngresarEstudiante panelIE,
             PanelIngresarDocente panelID, PanelIngresarAdministrativo panelIA, PanelIngresarAdminLab panelIAL,
             VentanaUsEstudiante ventanaE, VentanaUsAdministrativo ventanaA,
             VentanaUsAdminLab ventanaAL, VentanaCursos ventanaC, VentanaLaboratorios ventanaL) {
         initComponents();
         setLocationRelativeTo(this);
+        cursosA = new ArrayList<>();
         this.controlP = controlP;
         this.controlA = controlA;
         this.controlE = controlE;
@@ -94,6 +100,7 @@ public class VentanaUsDocente extends javax.swing.JFrame {
         this.controlTAL = controlTAL;
         this.controlTUE = controlTUE;
         this.controlTUD = controlTUD;
+        this.controlGC = controlGC;
         this.panelP = panelP;
         this.panelA = panelA;
         this.panelIE = panelIE;
@@ -125,6 +132,7 @@ public class VentanaUsDocente extends javax.swing.JFrame {
         LblBirthDate = new javax.swing.JLabel();
         lblEdad = new javax.swing.JLabel();
         lblAsignatura = new javax.swing.JLabel();
+        btnCalificar = new javax.swing.JButton();
         btnGestionCursos = new javax.swing.JButton();
         btnHorario = new javax.swing.JButton();
         btnNotificaciones = new javax.swing.JButton();
@@ -164,21 +172,35 @@ public class VentanaUsDocente extends javax.swing.JFrame {
         lblAsignatura.setText("Asignatura:");
         getContentPane().add(lblAsignatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 115, -1, -1));
 
+        btnCalificar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCalificar.setText("Calificar");
+        btnCalificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalificarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCalificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 170, -1));
+
         btnGestionCursos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnGestionCursos.setText("Gestion cursos");
-        getContentPane().add(btnGestionCursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 170, -1));
+        btnGestionCursos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGestionCursosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnGestionCursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 170, -1));
 
         btnHorario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnHorario.setText("Horario");
-        getContentPane().add(btnHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 170, -1));
+        getContentPane().add(btnHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 170, -1));
 
         btnNotificaciones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnNotificaciones.setText("Notificaciones");
-        getContentPane().add(btnNotificaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 170, -1));
+        getContentPane().add(btnNotificaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, 170, -1));
 
         btnHistorialCursos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnHistorialCursos.setText("Historial cursos");
-        getContentPane().add(btnHistorialCursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 170, -1));
+        getContentPane().add(btnHistorialCursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 170, -1));
 
         lblInformacionUsuario.setText("Informacion de usuario----------------------------------------------------------------");
         getContentPane().add(lblInformacionUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 450, -1));
@@ -194,18 +216,39 @@ public class VentanaUsDocente extends javax.swing.JFrame {
 
     private void btnCerrarSecionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSecionActionPerformed
         // TODO add your handling code here:
-        PanelPrincipal panelP = new PanelPrincipal(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, this, ventanaA, ventanaAL, ventanaC, ventanaL);
+        PanelPrincipal panelP = new PanelPrincipal(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, controlGC, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, this, ventanaA, ventanaAL, ventanaC, ventanaL);
         panelP.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCerrarSecionActionPerformed
-     public void informacionDocente(Docente docente) {
+
+    private void btnGestionCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionCursosActionPerformed
+        // TODO add your handling code here:
+        GestionCursos gestionC = new GestionCursos(cursosA, controlGC);
+        gestionC.setVisible(true);
+    }//GEN-LAST:event_btnGestionCursosActionPerformed
+
+    private void btnCalificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalificarActionPerformed
+        // TODO add your handling code here:
+        Calificaciones calificaciones = new Calificaciones();
+        calificaciones.setVisible(true);
+    }//GEN-LAST:event_btnCalificarActionPerformed
+    public void informacionDocente(Docente docente) {
         Docente aux = docente;
+        conseguirCursosEstudiante(docente);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(aux.getBirthDate());
         lblNombreDocente.setText(aux.getNombre());
         lblBirthDateDocente.setText(String.valueOf(calendar.get(Calendar.YEAR)));
-        lblEdadDocente.setText(String.valueOf(2024-calendar.get(Calendar.YEAR)));
+        lblEdadDocente.setText(String.valueOf(2024 - calendar.get(Calendar.YEAR)));
         lblAsignaturaDocente.setText(aux.getAsignatura());
+    }
+
+    public void conseguirCursosEstudiante(Docente docente) {
+        for (int i = 0; i < controlP.getCursos().size(); i++) {
+            if (controlP.getCursos().get(i).getDocente().equals(docente)) {
+                cursosA.add(controlP.getCursos().get(i));
+            }
+        }
     }
     /**
      * @param args the command line arguments
@@ -213,6 +256,7 @@ public class VentanaUsDocente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LblBirthDate;
+    private javax.swing.JButton btnCalificar;
     private javax.swing.JButton btnCerrarSecion;
     private javax.swing.JButton btnGestionCursos;
     private javax.swing.JButton btnHistorialCursos;

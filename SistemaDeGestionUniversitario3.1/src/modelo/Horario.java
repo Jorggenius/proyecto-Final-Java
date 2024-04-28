@@ -11,13 +11,14 @@ import java.time.LocalTime;
  * @author JORGE
  */
 public class Horario {
-
+    private String dia;
     private LocalTime horaInicio;
     private LocalTime horaFinal;
 
-    public Horario(LocalTime horaInicio, LocalTime horaFinal) {
+    public Horario(LocalTime horaInicio, LocalTime horaFinal , String dia ) {
         this.horaInicio = horaInicio;
         this.horaFinal = horaFinal;
+        this.dia = dia;
     }
 
     public LocalTime getHoraInicio() {
@@ -34,6 +35,14 @@ public class Horario {
 
     public void setHoraFinal(LocalTime horaFinal) {
         this.horaFinal = horaFinal;
+    }
+
+    public String getDia() {
+        return dia;
+    }
+
+    public void setDia(String dia) {
+        this.dia = dia;
     }
     
 }

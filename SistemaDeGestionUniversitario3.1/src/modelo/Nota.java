@@ -9,13 +9,24 @@ package modelo;
  * @author JORGE
  */
 public class Nota {
+    private String razon;
     private float nota;
     private float porcentage;
 
-    public Nota(float nota, float porcentage) {
-        this.nota = nota;
+    public Nota(String razon,float porcentage) {
+        this.razon = razon;
         this.porcentage = porcentage;
     }
+
+    public String getRazon() {
+        return razon;
+    }
+
+    public void setRazon(String razon) {
+        this.razon = razon;
+    }
+
+  
 
     public float getNota() {
         return nota;

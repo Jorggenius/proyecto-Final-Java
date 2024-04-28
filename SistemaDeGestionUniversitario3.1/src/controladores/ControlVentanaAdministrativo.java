@@ -38,6 +38,7 @@ public class ControlVentanaAdministrativo {
     ControlTablaAdminLab controlTAL;
     ControlTablaUsuarioEstudiante controlTUE;
     ControlTablaUsuarioDocente controlTUD;
+    ControlGestionCursos controlGC;
     PanelPrincipal panelP;
     PanelAdministrador panelA;
     PanelIngresarEstudiante panelIE;
@@ -57,7 +58,7 @@ public class ControlVentanaAdministrativo {
             ControlVentanaAdministrativo controlVA, ControlVentanaAdminLab controlVAL, ControlVentanaCursos controlVC,
             ControlVentanaLaboratorios controlVL, ControlTablaEstudiante controlTE, ControlTablaDocente controlTD,
             ControlTablaAdministrativo controlTA, ControlTablaAdminLab controlTAL, ControlTablaUsuarioEstudiante controlTUE,
-            ControlTablaUsuarioDocente controlTUD, PanelPrincipal panelP, PanelAdministrador panelA,
+            ControlTablaUsuarioDocente controlTUD, ControlGestionCursos controlGC,PanelPrincipal panelP, PanelAdministrador panelA,
             PanelIngresarEstudiante panelIE, PanelIngresarDocente panelID, PanelIngresarAdministrativo panelIA,
             PanelIngresarAdminLab panelIAL, VentanaUsEstudiante ventanaE, VentanaUsDocente ventanaD,
             VentanaUsAdministrativo ventanaA, VentanaUsAdminLab ventanaAL, VentanaCursos ventanaC,
@@ -80,6 +81,7 @@ public class ControlVentanaAdministrativo {
         this.controlTAL = controlTAL;
         this.controlTUE = controlTUE;
         this.controlTUD = controlTUD;
+        this.controlGC = controlGC;
         this.panelP = panelP;
         this.panelA = panelA;
         this.panelIE = panelIE;
@@ -96,7 +98,7 @@ public class ControlVentanaAdministrativo {
 
     public void abrirVentana(Administrativo admin) {
         Administrativo aux = admin;
-        VentanaUsAdministrativo ventanaA = new VentanaUsAdministrativo(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, panelP, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaAL, ventanaC, ventanaL);
+        VentanaUsAdministrativo ventanaA = new VentanaUsAdministrativo(controlP, controlA, controlE, controlD, controlUA, controlAL, controlVE, controlVD, controlVA, controlVAL, controlVC, controlVL, controlTE, controlTD, controlTA, controlTAL, controlTUE, controlTUD, controlGC, panelP, panelA, panelIE, panelID, panelIA, panelIAL, ventanaE, ventanaD, ventanaAL, ventanaC, ventanaL);
         ventanaA.setVisible(true);
         ventanaA.informacionAdministrativo(admin);
     }
