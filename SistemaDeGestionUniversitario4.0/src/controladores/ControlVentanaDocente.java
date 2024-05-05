@@ -29,11 +29,11 @@ public class ControlVentanaDocente {
         this.cursos = cursos;
     }
 
-    public void abrirVentana(Docente docente) {
-        Docente doc = docente;
-        VentanaUsDocente ventanaD = new VentanaUsDocente();
-        ventanaD.informacionDocente(docente);
-    }
+//    public void abrirVentana(Docente docente) {
+//        Docente doc = docente;
+//        VentanaUsDocente ventanaD = new VentanaUsDocente();
+//        ventanaD.informacionDocente(docente);
+//    }
   public ArrayList<Curso> conseguirCursosEstudiante(Docente docente) {
       ArrayList<Curso> cursosA = new ArrayList<>();
       for (int i = 0; i < cursos.size(); i++) {

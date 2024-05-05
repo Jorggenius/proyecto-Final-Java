@@ -109,11 +109,12 @@ public class PanelPrincipal extends javax.swing.JFrame {
                         panelCambiarContraseña panelCC = new panelCambiarContraseña();
                         panelCC.setVisible(true);
                         panelCC.cambiarContraseña(aux);
+                        this.dispose();
                     }
 
                 } else if (aux instanceof Docente) {
                     if (aux.isCambioContraseña()) {
-                    VentanaUsDocente ventanaD = new VentanaUsDocente();
+                    VentanaUsDocente ventanaD = new VentanaUsDocente((Docente) aux);
                     ventanaD.setVisible(true);
                     ventanaD.informacionDocente((Docente) aux);
                     this.dispose();
@@ -122,6 +123,7 @@ public class PanelPrincipal extends javax.swing.JFrame {
                         panelCambiarContraseña panelCC = new panelCambiarContraseña();
                         panelCC.setVisible(true);
                         panelCC.cambiarContraseña(aux);
+                        this.dispose();
                     }
                 } else if (aux instanceof Administrativo) {
                     if (aux.isCambioContraseña()) {
@@ -134,6 +136,7 @@ public class PanelPrincipal extends javax.swing.JFrame {
                         panelCambiarContraseña panelCC = new panelCambiarContraseña();
                         panelCC.setVisible(true);
                         panelCC.cambiarContraseña(aux);
+                        this.dispose();
                     }
                 } else if (aux instanceof AdminLab) {
                     VentanaUsAdminLab ventanaAL = new VentanaUsAdminLab();

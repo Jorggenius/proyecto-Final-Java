@@ -31,7 +31,7 @@ public class VentanaCursos extends javax.swing.JFrame {
         setLocationRelativeTo(this);
         controlVC = new ControlVentanaCursos();
         estsCurso = new ArrayList<>();
-//        txtId.setText(controlVC.contadorIdCursos());
+        txtId.setText(controlVC.contadorIdCursos());
 //        txtId.setEnabled(false);
         llenarComboBoxDocentes();
         llenarComboBoxEstudiante();
@@ -203,7 +203,7 @@ public class VentanaCursos extends javax.swing.JFrame {
         getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 471, -1, -1));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Fondo2.png"))); // NOI18N
-        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 0, 460, 500));
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 460, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

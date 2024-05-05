@@ -4,18 +4,41 @@
  */
 package vistas;
 
+import controladores.ControlPanelHacerCalificaciones;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import modelo.Curso;
+import modelo.DetalleNota;
+import modelo.Docente;
+import modelo.Estudiante;
+import modelo.Nota;
+
 /**
  *
  * @author JORGE
  */
 public class PanelHacerCalificaciones extends javax.swing.JFrame {
 
+    ArrayList<Curso> cursos;
+    ControlPanelHacerCalificaciones controlPHC;
+    Docente docente;
+
     /**
      * Creates new form GestionCalificaciones
      */
-    public PanelHacerCalificaciones() {
+    public PanelHacerCalificaciones(ArrayList<Curso> cursos, Docente docente) {
         initComponents();
         setLocationRelativeTo(this);
+        this.cursos = cursos;
+        controlPHC = new ControlPanelHacerCalificaciones();
+        this.docente = docente;
+        llenarTabla();
+        llenarComboBoxIdCursos();
+
     }
 
     /**
@@ -27,33 +50,22 @@ public class PanelHacerCalificaciones extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        controlPanelHacerCalificaciones1 = new controladores.ControlPanelHacerCalificaciones();
         btnSalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaCursos = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tablaEstudiantes = new javax.swing.JTable();
+        tablaNotas = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tablaDetalles = new javax.swing.JTable();
         cbIdCursos = new javax.swing.JComboBox<>();
         btnMostrarEsts = new javax.swing.JButton();
-        cdIdEstudiante = new javax.swing.JComboBox<>();
-        btnMostrarNotas = new javax.swing.JButton();
-        txtNota1 = new javax.swing.JTextField();
+        cbNotas = new javax.swing.JComboBox<>();
+        btnDetalles = new javax.swing.JButton();
+        txtNota = new javax.swing.JTextField();
         lblNota1 = new javax.swing.JLabel();
-        lblNota2 = new javax.swing.JLabel();
-        txtNota2 = new javax.swing.JTextField();
-        lblNota3 = new javax.swing.JLabel();
-        txtNota3 = new javax.swing.JTextField();
-        lblNota4 = new javax.swing.JLabel();
-        txtNota4 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        txtNota5 = new javax.swing.JTextField();
+        cbdetalles = new javax.swing.JComboBox<>();
         btnCalificar = new javax.swing.JButton();
-        checkNota1 = new javax.swing.JCheckBox();
-        checkNota2 = new javax.swing.JCheckBox();
-        checkNota3 = new javax.swing.JCheckBox();
-        checkNota4 = new javax.swing.JCheckBox();
-        checkNota5 = new javax.swing.JCheckBox();
         lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -85,87 +97,81 @@ public class PanelHacerCalificaciones extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaCursos);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 255, 167));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 200));
 
-        tablaEstudiantes.setModel(new javax.swing.table.DefaultTableModel(
+        tablaNotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Id", "Nombre"
+                "Razon", "Porcentaje"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class
+                java.lang.String.class, java.lang.Float.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(tablaEstudiantes);
+        jScrollPane2.setViewportView(tablaNotas);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 0, 130, 167));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 130, 200));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tablaDetalles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Razon", "Porcentaje", "Nota"
+                "Estudiante", "Nota", "Estado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Float.class, java.lang.Float.class
+                java.lang.String.class, java.lang.Float.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTable2);
+        jScrollPane3.setViewportView(tablaDetalles);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(374, 0, 226, 167));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 0, 260, 200));
 
-        cbIdCursos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(cbIdCursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 179, -1, -1));
+        getContentPane().add(cbIdCursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
 
-        btnMostrarEsts.setText("Ver estudiantes");
-        getContentPane().add(btnMostrarEsts, new org.netbeans.lib.awtextra.AbsoluteConstraints(84, 179, -1, -1));
+        btnMostrarEsts.setText("Ver notas");
+        btnMostrarEsts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarEstsActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnMostrarEsts, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, -1, -1));
 
-        cdIdEstudiante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(cdIdEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(232, 179, -1, -1));
+        getContentPane().add(cbNotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, -1, -1));
 
-        btnMostrarNotas.setText("Ver notas");
-        getContentPane().add(btnMostrarNotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 179, -1, -1));
-        getContentPane().add(txtNota1, new org.netbeans.lib.awtextra.AbsoluteConstraints(232, 214, 90, -1));
+        btnDetalles.setText("Detalles");
+        btnDetalles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetallesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnDetalles, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 80, -1));
+        getContentPane().add(txtNota, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 100, -1));
 
-        lblNota1.setText("Nota 1");
-        getContentPane().add(lblNota1, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 217, -1, -1));
+        lblNota1.setText("Nota ");
+        getContentPane().add(lblNota1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, -1, -1));
 
-        lblNota2.setText("Nota 2");
-        getContentPane().add(lblNota2, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 251, -1, -1));
-        getContentPane().add(txtNota2, new org.netbeans.lib.awtextra.AbsoluteConstraints(232, 248, 90, -1));
-
-        lblNota3.setText("Nota 3");
-        getContentPane().add(lblNota3, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 285, -1, -1));
-        getContentPane().add(txtNota3, new org.netbeans.lib.awtextra.AbsoluteConstraints(232, 282, 90, -1));
-
-        lblNota4.setText("Nota 4");
-        getContentPane().add(lblNota4, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 319, -1, -1));
-        getContentPane().add(txtNota4, new org.netbeans.lib.awtextra.AbsoluteConstraints(232, 316, 90, -1));
-
-        jLabel1.setText("Nota 5");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 353, -1, -1));
-        getContentPane().add(txtNota5, new org.netbeans.lib.awtextra.AbsoluteConstraints(232, 350, 90, -1));
+        getContentPane().add(cbdetalles, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, -1, -1));
 
         btnCalificar.setText("Calificar");
-        getContentPane().add(btnCalificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(232, 384, -1, -1));
-        getContentPane().add(checkNota1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 214, -1, -1));
-        getContentPane().add(checkNota2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 248, -1, -1));
-        getContentPane().add(checkNota3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 282, -1, -1));
-        getContentPane().add(checkNota4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 316, -1, -1));
-        getContentPane().add(checkNota5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 350, -1, -1));
+        btnCalificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalificarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCalificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, -1, -1));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/FondoCalificaciones.png"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 470));
@@ -175,42 +181,176 @@ public class PanelHacerCalificaciones extends javax.swing.JFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
+        VentanaUsDocente ventanaD = new VentanaUsDocente(docente);
+        ventanaD.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnMostrarEstsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarEstsActionPerformed
+        // TODO add your handling code here:
+        int id = cbIdCursos.getSelectedIndex();
+        llenarTablaNotas(id);
+
+        llenarComboBoxIdNotas(id);
+    }//GEN-LAST:event_btnMostrarEstsActionPerformed
+
+    private void btnDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetallesActionPerformed
+        // TODO add your handling code here:
+        int indexC = cbIdCursos.getSelectedIndex();
+        int indexN = cbNotas.getSelectedIndex();
+
+        llenarTablaDetalles(indexC, indexN);
+        llenarComboBoxEstudiante(indexC, indexN);
+    }//GEN-LAST:event_btnDetallesActionPerformed
+
+    private void btnCalificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalificarActionPerformed
+        // TODO add your handling code here:
+        int idCurso = Integer.parseInt((String) cbIdCursos.getSelectedItem());
+        int indexC = cbIdCursos.getSelectedIndex();
+        System.out.println(idCurso);
+
+        String razon = (String) cbNotas.getSelectedItem();
+        int indexN = cbNotas.getSelectedIndex();
+        System.out.println(razon);
+
+        String nombre = String.valueOf(cbdetalles.getSelectedItem());
+        System.out.println(nombre);
+        float nota = Float.parseFloat(txtNota.getText());
+        controlPHC.calificar(idCurso, razon, nombre, nota);
+//        Curso cursoSeleccionado = null;
+//        for (Curso curso : cursos) {
+//            if (curso.getId() == idCurso) {
+//                cursoSeleccionado = curso;
+//                break;
+//            }
+//        }
+//
+//        // Si el curso se encontró, busca la nota correspondiente y actualiza el detalle
+//        if (cursoSeleccionado != null) {
+//            for (Nota notaCurso : cursoSeleccionado.getNotas()) {
+//                if (notaCurso.getRazon().equals(razon)) {
+//                    for (DetalleNota detalleNota : notaCurso.getDetalles()) {
+//                        if (detalleNota.getEstudiante().getNombre().equals(nombre)) {
+//                            detalleNota.setNota(nota);
+//                            break; // Termina la iteración una vez que se actualiza el detalle
+//                        }
+//                    }
+//                    break; // Termina la iteración una vez que se encuentra la nota
+//                }
+//            }
+//        }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//        for(int i = 0 ; i < cursos.size(); i++){
+//            if(cursos.get(i).getId() == idCurso){
+//                for (int j = 0; j < cursos.get(i).getNotas().size(); j++) {
+//                    if(cursos.get(i).getNotas().get(j).getRazon().equals(razon)){
+//                        for (int k = 0; k < cursos.get(i).getNotas().get(j).getDetalles().size(); k++) {
+//                            if(cursos.get(i).getNotas().get(j).getDetalles().get(k).getEstudiante().getNombre().equals(nombre)){
+//                                cursos.get(i).getNotas().get(j).getDetalles().get(k).setNota(nota);
+//                                System.out.println("------------------");
+//                                System.out.println(cursos.get(i).getMaterial());
+//                                System.out.println(cursos.get(i).getNotas().get(j).getRazon());
+//                                System.out.println(cursos.get(i).getNotas().get(j).getDetalles().get(k).getEstudiante().getNombre());
+//                                System.out.println(cursos.get(i).getNotas().get(j).getDetalles().get(k).getNota());
+//                                System.out.println(cursos.get(i).getNotas().get(j-1).getDetalles().get(k).getNota());
+//                                System.out.println("------------------");
+//                                
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//        cursos.get(indexC).getNotas().get(indexN).getDetalles().get(indexE).setNota(nota);
+//        cursos.get(indexC).getNotas().get(indexN).getDetalles().get(indexE).setCalificado(true);
+        controlPHC.actualizarCursos(cursos);
+        llenarTablaDetalles(indexC, indexN);
+
+
+    }//GEN-LAST:event_btnCalificarActionPerformed
+
+    public void llenarTabla() {
+        DefaultTableModel modelo = new DefaultTableModel(new String[]{"Id", "Materia", "Programa"}, cursos.size());
+        tablaCursos.setModel(modelo);
+        TableModel modeloCurso = tablaCursos.getModel();
+        for (int i = 0; i < cursos.size(); i++) {
+            Curso curso = cursos.get(i);
+            modeloCurso.setValueAt(curso.getId(), i, 0);
+            modeloCurso.setValueAt(curso.getMaterial(), i, 1);
+            modeloCurso.setValueAt(curso.getPrograma(), i, 2);
+        }
+    }
+
+    public void llenarTablaNotas(int id) {
+        DefaultTableModel modelo = new DefaultTableModel(new String[]{"Razon", "Porcentaje"}, cursos.get(id).getNotas().size());
+        tablaNotas.setModel(modelo);
+        TableModel modeloNota = tablaNotas.getModel();
+        for (int i = 0; i < cursos.get(id).getNotas().size(); i++) {
+            Nota nota = cursos.get(id).getNotas().get(i);
+            modeloNota.setValueAt(nota.getRazon(), i, 0);
+            modeloNota.setValueAt(nota.getPorcentage(), i, 1);
+        }
+    }
+
+    public void llenarTablaDetalles(int indexC, int indexN) {
+        DefaultTableModel modelo = new DefaultTableModel(new String[]{"Estudiante", "Nota", "Estado"}, cursos.get(indexC).getNotas().get(indexN).getDetalles().size());
+        tablaDetalles.setModel(modelo);
+        TableModel modeloDetalle = tablaDetalles.getModel();
+        for (int i = 0; i < cursos.get(indexC).getNotas().get(indexN).getDetalles().size(); i++) {
+            DetalleNota nota = cursos.get(indexC).getNotas().get(indexN).getDetalles().get(i);
+            modeloDetalle.setValueAt(nota.getEstudiante().getNombre(), i, 0);
+            modeloDetalle.setValueAt(nota.getNota(), i, 1);
+            modeloDetalle.setValueAt(nota.isCalificado(), i, 2);
+        }
+    }
+
+    public void llenarComboBoxIdCursos() {
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        for (Curso curso : cursos) {
+            modelo.addElement(String.valueOf(curso.getId()));
+        }
+        cbIdCursos.setModel(modelo);
+    }
+
+    public void llenarComboBoxIdNotas(int id) {
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        for (Nota nota : cursos.get(id).getNotas()) {
+            modelo.addElement(String.valueOf(nota.getRazon()));
+        }
+        cbNotas.setModel(modelo);
+    }
+
+    public void llenarComboBoxEstudiante(int indexC, int indexN) {
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        for (DetalleNota detalle : cursos.get(indexC).getNotas().get(indexN).getDetalles()) {
+            modelo.addElement(detalle.getEstudiante().getNombre());
+        }
+        cbdetalles.setModel(modelo);
+    }
 
     /**
      * @param args the command line arguments
      */
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalificar;
+    private javax.swing.JButton btnDetalles;
     private javax.swing.JButton btnMostrarEsts;
-    private javax.swing.JButton btnMostrarNotas;
     private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> cbIdCursos;
-    private javax.swing.JComboBox<String> cdIdEstudiante;
-    private javax.swing.JCheckBox checkNota1;
-    private javax.swing.JCheckBox checkNota2;
-    private javax.swing.JCheckBox checkNota3;
-    private javax.swing.JCheckBox checkNota4;
-    private javax.swing.JCheckBox checkNota5;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> cbNotas;
+    private javax.swing.JComboBox<String> cbdetalles;
+    private controladores.ControlPanelHacerCalificaciones controlPanelHacerCalificaciones1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable2;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblNota1;
-    private javax.swing.JLabel lblNota2;
-    private javax.swing.JLabel lblNota3;
-    private javax.swing.JLabel lblNota4;
     private javax.swing.JTable tablaCursos;
-    private javax.swing.JTable tablaEstudiantes;
-    private javax.swing.JTextField txtNota1;
-    private javax.swing.JTextField txtNota2;
-    private javax.swing.JTextField txtNota3;
-    private javax.swing.JTextField txtNota4;
-    private javax.swing.JTextField txtNota5;
+    private javax.swing.JTable tablaDetalles;
+    private javax.swing.JTable tablaNotas;
+    private javax.swing.JTextField txtNota;
     // End of variables declaration//GEN-END:variables
 }

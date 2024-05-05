@@ -25,10 +25,7 @@ public class ControlPanelGestionCursos {
         for (int i = 0; i < cursos.size(); i++) {
             if (idCurso == cursos.get(i).getId()) {
                 cursos.get(i).setNotas(notas);
-                for (int j = 0; j < cursos.get(i).getEstudiantes().size(); j++) {
-                    cursos.get(i).getEstudiantes().get(j).setNotas(notas);
-                    serializador.escribirCursos(cursos);
-                }
+                serializador.escribirCursos(cursos);
                 return true;
             }
         }

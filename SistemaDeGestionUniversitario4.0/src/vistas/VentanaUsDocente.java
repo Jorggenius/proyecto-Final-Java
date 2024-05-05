@@ -17,17 +17,19 @@ import modelo.Curso;
 public class VentanaUsDocente extends javax.swing.JFrame {
     ControlVentanaDocente controlVD;
     ArrayList<Curso> cursosA;
-   
+    Docente docente;
 
     /**
      * Creates new form VentanaUsDocente
      */
-    public VentanaUsDocente() {
+    public VentanaUsDocente(Docente docente) {
         initComponents();
         setLocationRelativeTo(this);
+        this.docente = docente;
         controlVD = new ControlVentanaDocente();
         cursosA = new ArrayList<>();
         System.out.println(cursosA.size());
+        informacionDocente(docente);
     }
 
     /**
@@ -139,14 +141,16 @@ public class VentanaUsDocente extends javax.swing.JFrame {
 
     private void btnGestionCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionCursosActionPerformed
         // TODO add your handling code here:
-        PanelGestionCursos gestionC = new PanelGestionCursos(cursosA); 
+        PanelGestionCursos gestionC = new PanelGestionCursos(cursosA, docente); 
         gestionC.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnGestionCursosActionPerformed
 
     private void btnCalificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalificarActionPerformed
         // TODO add your handling code here:
-        PanelHacerCalificaciones calificaciones = new PanelHacerCalificaciones();
+        PanelHacerCalificaciones calificaciones = new PanelHacerCalificaciones(cursosA, docente);
         calificaciones.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnCalificarActionPerformed
     public void informacionDocente(Docente docente) {
         Docente aux = docente;

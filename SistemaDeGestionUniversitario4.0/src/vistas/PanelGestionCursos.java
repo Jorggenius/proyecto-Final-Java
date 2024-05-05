@@ -13,6 +13,9 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import modelo.Curso;
+import modelo.DetalleNota;
+import modelo.Docente;
+import modelo.Estudiante;
 import modelo.Nota;
 
 /**
@@ -24,15 +27,17 @@ public class PanelGestionCursos extends javax.swing.JFrame {
     ArrayList<Curso> cursos;
     ArrayList<Nota> Notas;
     ControlPanelGestionCursos controlGC;
+    Docente docente;
 
     /**
      * Creates new form GestionCursos
      */
-    public PanelGestionCursos(ArrayList<Curso> cursos) {
+    public PanelGestionCursos(ArrayList<Curso> cursos, Docente docente) {
         initComponents();
         setLocationRelativeTo(this);
         controlGC = new ControlPanelGestionCursos();
         this.cursos = cursos;
+        this.docente = docente;
         llenarTabla();
         llenarComboBox();
         Notas = new ArrayList<>();
@@ -222,32 +227,37 @@ public class PanelGestionCursos extends javax.swing.JFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
+        VentanaUsDocente ventanD = new VentanaUsDocente(docente);
+        ventanD.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnIngresarNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarNotasActionPerformed
         // TODO add your handling code here:
+        int index =  cbCursosGestionNotas.getSelectedIndex();
         int idCurso = Integer.parseInt((String) cbCursosGestionNotas.getSelectedItem());
-
+        ArrayList<DetalleNota> detalles = generarDetalles(index);
+        System.out.println(detalles.size());
         if (checkNota3.isSelected()) {
 
             String razon1 = txtRazonNota1.getText();
             float pocentage1 = Float.parseFloat(txtPorcentajeNota1.getText());
-            Nota nota1 = new Nota(razon1, pocentage1);
-
+            Nota nota1 = new Nota(razon1, pocentage1, detalles);
+////////////////////////////////////////////////////////////////////////////////
             String razon2 = txtRazonNota2.getText();
             float pocentage2 = Float.parseFloat(txtPorcentajeNota2.getText());
-            Nota nota2 = new Nota(razon2, pocentage2);
+            Nota nota2 = new Nota(razon2, pocentage2, detalles);
 
             String razon3 = txtRazonNota3.getText();
             float pocentage3 = Float.parseFloat(txtPorcentajeNota3.getText());
-            Nota nota3 = new Nota(razon3, pocentage3);
+            Nota nota3 = new Nota(razon3, pocentage3, detalles);
 
             if (nota1.getPorcentage() + nota2.getPorcentage() + nota3.getPorcentage() == 1) {
                 ArrayList<Nota> notas = new ArrayList<>();
                 notas.add(nota1);
                 notas.add(nota2);
                 notas.add(nota3);
+                System.out.println();
                 boolean aux = controlGC.configurarNotas(notas, idCurso);
                 if (aux) {
                     JOptionPane.showMessageDialog(null, "Las notas han sido assignadas");
@@ -262,19 +272,19 @@ public class PanelGestionCursos extends javax.swing.JFrame {
         } else if (checkNota4.isSelected()) {
             String razon1 = txtRazonNota1.getText();
             float pocentage1 = Float.parseFloat(txtPorcentajeNota1.getText());
-            Nota nota1 = new Nota(razon1, pocentage1);
+            Nota nota1 = new Nota(razon1, pocentage1, detalles);
 
             String razon2 = txtRazonNota2.getText();
             float pocentage2 = Float.parseFloat(txtPorcentajeNota2.getText());
-            Nota nota2 = new Nota(razon2, pocentage2);
+            Nota nota2 = new Nota(razon2, pocentage2, detalles);
 
             String razon3 = txtRazonNota3.getText();
             float pocentage3 = Float.parseFloat(txtPorcentajeNota3.getText());
-            Nota nota3 = new Nota(razon3, pocentage3);
+            Nota nota3 = new Nota(razon3, pocentage3, detalles);
 
             String razon4 = txtRazonNota4.getText();
             float pocentage4 = Float.parseFloat(txtPorcentajeNota4.getText());
-            Nota nota4 = new Nota(razon4, pocentage4);
+            Nota nota4 = new Nota(razon4, pocentage4, detalles);
 
             if (nota1.getPorcentage() + nota2.getPorcentage() + nota3.getPorcentage() + nota4.getPorcentage() == 1) {
                 ArrayList<Nota> notas = new ArrayList<>();
@@ -296,23 +306,23 @@ public class PanelGestionCursos extends javax.swing.JFrame {
         } else if (checkNota5.isSelected()) {
             String razon1 = txtRazonNota1.getText();
             float pocentage1 = Float.parseFloat(txtPorcentajeNota1.getText());
-            Nota nota1 = new Nota(razon1, pocentage1);
+            Nota nota1 = new Nota(razon1, pocentage1, detalles);
 
             String razon2 = txtRazonNota2.getText();
             float pocentage2 = Float.parseFloat(txtPorcentajeNota2.getText());
-            Nota nota2 = new Nota(razon2, pocentage2);
+            Nota nota2 = new Nota(razon2, pocentage2, detalles);
 
             String razon3 = txtRazonNota3.getText();
             float pocentage3 = Float.parseFloat(txtPorcentajeNota3.getText());
-            Nota nota3 = new Nota(razon3, pocentage3);
+            Nota nota3 = new Nota(razon3, pocentage3, detalles);
 
             String razon4 = txtRazonNota4.getText();
             float pocentage4 = Float.parseFloat(txtPorcentajeNota4.getText());
-            Nota nota4 = new Nota(razon4, pocentage4);
+            Nota nota4 = new Nota(razon4, pocentage4, detalles);
 
             String razon5 = txtRazonNota5.getText();
             float pocentage5 = Float.parseFloat(txtPorcentajeNota5.getText());
-            Nota nota5 = new Nota(razon5, pocentage5);
+            Nota nota5 = new Nota(razon5, pocentage5, detalles);
 
             if (nota1.getPorcentage() + nota2.getPorcentage() + nota3.getPorcentage()
                     + nota4.getPorcentage() + nota5.getPorcentage() == 1) {
@@ -515,6 +525,16 @@ public class PanelGestionCursos extends javax.swing.JFrame {
         txtRazonNota5.setText("");
         txtPorcentajeNota5.setText("");
 
+    }
+
+    private ArrayList<DetalleNota> generarDetalles(int index) {
+        ArrayList<DetalleNota> detalles = new ArrayList<>();
+        float nota = (float) 0.0;
+        for (Estudiante estudiante : cursos.get(index).getEstudiantes()) {
+            DetalleNota detalle = new DetalleNota(estudiante, nota, false);
+            detalles.add(detalle);
+        }
+        return detalles;
     }
     /**
      * @param args the command line arguments

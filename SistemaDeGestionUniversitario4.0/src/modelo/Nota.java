@@ -4,19 +4,31 @@
  */
 package modelo;
 import java.io.Serializable;
+import java.util.ArrayList;
 /**
  *
  * @author JORGE
  */
 public class Nota implements Serializable{
     private String razon;
-    private float nota;
+    private ArrayList<DetalleNota> detalles;
     private float porcentage;
 
-    public Nota(String razon,float porcentage) {
+    public Nota(String razon, float porcentage,ArrayList<DetalleNota> detalles) {
         this.razon = razon;
         this.porcentage = porcentage;
+        this.detalles = detalles;
     }
+
+    public ArrayList<DetalleNota> getDetalles() {
+        return detalles;
+    }
+
+    public void setDetalles(ArrayList<DetalleNota> detalles) {
+        this.detalles = detalles;
+    }
+
+   
 
     public String getRazon() {
         return razon;
@@ -28,13 +40,7 @@ public class Nota implements Serializable{
 
   
 
-    public float getNota() {
-        return nota;
-    }
-
-    public void setNota(float nota) {
-        this.nota = nota;
-    }
+  
 
     public float getPorcentage() {
         return porcentage;

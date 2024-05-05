@@ -16,7 +16,8 @@ import modelo.Curso;
 public class VentanaUsEstudiante extends javax.swing.JFrame {
     ControlVentanaEstudiante controlVE;
     ArrayList<Curso> cursosE;
-   
+    Estudiante estudiante;
+    int idEstudiante = 0;
 
     /**
      * Creates new form VentanaUsEstudiante
@@ -26,11 +27,14 @@ public class VentanaUsEstudiante extends javax.swing.JFrame {
         setLocationRelativeTo(this);
         controlVE = new ControlVentanaEstudiante();
         cursosE = new ArrayList<>();
-
+        estudiante = null;
+        
     }
 
     public void informacionEstudiante(Estudiante estudiante) {
         Estudiante aux = estudiante;
+        this.idEstudiante = estudiante.getId();
+        this.estudiante = estudiante;
         cursosE = controlVE.conseguirCursosEstudiante(estudiante);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(aux.getBirthDate());
@@ -159,7 +163,7 @@ public class VentanaUsEstudiante extends javax.swing.JFrame {
 
     private void btnCursosRegistradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCursosRegistradosActionPerformed
         // TODO add your handling code here:
-        PanelCursosRegistradosE cursosR = new PanelCursosRegistradosE(cursosE);
+        PanelCursosRegistradosE cursosR = new PanelCursosRegistradosE(estudiante);
         cursosR.setVisible(true);
     }//GEN-LAST:event_btnCursosRegistradosActionPerformed
 
@@ -171,7 +175,7 @@ public class VentanaUsEstudiante extends javax.swing.JFrame {
 
     private void btnVerHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerHorarioActionPerformed
         // TODO add your handling code here:
-        PanelVerHorario verHorario = new PanelVerHorario();
+        PanelVerHorario verHorario = new PanelVerHorario(estudiante);
         verHorario.setVisible(true);
     }//GEN-LAST:event_btnVerHorarioActionPerformed
 
@@ -180,7 +184,8 @@ public class VentanaUsEstudiante extends javax.swing.JFrame {
         PanelHistorialCursos historialCursos = new PanelHistorialCursos();
         historialCursos.setVisible(true);
     }//GEN-LAST:event_btnHistorialCursosActionPerformed
-
+    
+    
     /**
      * @param args the command line arguments
      */

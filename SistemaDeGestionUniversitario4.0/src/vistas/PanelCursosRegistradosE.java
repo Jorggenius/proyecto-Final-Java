@@ -4,26 +4,33 @@
  */
 package vistas;
 
+import controladores.ControlPanelCursosRegistradosE;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import modelo.Curso;
 import modelo.Estudiante;
+import modelo.Nota;
+
 /**
  *
  * @author JORGE
  */
 public class PanelCursosRegistradosE extends javax.swing.JFrame {
-        ArrayList<Curso> cursos;
-        
-        
+
+    ControlPanelCursosRegistradosE controlCRE;
+    ArrayList<Curso> cursos;
+    Estudiante estudiante;
+
     /**
      * Creates new form CursosRegistrados
      */
-    public PanelCursosRegistradosE(ArrayList<Curso> cursos) {
+    public PanelCursosRegistradosE(Estudiante estudiante) {
         initComponents();
         setLocationRelativeTo(this);
-        this.cursos = cursos;
+        controlCRE = new ControlPanelCursosRegistradosE();
+        this.cursos = controlCRE.conseguirCursosEstudiante(estudiante);
+        this.estudiante = estudiante;
         llenarTabla();
     }
 
@@ -68,6 +75,11 @@ public class PanelCursosRegistradosE extends javax.swing.JFrame {
         getContentPane().add(txtIdCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 182, 73, -1));
 
         btnVerCurso.setText("Ver");
+        btnVerCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerCursoActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnVerCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 182, 49, -1));
 
         btnSalir.setText("Salir");
@@ -83,19 +95,23 @@ public class PanelCursosRegistradosE extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    public void conseguirCursos(){
-        
-    }
-    
-    
+
+
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    public void llenarTabla(){
-        DefaultTableModel modelo = new DefaultTableModel(new String[]{"Id","Materia","Profesor","Hora inicio"},cursos.size());
+    private void btnVerCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerCursoActionPerformed
+        // TODO add your handling code here:
+        int idCurso = Integer.parseInt(txtIdCurso.getText());
+        PanelCalificacionesEstudiante panelCE = new PanelCalificacionesEstudiante(estudiante, idCurso);
+        panelCE.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVerCursoActionPerformed
+
+    public void llenarTabla() {
+        DefaultTableModel modelo = new DefaultTableModel(new String[]{"Id", "Materia", "Profesor", "Hora inicio"}, cursos.size());
         tabalCursosEstudiante.setModel(modelo);
         TableModel cursosEstudiante = tabalCursosEstudiante.getModel();
         for (int i = 0; i < cursos.size(); i++) {
@@ -105,12 +121,12 @@ public class PanelCursosRegistradosE extends javax.swing.JFrame {
             cursosEstudiante.setValueAt(curso.getDocente().getNombre(), i, 2);
             cursosEstudiante.setValueAt(curso.getHorario().getHoraInicio(), i, 3);
         }
-    
+
     }
     /**
      * @param args the command line arguments
      */
-  
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalir;
