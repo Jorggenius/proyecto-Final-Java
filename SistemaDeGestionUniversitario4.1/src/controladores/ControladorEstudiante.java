@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import modelo.Estudiante;
 import modelo.Usuario;
 import Singleton.Singleton;
+import java.util.Date;
 
 /**
  *
@@ -36,6 +37,23 @@ public class ControladorEstudiante {
         return null;
     }
 
+    public boolean editarEstudiante(int id, String nombre, String programa, Date birdDate, String contraseña) {
+        Estudiante estudiante;
+        for (int i = 0; i < usuarios.size(); i++) {
+            if (usuarios.get(i).getId() == id) {
+                estudiante = (Estudiante) usuarios.get(i);
+                estudiante.setNombre(nombre);
+                estudiante.setPrograma(programa);
+                estudiante.setBirthDate(birdDate);
+                estudiante.setContraseña(contraseña);
+                usuarios.set(i, estudiante);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    
     public String contadorId() {
         String contador = "00" + String.valueOf(usuarios.size() + 1);
 //        contIds++;

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import modelo.Administrativo;
 import modelo.Usuario;
 import Singleton.Singleton;
+import java.util.Date;
 /**
  *
  * @author JORGE
@@ -33,6 +34,21 @@ public class ControladorAdministrativo {
             }
         }
         return null;
+    }
+    
+    public boolean editarAdministrativo(int id, String nombre, Date birthDate, String contraseña) {
+        Administrativo administrativo;
+        for (int i = 0; i < usuarios.size(); i++) {
+            if (usuarios.get(i).getId() == id) {
+                administrativo = (Administrativo) usuarios.get(i);
+                administrativo.setNombre(nombre);
+                administrativo.setBirthDate(birthDate);
+                administrativo.setContraseña(contraseña);
+                usuarios.set(i, administrativo);
+                return true;
+            }
+        }
+        return false;
     }
     
     public String contadorId() {

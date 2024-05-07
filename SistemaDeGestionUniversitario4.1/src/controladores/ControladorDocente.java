@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import modelo.Docente;
 import modelo.Usuario;
 import Singleton.Singleton;
+import java.util.Date;
 /**
  *
  * @author JORGE
@@ -37,6 +38,22 @@ public class ControladorDocente {
         return null;
     }
 
+     public boolean editarDocente(int id, String nombre, String asignatura, Date birthDate, String contraseña) {
+        Docente docente;
+        for (int i = 0; i < usuarios.size(); i++) {
+            if (usuarios.get(i).getId() == id) {
+                docente = (Docente) usuarios.get(i);
+                docente.setNombre(nombre);
+                docente.setAsignatura(asignatura);
+                docente.setBirthDate(birthDate);
+                docente.setContraseña(contraseña);
+                usuarios.set(i, docente);
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public String contadorId() {
         String contador = "00" + String.valueOf(usuarios.size() + 1);
 //        contIds++;

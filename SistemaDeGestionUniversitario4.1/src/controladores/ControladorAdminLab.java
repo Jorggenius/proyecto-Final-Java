@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import modelo.AdminLab;
 import modelo.Usuario;
 import Singleton.Singleton;
+import java.util.Date;
 /**
  *
  * @author JORGE
@@ -34,6 +35,21 @@ public class ControladorAdminLab {
             }
         }
         return null;
+    }
+    
+    public boolean editarAdminLab(int id, String nombre, Date birthDate, String contraseña) {
+        AdminLab adminLab;
+        for (int i = 0; i < usuarios.size(); i++) {
+            if (usuarios.get(i).getId() == id) {
+                adminLab = (AdminLab) usuarios.get(i);
+                adminLab.setNombre(nombre);
+                adminLab.setBirthDate(birthDate);
+                adminLab.setContraseña(contraseña);
+                usuarios.set(i, adminLab);
+                return true;
+            }
+        }
+        return false;
     }
     
       public String contadorId() {
