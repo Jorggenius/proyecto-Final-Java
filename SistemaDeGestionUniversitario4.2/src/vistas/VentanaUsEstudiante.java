@@ -193,8 +193,9 @@ public class VentanaUsEstudiante extends javax.swing.JFrame {
 
     private void btnHistorialCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialCursosActionPerformed
         // TODO add your handling code here:
-        PanelHistorialCursos historialCursos = new PanelHistorialCursos();
+        PanelHistorialCursos historialCursos = new PanelHistorialCursos(estudiante);
         historialCursos.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnHistorialCursosActionPerformed
 
     private void btnNotificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotificacionesActionPerformed

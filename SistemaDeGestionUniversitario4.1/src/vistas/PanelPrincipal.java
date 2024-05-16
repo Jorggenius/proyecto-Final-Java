@@ -17,8 +17,9 @@ import controladores.ControladorPrincipal;
  * @author JORGE
  */
 public class PanelPrincipal extends javax.swing.JFrame {
-   
+
     ControladorPrincipal controlP;
+
     /**
      * Creates new form PanelPrincipal
      */
@@ -26,10 +27,8 @@ public class PanelPrincipal extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(this);
         controlP = new ControladorPrincipal();
-        
-    }
 
-   
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -113,11 +112,11 @@ public class PanelPrincipal extends javax.swing.JFrame {
 
                 } else if (aux instanceof Docente) {
                     if (aux.isCambioContraseña()) {
-                    VentanaUsDocente ventanaD = new VentanaUsDocente((Docente) aux);
-                    ventanaD.setVisible(true);
-                    ventanaD.informacionDocente((Docente) aux);
-                    this.dispose();
-                    }else {
+                        VentanaUsDocente ventanaD = new VentanaUsDocente((Docente) aux);
+                        ventanaD.setVisible(true);
+                        ventanaD.informacionDocente((Docente) aux);
+                        this.dispose();
+                    } else {
                         JOptionPane.showMessageDialog(null, "No ha cambiado la contraseña");
                         panelCambiarContraseña panelCC = new panelCambiarContraseña();
                         panelCC.setVisible(true);
@@ -126,11 +125,11 @@ public class PanelPrincipal extends javax.swing.JFrame {
                     }
                 } else if (aux instanceof Administrativo) {
                     if (aux.isCambioContraseña()) {
-                    VentanaUsAdministrativo ventanaA = new VentanaUsAdministrativo();
-                    ventanaA.setVisible(true);
-                    ventanaA.informacionAdministrativo((Administrativo) aux);
-                    this.dispose();
-                    }else {
+                        VentanaUsAdministrativo ventanaA = new VentanaUsAdministrativo();
+                        ventanaA.setVisible(true);
+                        ventanaA.informacionAdministrativo((Administrativo) aux);
+                        this.dispose();
+                    } else {
                         JOptionPane.showMessageDialog(null, "No ha cambiado la contraseña");
                         panelCambiarContraseña panelCC = new panelCambiarContraseña();
                         panelCC.setVisible(true);
@@ -142,7 +141,7 @@ public class PanelPrincipal extends javax.swing.JFrame {
                     ventanaAL.setVisible(true);
                     ventanaAL.informacionAdminLab((AdminLab) aux);
                     this.dispose();
-                   
+
                 }
                 limpiarCampos();
             } else {
