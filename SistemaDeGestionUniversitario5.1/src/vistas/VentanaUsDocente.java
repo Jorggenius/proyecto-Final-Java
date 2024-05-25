@@ -191,7 +191,7 @@ public class VentanaUsDocente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHistorialCursosActionPerformed
     public void informacionDocente(Docente docente) {
         Docente aux = docente;
-        cursosA = controlVD.conseguirCursosDocente(docente);
+        this.cursosA = controlVD.conseguirCursosDocente(docente);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(aux.getBirthDate());
         lblNombreDocente.setText(aux.getNombre());
