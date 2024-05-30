@@ -40,6 +40,10 @@ public class ControlVentanaCursos {
 //        ventanaC = new VentanaCursos();
     }
 
+    public ArrayList<Curso> getCursos() {
+        return cursos;
+    }
+    
     public Estudiante inscribirEstudiante(int nombreEstu) {
         ArrayList<Estudiante> ests = listaUsuarioEsts();
         for (int i = 0; i < ests.size(); i++) {
@@ -130,6 +134,7 @@ public class ControlVentanaCursos {
             if (cursos.get(i).getId() == idCurso) {
                 aux = true;
                 cursos.remove(i);
+                JOptionPane.showMessageDialog(null, "El curso ha sido eliminado");
             }
         }
         if (!aux) {

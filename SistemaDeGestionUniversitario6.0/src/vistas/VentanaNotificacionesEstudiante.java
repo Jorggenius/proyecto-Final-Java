@@ -34,7 +34,7 @@ public class VentanaNotificacionesEstudiante extends javax.swing.JFrame {
         lblNombreEstudiante.setText(estudiante.getNombre());
         lblNumeroNotificaciones.setText("Usted tiene " + numeroNotificaciones(controlVN.conseguirNotificaciones()) + " Notificaciones");
         lblContadorNotificacion.setText("" + contadorNotificacion);
-        desplegarNotificacion(controlVN.conseguirNotificaciones());
+        desplegarNotificacion(notificaciones);
         System.out.println(" contador notificaciones " + contadorNotificacion);
 
     }
@@ -147,10 +147,24 @@ public class VentanaNotificacionesEstudiante extends javax.swing.JFrame {
     }
 
     private void desplegarNotificacion(ArrayList<Notificacion> notificaciones) {
-        txaCampoNotificaciones.setText(notificaciones.get(contadorNotificacion - 1).getMensaje());
-        lblRazonNotificacion.setText("Razon: " + notificaciones.get(contadorNotificacion - 1).getRazon());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        lblFecha.setText("Fecha: " + notificaciones.get(contadorNotificacion - 1).getFechaEmvio().format(formatter));
+        if (notificaciones != null && !notificaciones.isEmpty() && contadorNotificacion > 0 && contadorNotificacion <= notificaciones.size()) {
+            Notificacion notificacion = notificaciones.get(contadorNotificacion - 1);
+            txaCampoNotificaciones.setText(notificacion.getMensaje());
+            lblRazonNotificacion.setText("Razon: " + notificacion.getRazon());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            lblFecha.setText("Fecha: " + notificacion.getFechaEmvio().format(formatter));
+        } else {
+            txaCampoNotificaciones.setText("");
+            lblRazonNotificacion.setText("Razon: ");
+            lblFecha.setText("Fecha: ");
+        }
+        
+        
+//        
+//        txaCampoNotificaciones.setText(notificaciones.get(contadorNotificacion - 1).getMensaje());
+//        lblRazonNotificacion.setText("Razon: " + notificaciones.get(contadorNotificacion - 1).getRazon());
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//        lblFecha.setText("Fecha: " + notificaciones.get(contadorNotificacion - 1).getFechaEmvio().format(formatter));
 
     }
     /**

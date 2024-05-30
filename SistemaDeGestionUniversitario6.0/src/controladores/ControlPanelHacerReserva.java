@@ -83,12 +83,12 @@ public class ControlPanelHacerReserva {
                     }
                 }
                 for (int j = 0; j < labs.get(i).getPuestos().size(); j++) {
-                    for (int k = 0; k <  labs.get(i).getPuestos().get(j).getReservas().size(); k++) {
-                        if(labs.get(i).getPuestos().get(j).getReservas().get(k).getEstudiante().getId() == est.getId()){
+                    for (int k = 0; k < labs.get(i).getPuestos().get(j).getReservas().size(); k++) {
+                        if (labs.get(i).getPuestos().get(j).getReservas().get(k).getEstudiante().getId() == est.getId()) {
                             labs.get(i).getPuestos().get(j).getReservas().remove(k);
                         }
                     }
-   
+
                 }
             }
         }
@@ -108,6 +108,20 @@ public class ControlPanelHacerReserva {
         if (!validar) {
             throw new NoTieneReserva();
         }
+    }
+
+    public boolean validarReserva(Reserva reserva) {
+        for (int i = 0; i < labs.size(); i++) {
+            for (int j = 0; j < labs.get(i).getPuestos().size(); j++) {
+                for (int k = 0; k < labs.get(i).getPuestos().get(j).getReservas().size(); k++) {
+                    if(labs.get(i).getPuestos().get(j).getReservas().get(k).getDiaReserva().equals(reserva.getDiaReserva())
+                            && labs.get(i).getPuestos().get(j).getReservas().get(k).getHoraInicio().equals(reserva.getHoraInicio())){
+                             return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 
 }

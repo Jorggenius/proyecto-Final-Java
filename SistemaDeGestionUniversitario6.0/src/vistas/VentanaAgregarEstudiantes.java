@@ -7,6 +7,7 @@ package vistas;
 import controladores.ControlVentanaAgregarEstudiante;
 import excepciones.EstudianteNoEliminado;
 import excepciones.EstudianteNoInscrito;
+import excepciones.IdIncorrecto;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -30,13 +31,16 @@ public class VentanaAgregarEstudiantes extends javax.swing.JFrame {
     /**
      * Creates new form VentanaAgregarEstudiantes
      */
-    public VentanaAgregarEstudiantes(Administrativo administrativo, int idCurso) {
+    public VentanaAgregarEstudiantes(Administrativo administrativo, int idCurso) throws IdIncorrecto {
         initComponents();
         setLocationRelativeTo(this);
         this.administrativo = administrativo;
         controlVAE = new ControlVentanaAgregarEstudiante();
         this.idCurso = idCurso;
         this.curso = controlVAE.conseguirCurso(idCurso);
+        if(controlVAE.conseguirCurso(idCurso) == null){
+        throw new IdIncorrecto();
+        }
         lblCurso.setText("Curso № " + curso.getId());
         lblDocenteCurso.setText(curso.getDocente().getNombre());
         llenarComboBoxEstudiante();
@@ -65,10 +69,15 @@ public class VentanaAgregarEstudiantes extends javax.swing.JFrame {
         btnRegresar = new javax.swing.JButton();
         lblCurso = new javax.swing.JLabel();
         lblDocenteCurso = new javax.swing.JLabel();
+        lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        getContentPane().add(jComboEstudiantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 108, 100, -1));
 
         lblIdEstudiantes.setText("Id estudiante:");
+        getContentPane().add(lblIdEstudiantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 111, -1, -1));
 
         btnInscribirEstudiante.setText("Inscribir");
         btnInscribirEstudiante.addActionListener(new java.awt.event.ActionListener() {
@@ -76,6 +85,7 @@ public class VentanaAgregarEstudiantes extends javax.swing.JFrame {
                 btnInscribirEstudianteActionPerformed(evt);
             }
         });
+        getContentPane().add(btnInscribirEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 136, -1, -1));
 
         btnEliminarEstudiante.setText("Eliminar");
         btnEliminarEstudiante.addActionListener(new java.awt.event.ActionListener() {
@@ -83,6 +93,7 @@ public class VentanaAgregarEstudiantes extends javax.swing.JFrame {
                 btnEliminarEstudianteActionPerformed(evt);
             }
         });
+        getContentPane().add(btnEliminarEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 136, -1, -1));
 
         tablaEstudiantes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -102,68 +113,24 @@ public class VentanaAgregarEstudiantes extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaEstudiantes);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(348, 0, -1, 275));
+
         btnRegresar.setText("Regresar");
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegresarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 321, -1, -1));
 
         lblCurso.setText("Curso №");
+        getContentPane().add(lblCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 26, 118, -1));
 
         lblDocenteCurso.setText("Docente:");
+        getContentPane().add(lblDocenteCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 26, 119, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblIdEstudiantes)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnInscribirEstudiante)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnEliminarEstudiante))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblDocenteCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnRegresar)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCurso)
-                    .addComponent(lblDocenteCurso))
-                .addGap(66, 66, 66)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblIdEstudiantes))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnInscribirEstudiante)
-                    .addComponent(btnEliminarEstudiante))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnRegresar)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 75, Short.MAX_VALUE))
-        );
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/FondoAgregarHorarios.png"))); // NOI18N
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 350));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -232,6 +199,7 @@ public class VentanaAgregarEstudiantes extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCurso;
     private javax.swing.JLabel lblDocenteCurso;
+    private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblIdEstudiantes;
     private javax.swing.JTable tablaEstudiantes;
     // End of variables declaration//GEN-END:variables

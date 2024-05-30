@@ -141,18 +141,46 @@ public class PanelIngresarAdministrativo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        // TODO add your handling code here:
         try {
             String nombre = txtNombre.getText();
-            int id = Integer.parseInt(txtId.getText());
-            Date BirthDate = datebirthDate.getDate();
+            String idText = txtId.getText();
+            Date birthDate = datebirthDate.getDate();
             String contraseña = txtContraseña.getText();
-            Administrativo administrativo = new Administrativo(BirthDate, nombre, id, contraseña);
+            // Validar que los campos no estén vacíos
+            if (nombre.isEmpty() || idText.isEmpty() || birthDate == null || contraseña.isEmpty()) {
+                throw new IllegalArgumentException("Todos los campos son obligatorios.");
+            }
+            // Validar que el ID sea un número válido
+            int id;
+            try {
+                id = Integer.parseInt(idText);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("El ID debe ser un número válido.");
+            }
+            // Crear el objeto Administrativo
+            Administrativo administrativo = new Administrativo(birthDate, nombre, id, contraseña);
+            // Intentar agregar el objeto Administrativo
             controlUA.agregarAdmin(administrativo);
+            // Limpiar los campos si todo es exitoso
+            limpiarCampos();
+        } catch (IllegalArgumentException ex) {
+            // Mostrar mensaje de error si falta algún campo o el ID no es válido
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         } catch (NoIngresadoIdExistenteException ex) {
+            // Manejar la excepción específica para IDs existentes
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        limpiarCampos();
+//        try {
+//            String nombre = txtNombre.getText();
+//            int id = Integer.parseInt(txtId.getText());
+//            Date BirthDate = datebirthDate.getDate();
+//            String contraseña = txtContraseña.getText();
+//            Administrativo administrativo = new Administrativo(BirthDate, nombre, id, contraseña);
+//            controlUA.agregarAdmin(administrativo);
+//        } catch (NoIngresadoIdExistenteException ex) {
+//            JOptionPane.showMessageDialog(null, ex.getMessage());
+//        }
+//        limpiarCampos();
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
@@ -177,20 +205,20 @@ public class PanelIngresarAdministrativo extends javax.swing.JFrame {
             txtNombre.setText(aux.getNombre());
             datebirthDate.setDate(aux.getBirthDate());
             txtContraseña.setText(aux.getContraseña());
-        }catch(NoEncuentra ex){
+        } catch (NoEncuentra ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
-        try{
-        int id = Integer.parseInt(txtId.getText());
-        String nombre = txtNombre.getText();
-        Date birthDate = datebirthDate.getDate();
-        String contraseña = txtContraseña.getText();
-        controlUA.editarAdministrativo(id, nombre, birthDate, contraseña);
-        } catch(ImposibleEditar ex) {
+        try {
+            int id = Integer.parseInt(txtId.getText());
+            String nombre = txtNombre.getText();
+            Date birthDate = datebirthDate.getDate();
+            String contraseña = txtContraseña.getText();
+            controlUA.editarAdministrativo(id, nombre, birthDate, contraseña);
+        } catch (ImposibleEditar ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
             limpiarCampos();
         }
@@ -199,11 +227,11 @@ public class PanelIngresarAdministrativo extends javax.swing.JFrame {
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         // TODO add your handling code here:
-          try{
-        int id = Integer.parseInt(txtId.getText());
-        controlUA.borrarAdministrativo(id);
-        limpiarCampos();
-        }catch (ImposibleBorrar ex){
+        try {
+            int id = Integer.parseInt(txtId.getText());
+            controlUA.borrarAdministrativo(id);
+            limpiarCampos();
+        } catch (ImposibleBorrar ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
             limpiarCampos();
         }

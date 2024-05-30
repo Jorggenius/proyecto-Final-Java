@@ -158,18 +158,46 @@ public class PanelIngresarAdminLab extends javax.swing.JFrame {
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        // TODO add your handling code here:
         try {
             String nombre = txtNombre.getText();
-            int id = Integer.parseInt(txtId.getText());
-            Date birthdate = datebirthDate.getDate();
+            String idText = txtId.getText();
+            Date birthDate = datebirthDate.getDate();
             String contraseña = txtContraseña.getText();
-            AdminLab adminlab = new AdminLab(birthdate, nombre, id, contraseña);
+            // Validar que los campos no estén vacíos
+            if (nombre.isEmpty() || idText.isEmpty() || birthDate == null || contraseña.isEmpty()) {
+                throw new IllegalArgumentException("Todos los campos son obligatorios.");
+            }
+            // Validar que el ID sea un número válido
+            int id;
+            try {
+                id = Integer.parseInt(idText);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("El ID debe ser un número válido.");
+            }
+            // Crear el objeto AdminLab
+            AdminLab adminlab = new AdminLab(birthDate, nombre, id, contraseña);
+            // Intentar agregar el objeto AdminLab
             controlAL.agregarAdminLab(adminlab);
+            // Limpiar los campos si todo es exitoso
+            limpiarCampos();
+        } catch (IllegalArgumentException ex) {
+            // Mostrar mensaje de error si falta algún campo o el ID no es válido
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         } catch (NoIngresadoIdExistenteException ex) {
+            // Manejar la excepción específica para IDs existentes
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        limpiarCampos();
+//        try {
+//            String nombre = txtNombre.getText();
+//            int id = Integer.parseInt(txtId.getText());
+//            Date birthdate = datebirthDate.getDate();
+//            String contraseña = txtContraseña.getText();
+//            AdminLab adminlab = new AdminLab(birthdate, nombre, id, contraseña);
+//            controlAL.agregarAdminLab(adminlab);
+//        } catch (NoIngresadoIdExistenteException ex) {
+//            JOptionPane.showMessageDialog(null, ex.getMessage());
+//        }
+//        limpiarCampos();
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed

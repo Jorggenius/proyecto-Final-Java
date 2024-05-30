@@ -88,7 +88,7 @@ public class PanelHistorialCursosDocente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
      public void llenarTablaHistorial(){
-        DefaultTableModel modelo = new DefaultTableModel(new String[]{"Id","Materia","Materia"},controlPHD.getCursosHistorial().size());
+        DefaultTableModel modelo = new DefaultTableModel(new String[]{"Id","Periodo","Materia"},controlPHD.getCursosHistorial().size());
         System.out.println(controlPHD.conseguirCursosHistorial().size());
         tablaCursosAnterioresEstudiante.setModel(modelo);
         TableModel modeloCursosHistorial = tablaCursosAnterioresEstudiante.getModel();

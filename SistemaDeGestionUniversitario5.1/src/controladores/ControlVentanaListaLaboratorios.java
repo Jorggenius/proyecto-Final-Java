@@ -59,9 +59,7 @@ public class ControlVentanaListaLaboratorios {
                         Singleton.getInstancia().escribirObjetoUsuario();
                     }
                 }
-//                labs.set(i, laboratorio);
             }
-
         }
     }
 }

@@ -10,6 +10,8 @@ import excepciones.LabNoEleminado;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import modelo.AdminLab;
 import modelo.Curso;
 import modelo.Horario;
@@ -37,6 +39,7 @@ public class VentanaLaboratorios extends javax.swing.JFrame {
         txtIdLab.setText(controlVL.contadorIdLabs());
         llenarComboBoxDocentes();
         JComboCursos.setSelectedItem(null);
+        LlenarTablaLabs();
     }
 
     /**
@@ -55,10 +58,11 @@ public class VentanaLaboratorios extends javax.swing.JFrame {
         txtIdLab = new javax.swing.JTextField();
         txtNumeroPersonas = new javax.swing.JTextField();
         JComboCursos = new javax.swing.JComboBox<>();
-        btnListaLabs = new javax.swing.JButton();
         btnCrearLab = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableLabs = new javax.swing.JTable();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnAñadirCursos = new javax.swing.JButton();
@@ -89,15 +93,6 @@ public class VentanaLaboratorios extends javax.swing.JFrame {
         });
         getContentPane().add(JComboCursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 110, -1));
 
-        btnListaLabs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Listar.png"))); // NOI18N
-        btnListaLabs.setBorderPainted(false);
-        btnListaLabs.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListaLabsActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnListaLabs, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, 40, 50));
-
         btnCrearLab.setText("Validar Lab");
         btnCrearLab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,6 +116,18 @@ public class VentanaLaboratorios extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, -1, -1));
+
+        tableLabs.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "№ puestos"
+            }
+        ));
+        jScrollPane1.setViewportView(tableLabs);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 240, 230));
 
         btnEditar.setText("Editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -146,8 +153,8 @@ public class VentanaLaboratorios extends javax.swing.JFrame {
         });
         getContentPane().add(btnAñadirCursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 197, -1, -1));
 
-        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Fondo.png"))); // NOI18N
-        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 0, -1, 380));
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/FondoLaboratorio.png"))); // NOI18N
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -181,6 +188,7 @@ public class VentanaLaboratorios extends javax.swing.JFrame {
         boolean aux = controlVL.crearLaboratorio(lab);
         if (aux) {
             JOptionPane.showMessageDialog(null, "Agregado");
+            LlenarTablaLabs();
             limpiarCampos();
         } else {
             JOptionPane.showMessageDialog(null, "NO agrego");
@@ -212,18 +220,12 @@ public class VentanaLaboratorios extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void btnListaLabsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaLabsActionPerformed
-        // TODO add your handling code here:
-        VentanaListaLaborarotios ventanaLL = new VentanaListaLaborarotios(adminLab);
-        ventanaLL.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnListaLabsActionPerformed
-
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         try {
             int idLaboratorios = Integer.parseInt(txtIdLab.getText());
             controlVL.eliminarLaboratorio(idLaboratorios);
+            LlenarTablaLabs();
         } catch (LabNoEleminado ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -303,7 +305,16 @@ public class VentanaLaboratorios extends javax.swing.JFrame {
         return horariosCurso;  
     }
     
-    
+    public void LlenarTablaLabs (){
+        DefaultTableModel model = new DefaultTableModel(new String[]{"Id","№ puestos"}, controlVL.getLabs().size());
+        tableLabs.setModel(model);
+        TableModel modeloLab = tableLabs.getModel();
+        for (int i = 0; i < controlVL.getLabs().size(); i++) {
+            Laboratorio lab = controlVL.getLabs().get(i);
+            modeloLab.setValueAt(lab.getIdLaboratorio(), i, 0);
+            modeloLab.setValueAt(lab.getNumeroPersonas(), i, 1);
+        }
+    }
     
     /**
      * @param args the command line arguments
@@ -316,13 +327,14 @@ public class VentanaLaboratorios extends javax.swing.JFrame {
     private javax.swing.JButton btnCrearLab;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnListaLabs;
     private javax.swing.JButton btnRegresar;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCrearCursos;
     private javax.swing.JLabel lblCursos;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblIdCurso;
     private javax.swing.JLabel lblNumeroPersonas;
+    private javax.swing.JTable tableLabs;
     private javax.swing.JTextField txtIdLab;
     private javax.swing.JTextField txtNumeroPersonas;
     // End of variables declaration//GEN-END:variables

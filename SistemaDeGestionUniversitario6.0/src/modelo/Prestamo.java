@@ -13,15 +13,18 @@ import java.time.LocalTime;
  * @author JORGE
  */
 public class Prestamo implements Serializable{
+    Estudiante estudiante;
     private LocalDate diaReserva;
     private int idLab;
     private LocalTime horaInicio;
     private LocalTime horaFinal;
 
-    public Prestamo(int idLab, LocalTime horaInicio, LocalTime horaFinal) {
+    public Prestamo(Estudiante estudiante, int idLab,LocalDate diaReserva , LocalTime horaInicio, LocalTime horaFinal) {
         this.idLab = idLab;
         this.horaInicio = horaInicio;
         this.horaFinal = horaFinal;
+        this.estudiante = estudiante;
+        this.diaReserva = diaReserva;
     }
 
     public int getIdLab() {
@@ -54,6 +57,14 @@ public class Prestamo implements Serializable{
 
     public void setDiaReserva(LocalDate diaReserva) {
         this.diaReserva = diaReserva;
+    }
+
+    public Estudiante getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(Estudiante estudiante) {
+        this.estudiante = estudiante;
     }
     
     

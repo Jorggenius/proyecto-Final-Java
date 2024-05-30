@@ -31,16 +31,26 @@ public class ControlVentanaPrestamos {
         return labs;
     }
 
-    public void generarPrestamo(Prestamo prestamo, int idEstudiante) throws PrestamoNoRealizado {
+    public void generarPrestamo(Prestamo prestamo, int idEstudiante, int idPuesto) throws PrestamoNoRealizado {
         boolean aux = false;
         for (int i = 0; i < usuarios.size(); i++) {
             if (usuarios.get(i).getId() == idEstudiante) {
                 Estudiante est = (Estudiante) usuarios.get(i);
                 est.setPrestamo(prestamo);
+                est.setTienePrestamo(true);
                 usuarios.set(i, est);
                 Singleton.getInstancia().escribirObjetoUsuario();
                 aux = true;
                 JOptionPane.showMessageDialog(null, "Prestamo realizado");
+            }
+        }
+        for (int i = 0; i < labs.size(); i++) {
+            if(labs.get(i).getIdLaboratorio() == prestamo.getIdLab()){
+                for (int j = 0; j < labs.get(i).getPuestos().size(); j++) {
+                    if( labs.get(i).getPuestos().get(j).getIdPuesto() == idPuesto){
+                        labs.get(i).getPuestos().get(j).getPrestamos().add(prestamo);
+                    }
+                }
             }
         }
         if (!aux) {

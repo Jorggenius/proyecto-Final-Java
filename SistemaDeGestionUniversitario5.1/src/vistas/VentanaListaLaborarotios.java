@@ -167,7 +167,7 @@ public class VentanaListaLaborarotios extends javax.swing.JFrame {
         if (!laboratorio.isMantenimiento()) {
 //            laboratorio.setMantenimiento(true);
 //            laboratorio.setFechaMantenimiento(fechaMantenimiento);
-            controVLL.notificarActualizar(laboratorio, notificacionE, notificacionE, fechaMantenimiento);
+            controVLL.notificarActualizar(laboratorio, notificacionE, notificacionDocente, fechaMantenimiento);
             //buscar en los usuario con el id cuales usuarios tienen reserva en el laboratorio
             //y asi a estos enviarles una notificacion de mantenimiento
         } else {

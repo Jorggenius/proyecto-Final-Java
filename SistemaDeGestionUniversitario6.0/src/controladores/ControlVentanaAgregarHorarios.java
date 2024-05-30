@@ -47,8 +47,6 @@ public class ControlVentanaAgregarHorarios {
     }
     
     public void eliminarHorario(int idHorario, int idCurso)throws HorarioNoExiste{
-        System.out.println("est es el IDcurso " + idCurso);
-        System.out.println("este es el Id Horario " + idHorario);
        boolean aux = true;
         for (int i = 0; i < cursos.get(i).getHorarios().size(); i++) {
             if(cursos.get(i).getId() == idCurso){
@@ -59,8 +57,6 @@ public class ControlVentanaAgregarHorarios {
                         aux = true;
                     }
                 }
-                
-                //Aqui va el singleton
             }
         }
         if(!aux){

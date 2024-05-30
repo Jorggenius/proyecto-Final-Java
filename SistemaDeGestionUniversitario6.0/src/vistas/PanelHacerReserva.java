@@ -199,13 +199,16 @@ public class PanelHacerReserva extends javax.swing.JFrame {
             Reserva reserva = new Reserva(fechaReserva, idLaboratorio, horaInicio, horaFinal, estudiante);
 
             // Generar la reserva
-            if (duration.toMinutes() < 61) {
-                controlPHR.generarReserva(idLaboratorio, reserva, estudiante.getId(), idPuesto);
-                limpiarCampos();
+            if (controlPHR.validarReserva(reserva)) {
+                if (duration.toMinutes() < 61) {
+                    controlPHR.generarReserva(idLaboratorio, reserva, estudiante.getId(), idPuesto);
+                    limpiarCampos();
+                } else {
+                    JOptionPane.showMessageDialog(null, "EL tiempo no puede exeder una hora");
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "EL tiempo no puede exeder una hora");
+                JOptionPane.showMessageDialog(null, "El puesto no esta disponible\n para la fecha");
             }
-
         } catch (IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             limpiarCampos();

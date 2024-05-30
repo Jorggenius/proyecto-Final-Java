@@ -26,6 +26,8 @@ public class ControlVentanaLaboratorios {
         cursos = Singleton.getInstancia().getCursos();
     }
 
+    
+    
     public ArrayList<Curso> getCursos() {
         return cursos;
     }

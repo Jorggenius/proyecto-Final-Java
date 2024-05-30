@@ -136,6 +136,9 @@ public class VentanaUsAdminLab extends javax.swing.JFrame {
 
     private void btnGestionarLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarLabActionPerformed
         // TODO add your handling code here:
+        VentanaListaLaborarotios ventanaLL = new VentanaListaLaborarotios(adminLab);
+        ventanaLL.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnGestionarLabActionPerformed
 
     private void btnGestionarReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarReservasActionPerformed

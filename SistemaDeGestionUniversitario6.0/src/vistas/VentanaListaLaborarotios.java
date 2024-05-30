@@ -153,8 +153,8 @@ public class VentanaListaLaborarotios extends javax.swing.JFrame {
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO add your handling code here:
-        VentanaLaboratorios ventanaL = new VentanaLaboratorios(adminlab);
-        ventanaL.setVisible(true);
+        VentanaUsAdminLab ventanaUAL = new VentanaUsAdminLab(adminlab);
+        ventanaUAL.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
@@ -171,24 +171,24 @@ public class VentanaListaLaborarotios extends javax.swing.JFrame {
         LocalDateTime fechaActual = LocalDateTime.now();
         String mensajeNotificacionEstudiante = "Querido Estudiante usted esta recibiendo\n"
                 + " la presente notificacion a causa\n de que el laboratorio numero" + id
-                + "ha sido programado para mantenimiento en la\n"
+                + "ha sido programado para mantenimiento \n"
                 + "en la fecha " + fechaMantenimiento;
         String motivoNotificacionEstudiante = "Mantenimiento";
         Notificacion notificacionE = new Notificacion(fechaActual, mensajeNotificacionEstudiante, motivoNotificacionEstudiante);
 //////////////////////this is the teacher's notifications///////////////////////
-        String mensajeNotificacionDocente = "Querido Estudiante usted esta recibiendo\n"
+        String mensajeNotificacionDocente = "Querido Docente usted esta recibiendo\n"
                 + " la presente notificacion a causa\n de que el laboratorio numero" + id
                 + "ha sido programado para mantenimiento en la\n"
                 + "en la fecha " + fechaMantenimiento;
         String motivoNotificacionDocenete = "Mantenimiento";
-        Notificacion notificacionDocente = new Notificacion(fechaActual, mensajeNotificacionDocente, motivoNotificacionDocenete);
+        Notificacion notificacionD = new Notificacion(fechaActual, mensajeNotificacionDocente, motivoNotificacionDocenete);
 
         Laboratorio laboratorio = controVLL.conseguirLaboratorio(id);
         if (controVLL.fechaNotificacion(fechaActual, fechaMantenimiento)) {
             if (!laboratorio.isMantenimiento()) {
 //            laboratorio.setMantenimiento(true);
 //            laboratorio.setFechaMantenimiento(fechaMantenimiento);
-                controVLL.notificarActualizar(laboratorio, notificacionE, notificacionE, fechaMantenimiento);
+                controVLL.notificarActualizar(laboratorio, notificacionE, notificacionD, fechaMantenimiento);
                 llenarTablaLaboratorios();
                 //buscar en los usuario con el id cuales usuarios tienen reserva en el laboratorio
                 //y asi a estos enviarles una notificacion de mantenimiento

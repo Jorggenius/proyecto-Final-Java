@@ -137,20 +137,30 @@ public class VentanaNotificacionesDocente extends javax.swing.JFrame {
         desplegarNotificacion(notificaciones);
     }//GEN-LAST:event_btnNotificacionAdelanteActionPerformed
 
-      private int numeroNotificaciones(ArrayList<Notificacion> notificaciones){
+    private int numeroNotificaciones(ArrayList<Notificacion> notificaciones) {
         int numeroNotificaciones = 0;
         for (int i = 0; i < notificaciones.size(); i++) {
-            numeroNotificaciones ++;
+            numeroNotificaciones++;
         }
         return numeroNotificaciones;
     }
-      
-    private void desplegarNotificacion(ArrayList<Notificacion> notificaciones) {
-        txaCampoNotificaciones.setText(notificaciones.get(contadorNotificacion - 1).getMensaje());
-        lblRazonNotificacion.setText("Razon: " + notificaciones.get(contadorNotificacion - 1).getRazon());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        lblFecha.setText("Fecha: " + notificaciones.get(contadorNotificacion-1).getFechaEmvio().format(formatter));
 
+    private void desplegarNotificacion(ArrayList<Notificacion> notificaciones) {
+        if (notificaciones != null && !notificaciones.isEmpty() && contadorNotificacion > 0 && contadorNotificacion <= notificaciones.size()) {
+            Notificacion notificacion = notificaciones.get(contadorNotificacion - 1);
+            txaCampoNotificaciones.setText(notificacion.getMensaje());
+            lblRazonNotificacion.setText("Razon: " + notificacion.getRazon());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            lblFecha.setText("Fecha: " + notificacion.getFechaEmvio().format(formatter));
+        } else {
+            txaCampoNotificaciones.setText("");
+            lblRazonNotificacion.setText("Razon: ");
+            lblFecha.setText("Fecha: ");
+        }
+//        txaCampoNotificaciones.setText(notificaciones.get(contadorNotificacion - 1).getMensaje());
+//        lblRazonNotificacion.setText("Razon: " + notificaciones.get(contadorNotificacion - 1).getRazon());
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//        lblFecha.setText("Fecha: " + notificaciones.get(contadorNotificacion-1).getFechaEmvio().format(formatter));
     }
     /**
      * @param args the command line arguments

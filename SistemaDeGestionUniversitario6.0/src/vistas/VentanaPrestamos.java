@@ -16,6 +16,7 @@ import modelo.AdminLab;
 import modelo.Estudiante;
 import modelo.Laboratorio;
 import modelo.Prestamo;
+import modelo.Puesto;
 
 /**
  *
@@ -34,8 +35,16 @@ public class VentanaPrestamos extends javax.swing.JFrame {
         setLocationRelativeTo(this);
         this.adminLab = adminLab;
         controlVP = new ControlVentanaPrestamos();
+        cbLabs.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbLabsActionPerformed(evt);
+            }
+        });
         llenarComboEstudiantes();
         llenarCombolabs();
+        cbPuestos.setSelectedItem(null);
+        cbLabs.setSelectedItem(null);
     }
 
     /**
@@ -57,6 +66,8 @@ public class VentanaPrestamos extends javax.swing.JFrame {
         lblHoraFinal = new javax.swing.JLabel();
         btnGenerarPrestamo = new javax.swing.JButton();
         lblIdLaboratorio = new javax.swing.JLabel();
+        lblPuestos = new javax.swing.JLabel();
+        cbPuestos = new javax.swing.JComboBox<>();
         cbLabs = new javax.swing.JComboBox<>();
         lblFondo = new javax.swing.JLabel();
 
@@ -80,16 +91,16 @@ public class VentanaPrestamos extends javax.swing.JFrame {
         lblEstudiantes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblEstudiantes.setText("Estudiantes:");
         getContentPane().add(lblEstudiantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, -1, -1));
-        getContentPane().add(txtHoraInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 100, -1));
-        getContentPane().add(txtHoraFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 100, -1));
+        getContentPane().add(txtHoraInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 100, -1));
+        getContentPane().add(txtHoraFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 100, -1));
 
         lblHoraInicio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblHoraInicio.setText("Hora inicio:");
-        getContentPane().add(lblHoraInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, -1, -1));
+        getContentPane().add(lblHoraInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, -1, -1));
 
         lblHoraFinal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblHoraFinal.setText("Hora final:");
-        getContentPane().add(lblHoraFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, -1, -1));
+        getContentPane().add(lblHoraFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, -1, -1));
 
         btnGenerarPrestamo.setText("Generar prestamo");
         btnGenerarPrestamo.addActionListener(new java.awt.event.ActionListener() {
@@ -97,17 +108,23 @@ public class VentanaPrestamos extends javax.swing.JFrame {
                 btnGenerarPrestamoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGenerarPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 252, 133, -1));
+        getContentPane().add(btnGenerarPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 133, -1));
 
         lblIdLaboratorio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblIdLaboratorio.setText("IdLaboratorio:");
         getContentPane().add(lblIdLaboratorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, 20));
 
+        lblPuestos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblPuestos.setText("Puesto:");
+        getContentPane().add(lblPuestos, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, -1, -1));
+
+        getContentPane().add(cbPuestos, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 100, -1));
+
         getContentPane().add(cbLabs, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 100, -1));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Fondo.png"))); // NOI18N
         lblFondo.setText("jLabel2");
-        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, -4, 510, 390));
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, -4, 500, 390));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -121,6 +138,13 @@ public class VentanaPrestamos extends javax.swing.JFrame {
         cbEstudiantes.setModel(model);
     }
 
+    private void cbLabsActionPerformed(java.awt.event.ActionEvent evt) {
+        if (cbLabs.getSelectedItem() != null) {
+            int idLaboratorio = Integer.parseInt(String.valueOf(cbLabs.getSelectedIndex()));
+            llenarComboBoxPuestos(idLaboratorio);
+        }
+    }
+
     public void llenarCombolabs() {
         ArrayList<Laboratorio> labs = controlVP.getLabs();
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
@@ -130,6 +154,13 @@ public class VentanaPrestamos extends javax.swing.JFrame {
         cbLabs.setModel(model);
     }
 
+    public void llenarComboBoxPuestos(int idLaboratorio) {
+        DefaultComboBoxModel<String> modelPuesto = new DefaultComboBoxModel<>();
+        for (Puesto puesto : controlVP.getLabs().get(idLaboratorio).getPuestos()) {
+            modelPuesto.addElement(String.valueOf(puesto.getIdPuesto()));
+        }
+        cbPuestos.setModel(modelPuesto);
+    }
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO add your handling code here:
         VentanaUsAdminLab ventanaUAL = new VentanaUsAdminLab(adminLab);
@@ -143,19 +174,20 @@ public class VentanaPrestamos extends javax.swing.JFrame {
             int indexEstudiante = cbEstudiantes.getSelectedIndex();
             Estudiante estudiante = controlVP.conseguirEstudiante(indexEstudiante);
             int idLaboratorio = Integer.parseInt(String.valueOf(cbLabs.getSelectedItem()));
+            int idPuesto = Integer.parseInt(String.valueOf(cbPuestos.getSelectedItem()));
             LocalTime horaInicio = LocalTime.parse(txtHoraInicio.getText());
             LocalTime horaFinal = LocalTime.parse(txtHoraFinal.getText());
             Duration duration = Duration.between(horaInicio, horaFinal);
-            Prestamo prestamo = new Prestamo(idLaboratorio, horaInicio, horaFinal);
+            Prestamo prestamo = new Prestamo(estudiante, idLaboratorio, LocalDate.MIN, horaInicio, horaFinal);
             prestamo.setDiaReserva(LocalDate.now());
-            if (duration.toMinutes()< 61) {
-                if (controlVP.estudianteTieneReserva(estudiante.getId())) {
-                    controlVP.generarPrestamo(prestamo, estudiante.getId());
+            if (!estudiante.isTienePrestamo()) {
+                if (duration.toMinutes() < 61) {
+                    controlVP.generarPrestamo(prestamo, estudiante.getId(), idPuesto);
                 } else {
-                    JOptionPane.showMessageDialog(null, "El estudiante Tiene reserva \n tiene que canselar la reserva\n para hacer prestamo");
+                    JOptionPane.showMessageDialog(null, "EL tiempo no puede exeder una hora");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "EL tiempo no puede exeder una hora");
+                JOptionPane.showMessageDialog(null, "El estudiante tiene presetamo");
             }
         } catch (PrestamoNoRealizado ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -171,12 +203,14 @@ public class VentanaPrestamos extends javax.swing.JFrame {
     private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> cbEstudiantes;
     private javax.swing.JComboBox<String> cbLabs;
+    private javax.swing.JComboBox<String> cbPuestos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblEstudiantes;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblHoraFinal;
     private javax.swing.JLabel lblHoraInicio;
     private javax.swing.JLabel lblIdLaboratorio;
+    private javax.swing.JLabel lblPuestos;
     private javax.swing.JTextField txtHoraFinal;
     private javax.swing.JTextField txtHoraInicio;
     // End of variables declaration//GEN-END:variables

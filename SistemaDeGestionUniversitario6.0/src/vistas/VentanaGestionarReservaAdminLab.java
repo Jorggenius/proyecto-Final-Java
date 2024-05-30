@@ -124,7 +124,6 @@ public class VentanaGestionarReservaAdminLab extends javax.swing.JFrame {
         lblPuestos.setText("Puesto:");
         getContentPane().add(lblPuestos, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, -1, -1));
 
-        cbPuestos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(cbPuestos, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 100, -1));
 
         lblEstudiante.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -142,7 +141,7 @@ public class VentanaGestionarReservaAdminLab extends javax.swing.JFrame {
         getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 351, -1, -1));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Fondo.png"))); // NOI18N
-        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 380));
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

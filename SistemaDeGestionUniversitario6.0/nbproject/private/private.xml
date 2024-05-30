@@ -3,7 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Eam/Ingenieria%20de%20softhware/SegundoSemestre/Lenguaje%20de%20programacion/projectofinal/proyecto-Final-Java/SistemaDeGestionUniversitario6.0/src/vistas/PanelPrincipal.java</file>
+            <file>file:/D:/Eam/Ingenieria%20de%20softhware/SegundoSemestre/Lenguaje%20de%20programacion/projectofinal/proyecto-Final-Java/SistemaDeGestionUniversitario6.0/src/controladores/ControlVentanaListaPuestos.java</file>
+            <file>file:/D:/Eam/Ingenieria%20de%20softhware/SegundoSemestre/Lenguaje%20de%20programacion/projectofinal/proyecto-Final-Java/SistemaDeGestionUniversitario6.0/src/vistas/VentanaListaPuestos.java</file>
+            <file>file:/D:/Eam/Ingenieria%20de%20softhware/SegundoSemestre/Lenguaje%20de%20programacion/projectofinal/proyecto-Final-Java/SistemaDeGestionUniversitario6.0/src/controladores/ControlVentanaGestionarReservasAdminLab.java</file>
+            <file>file:/D:/Eam/Ingenieria%20de%20softhware/SegundoSemestre/Lenguaje%20de%20programacion/projectofinal/proyecto-Final-Java/SistemaDeGestionUniversitario6.0/src/vistas/VentanaGestionarReservaAdminLab.java</file>
+            <file>file:/D:/Eam/Ingenieria%20de%20softhware/SegundoSemestre/Lenguaje%20de%20programacion/projectofinal/proyecto-Final-Java/SistemaDeGestionUniversitario6.0/src/vistas/VentanaLaboratorios.java</file>
+            <file>file:/D:/Eam/Ingenieria%20de%20softhware/SegundoSemestre/Lenguaje%20de%20programacion/projectofinal/proyecto-Final-Java/SistemaDeGestionUniversitario6.0/src/controladores/ControlPanelHacerReserva.java</file>
+            <file>file:/D:/Eam/Ingenieria%20de%20softhware/SegundoSemestre/Lenguaje%20de%20programacion/projectofinal/proyecto-Final-Java/SistemaDeGestionUniversitario6.0/src/vistas/PanelHacerReserva.java</file>
         </group>
     </open-files>
 </project-private>

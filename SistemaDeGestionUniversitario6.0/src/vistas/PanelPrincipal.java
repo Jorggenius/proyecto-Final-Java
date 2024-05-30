@@ -129,7 +129,6 @@ public class PanelPrincipal extends javax.swing.JFrame {
                     if (aux.isCambioContraseña()) {
                     VentanaUsAdministrativo ventanaA = new VentanaUsAdministrativo((Administrativo) aux);
                     ventanaA.setVisible(true);
-//                    ventanaA.informacionAdministrativo((Administrativo) aux);
                     this.dispose();
                     }else {
                         JOptionPane.showMessageDialog(null, "No ha cambiado la contraseña");
@@ -139,11 +138,18 @@ public class PanelPrincipal extends javax.swing.JFrame {
                         this.dispose();
                     }
                 } else if (aux instanceof AdminLab) {
+                    if (aux.isCambioContraseña()) {
                     VentanaUsAdminLab ventanaAL = new VentanaUsAdminLab((AdminLab) aux);
                     ventanaAL.setVisible(true);
                     ventanaAL.informacionAdminLab((AdminLab) aux);
                     this.dispose();
-                   
+                   }else {
+                        JOptionPane.showMessageDialog(null, "No ha cambiado la contraseña");
+                        panelCambiarContraseña panelCC = new panelCambiarContraseña();
+                        panelCC.setVisible(true);
+                        panelCC.cambiarContraseña(aux);
+                        this.dispose();
+                    }
                 }
                 limpiarCampos();
             } else {

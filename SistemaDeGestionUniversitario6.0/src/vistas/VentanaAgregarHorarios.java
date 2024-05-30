@@ -7,6 +7,7 @@ package vistas;
 import controladores.ControlVentanaAgregarHorarios;
 import excepciones.HorarioNoAdmitido;
 import excepciones.HorarioNoExiste;
+import excepciones.IdIncorrecto;
 import java.time.LocalTime;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -29,13 +30,16 @@ public class VentanaAgregarHorarios extends javax.swing.JFrame {
     /**
      * Creates new form VentanaAgregarHorarios
      */
-    public VentanaAgregarHorarios(Administrativo administrativo, int idCurso) {
+    public VentanaAgregarHorarios(Administrativo administrativo, int idCurso) throws IdIncorrecto{
         initComponents();
         setLocationRelativeTo(this);
         controlVAH = new ControlVentanaAgregarHorarios();
         this.administrativo = administrativo;
         this.idCurso = idCurso;
         curso = controlVAH.conseguirCurso(idCurso);
+        if(controlVAH.conseguirCurso(idCurso) == null){
+        throw new IdIncorrecto();
+        }
         lblCurso.setText(String.valueOf(curso.getId()));
         lblCurso.setText("Curso № " + curso.getId());
         lblDocenteCurso.setText(curso.getDocente().getNombre());
@@ -63,6 +67,7 @@ public class VentanaAgregarHorarios extends javax.swing.JFrame {
         tablaHorario = new javax.swing.JTable();
         lblCurso = new javax.swing.JLabel();
         lblDocenteCurso = new javax.swing.JLabel();
+        lblDia = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtIdHorarios = new javax.swing.JTextField();
@@ -124,6 +129,9 @@ public class VentanaAgregarHorarios extends javax.swing.JFrame {
         lblDocenteCurso.setText("Docente:");
         getContentPane().add(lblDocenteCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 29, 119, -1));
 
+        lblDia.setText("Dia:");
+        getContentPane().add(lblDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, -1, -1));
+
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,7 +145,7 @@ public class VentanaAgregarHorarios extends javax.swing.JFrame {
         getContentPane().add(txtIdHorarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 80, -1));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/FondoAgregarHorarios.png"))); // NOI18N
-        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, -4, 800, 360));
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, -4, 800, 350));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -153,6 +161,7 @@ public class VentanaAgregarHorarios extends javax.swing.JFrame {
         if (controlVAH.validarHorarios(idCurso, horario)) {
             if (controlVAH.validarHorarioDocente(curso.getDocente().getId(), horario)) {
                 controlVAH.agregarHorario(curso.getId(), horario);
+                limpiarCampos();
                 llenarTablaHorario();
                 txtIdHorarios.setText(contadorIdHorarios());
             } else {
@@ -176,6 +185,8 @@ public class VentanaAgregarHorarios extends javax.swing.JFrame {
         try {
             int idHorario = Integer.parseInt(txtIdHorarios.getText());
             controlVAH.eliminarHorario(idHorario, curso.getId());
+           
+             txtIdHorarios.setText(contadorIdHorarios());
             llenarTablaHorario();
         } catch (HorarioNoExiste ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -193,6 +204,13 @@ public class VentanaAgregarHorarios extends javax.swing.JFrame {
             modeloHorario.setValueAt(horario.getHoraFinal(), i, 2);
             modeloHorario.setValueAt(horario.getDia(), i, 3);
         }
+    }
+
+    public void limpiarCampos() {
+        txtHoraInicio.setText("");
+        txtHoraFinal.setText("");
+        jComboDias.setSelectedItem(null);
+
     }
 
     public String contadorIdHorarios() {
@@ -213,6 +231,7 @@ public class VentanaAgregarHorarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCurso;
+    private javax.swing.JLabel lblDia;
     private javax.swing.JLabel lblDocenteCurso;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblHoraFinal;

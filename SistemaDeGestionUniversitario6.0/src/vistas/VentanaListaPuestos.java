@@ -9,6 +9,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import modelo.AdminLab;
+import modelo.Prestamo;
 import modelo.Puesto;
 import modelo.Reserva;
 
@@ -31,8 +32,11 @@ public class VentanaListaPuestos extends javax.swing.JFrame {
         this.adminLab = adminLab;
         this.idLab = idLab;
         controlVLP = new ControlVentanaListaPuestos();
+        controlVLP.eliminarPrestamos();
+        controlVLP.convertirReservasPrestamos();
         llenarTablaPuestos();
         llenarComboBoxIdPuesto();
+        
     }
 
     /**
@@ -50,6 +54,9 @@ public class VentanaListaPuestos extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tabalReservas = new javax.swing.JTable();
         cbIdpuestos = new javax.swing.JComboBox<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tablaPrestamos = new javax.swing.JTable();
+        btnVerPrestamos = new javax.swing.JButton();
         lblId = new javax.swing.JLabel();
         btnVerReservas = new javax.swing.JButton();
         lblFondo = new javax.swing.JLabel();
@@ -70,11 +77,11 @@ public class VentanaListaPuestos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "№ reservas"
+                "Id", "№ reservas", "№ prestamos"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -83,17 +90,14 @@ public class VentanaListaPuestos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaPuestos);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 230));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 230));
 
         tabalReservas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Estudiante", "Fecha", "idLab", "Hora reserva"
+                "Estudiante", "Fecha", "idLab", "HoraReserva"
             }
         ) {
             Class[] types = new Class [] {
@@ -106,9 +110,37 @@ public class VentanaListaPuestos extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tabalReservas);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 0, 300, 230));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 300, 230));
 
         getContentPane().add(cbIdpuestos, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 261, -1, -1));
+
+        tablaPrestamos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Estudiante", "IdLab", "HoraPrestamo"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tablaPrestamos);
+
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 260, 230));
+
+        btnVerPrestamos.setText("Ver Prestamos");
+        btnVerPrestamos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerPrestamosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnVerPrestamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 260, 130, -1));
 
         lblId.setText("Id puestos");
         getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 236, -1, -1));
@@ -119,22 +151,23 @@ public class VentanaListaPuestos extends javax.swing.JFrame {
                 btnVerReservasActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVerReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(117, 261, 128, -1));
+        getContentPane().add(btnVerReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 128, -1));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/FondoGestionCursos.png"))); // NOI18N
-        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 500));
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     public void llenarTablaPuestos() {
-        DefaultTableModel model = new DefaultTableModel(new String[]{"Id", "№ reserva"}, controlVLP.conseguirLab(idLab).getPuestos().size());
+        DefaultTableModel model = new DefaultTableModel(new String[]{"Id", "№ reserva", "№ prestamos"}, controlVLP.conseguirLab(idLab).getPuestos().size());
         tablaPuestos.setModel(model);
         TableModel modeloPuesto = tablaPuestos.getModel();
         for (int i = 0; i < controlVLP.conseguirLab(idLab).getPuestos().size(); i++) {
             Puesto puesto = controlVLP.conseguirLab(idLab).getPuestos().get(i);
             modeloPuesto.setValueAt(puesto.getIdPuesto(), i, 0);
             modeloPuesto.setValueAt(puesto.getReservas().size(), i, 1);
+            modeloPuesto.setValueAt(puesto.getPrestamos().size(), i, 2);
 
         }
     }
@@ -154,10 +187,22 @@ public class VentanaListaPuestos extends javax.swing.JFrame {
         }
     }
 
+    public void llenarTablaPrestamos(int idPuesto){
+        DefaultTableModel model = new DefaultTableModel(new String[]{"Estudiante","IdLab", "HoraPrestamo"}, controlVLP.conseguirPuesto(idLab, idPuesto).getPrestamos().size());
+        tablaPrestamos.setModel(model);
+        TableModel modelPrestamo = tablaPrestamos.getModel();
+        for (int i = 0; i < controlVLP.conseguirPuesto(idLab, idPuesto).getPrestamos().size(); i++) {
+            Prestamo prestamo = controlVLP.conseguirPuesto(idLab, idPuesto).getPrestamos().get(i);
+            modelPrestamo.setValueAt(prestamo.getEstudiante().getNombre(), i, 0);
+            modelPrestamo.setValueAt(prestamo.getIdLab(), i, 1);
+            modelPrestamo.setValueAt(prestamo.getHoraInicio(), i, 2);
+        }
+    }
+    
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO add your handling code here:
-        VentanaListaLaborarotios ventanaLL = new VentanaListaLaborarotios(adminLab);
-        ventanaLL.setVisible(true);
+        VentanaListaLaborarotios ventanLL = new VentanaListaLaborarotios(adminLab);
+        ventanLL.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
@@ -166,6 +211,12 @@ public class VentanaListaPuestos extends javax.swing.JFrame {
         int idPuesto = Integer.parseInt(String.valueOf(cbIdpuestos.getSelectedItem()));
         llenarTablaReservas(idPuesto);
     }//GEN-LAST:event_btnVerReservasActionPerformed
+
+    private void btnVerPrestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPrestamosActionPerformed
+        // TODO add your handling code here:
+        int idPuesto = Integer.parseInt(String.valueOf(cbIdpuestos.getSelectedItem()));
+        llenarTablaPrestamos(idPuesto);
+    }//GEN-LAST:event_btnVerPrestamosActionPerformed
 
     public void llenarComboBoxIdPuesto() {
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
@@ -180,13 +231,16 @@ public class VentanaListaPuestos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegresar;
+    private javax.swing.JButton btnVerPrestamos;
     private javax.swing.JButton btnVerReservas;
     private javax.swing.JComboBox<String> cbIdpuestos;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblId;
     private javax.swing.JTable tabalReservas;
+    private javax.swing.JTable tablaPrestamos;
     private javax.swing.JTable tablaPuestos;
     // End of variables declaration//GEN-END:variables
 }

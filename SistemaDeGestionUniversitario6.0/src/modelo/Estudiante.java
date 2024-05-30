@@ -14,6 +14,7 @@ public class Estudiante extends Persona {
     private Reserva reserva;
     private Prestamo prestamo;
     private boolean tieneReserva;
+    private boolean tienePrestamo;
    
 
     public Estudiante(Date birthDate, String nombre, int id,String conmtraseña, String programa) {
@@ -21,6 +22,15 @@ public class Estudiante extends Persona {
         this.programa = programa;
         reserva = new Reserva(LocalDate.MIN, id, LocalTime.MIN, LocalTime.MIN, this);
         tieneReserva = false;
+        tienePrestamo = false;
+    }
+
+    public boolean isTienePrestamo() {
+        return tienePrestamo;
+    }
+
+    public void setTienePrestamo(boolean tienePrestamo) {
+        this.tienePrestamo = tienePrestamo;
     }
 
     public Reserva getReserva() {

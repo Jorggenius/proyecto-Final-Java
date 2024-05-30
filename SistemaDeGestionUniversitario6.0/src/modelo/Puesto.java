@@ -13,10 +13,12 @@ import java.util.ArrayList;
  * @author JORGE
  */
 public class Puesto implements Serializable {
+
     // el puesto tiene una lista de reservas
-    ArrayList<Reserva> reservas;
-    int idPuesto;
-    boolean ocupado;
+    private ArrayList<Reserva> reservas;
+    private ArrayList<Prestamo> prestamos;
+    private int idPuesto;
+    private boolean ocupado;
     private LocalTime horaInicio;
     private LocalTime horaFinal;
 
@@ -24,6 +26,7 @@ public class Puesto implements Serializable {
         this.idPuesto = idPuesto;
         this.ocupado = ocupado;
         reservas = new ArrayList<>();
+        prestamos = new ArrayList<>();
     }
 
     public ArrayList<Reserva> getReservas() {
@@ -34,7 +37,13 @@ public class Puesto implements Serializable {
         this.reservas = reservas;
     }
 
-   
+    public ArrayList<Prestamo> getPrestamos() {
+        return prestamos;
+    }
+
+    public void setPrestamos(ArrayList<Prestamo> prestamos) {
+        this.prestamos = prestamos;
+    }
 
     public int getIdPuesto() {
         return idPuesto;

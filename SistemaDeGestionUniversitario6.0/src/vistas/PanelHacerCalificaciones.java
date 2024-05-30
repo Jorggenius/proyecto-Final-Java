@@ -10,6 +10,7 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import modelo.Curso;
@@ -205,6 +206,7 @@ public class PanelHacerCalificaciones extends javax.swing.JFrame {
 
     private void btnCalificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalificarActionPerformed
         // TODO add your handling code here:
+
         int idCurso = Integer.parseInt((String) cbIdCursos.getSelectedItem());
         int indexC = cbIdCursos.getSelectedIndex();
         System.out.println(idCurso);
@@ -212,15 +214,26 @@ public class PanelHacerCalificaciones extends javax.swing.JFrame {
         String razon = (String) cbNotas.getSelectedItem();
         int indexN = cbNotas.getSelectedIndex();
         System.out.println(razon);
-
+        //----------------------------------------------------------------------------+
+//        for (int i = 0; i < tablaDetalles.getRowCount(); i++) {
+//            for (int j = 0; j < tablaDetalles.getColumnCount(); j++) {
+//                String valor = String.valueOf(tablaDetalles.getValueAt(i, j));
+//                
+//            }
+//            
+//            
+//        }
+        //-----------------------------------------------------------------------------
         String nombre = String.valueOf(cbdetalles.getSelectedItem());
         System.out.println(nombre);
         float nota = new BigDecimal(txtNota.getText()).setScale(1, RoundingMode.HALF_UP).floatValue();
-
-        controlPHC.calificar(idCurso, razon, nombre, nota);
-        controlPHC.actualizarCursos(cursos);
-        llenarTablaDetalles(indexC, indexN);
-
+        if ( nota <= 5) {
+            controlPHC.calificar(idCurso, razon, nombre, nota);
+            controlPHC.actualizarCursos(cursos);
+            llenarTablaDetalles(indexC, indexN);
+        } else {
+            JOptionPane.showMessageDialog(null, "La nota debe estar entre 0 y 5");
+        }
 
     }//GEN-LAST:event_btnCalificarActionPerformed
 

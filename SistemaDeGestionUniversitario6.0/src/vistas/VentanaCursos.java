@@ -10,6 +10,7 @@ import excepciones.CursoExistente;
 import excepciones.CursoNoRemovido;
 import excepciones.CursoSInHorarios;
 import excepciones.HorarioNoAdmitido;
+import excepciones.IdIncorrecto;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -18,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import modelo.Administrativo;
 import modelo.Curso;
 import modelo.Docente;
@@ -46,6 +49,7 @@ public class VentanaCursos extends javax.swing.JFrame {
         estsCurso = new ArrayList<>();
         txtId.setText(controlVC.contadorIdCursos());
         llenarComboBoxDocentes();
+        llenarTablaCursos();
         comboJornada.setSelectedItem(null);
         JComboDocentes.setSelectedItem(null);
         lblPeriodo2.setText(String.valueOf(controlVC.validacionPeriodo()));
@@ -85,6 +89,8 @@ public class VentanaCursos extends javax.swing.JFrame {
         cbPrograma = new javax.swing.JComboBox<>();
         btnCrear = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaCursos = new javax.swing.JTable();
         btnAgregarEstudiantes = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         lblPeriodo2 = new javax.swing.JLabel();
@@ -149,6 +155,26 @@ public class VentanaCursos extends javax.swing.JFrame {
         });
         getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, -1, -1));
 
+        tablaCursos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Programa", "Materia", "Periodo", "Jornada", "Docente"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tablaCursos);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, 520, 300));
+
         btnAgregarEstudiantes.setText("Agregar estudiantes");
         btnAgregarEstudiantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,7 +207,7 @@ public class VentanaCursos extends javax.swing.JFrame {
         getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 471, -1, -1));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Fondo2.png"))); // NOI18N
-        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 500));
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -212,11 +238,10 @@ public class VentanaCursos extends javax.swing.JFrame {
             Curso curso = new Curso(controlVC.listaUsuarioDocens().get(nombreDocen), materia, jornada, periodo, programa, id);
             curso.getDocente().getNotificaciones().add(notificacionDocente);
             controlVC.agregarCurso(curso);
+            llenarTablaCursos();
         } catch (CursoExistente ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-
-
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
@@ -225,6 +250,7 @@ public class VentanaCursos extends javax.swing.JFrame {
             int id = Integer.parseInt(txtId.getText());
             controlVC.borrarCursos(id);
             txtId.setText(controlVC.contadorIdCursos());
+            llenarTablaCursos();
         } catch (CursoNoRemovido ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -247,17 +273,25 @@ public class VentanaCursos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnAgregarEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEstudiantesActionPerformed
-        int idCurso = Integer.parseInt(txtId.getText());
-        VentanaAgregarEstudiantes ventanaAE = new VentanaAgregarEstudiantes(administrativo, idCurso);
-        ventanaAE.setVisible(true);
-        this.dispose();
+        try {
+            int idCurso = Integer.parseInt(txtId.getText());
+            VentanaAgregarEstudiantes ventanaAE = new VentanaAgregarEstudiantes(administrativo, idCurso);
+            ventanaAE.setVisible(true);
+            this.dispose();
+        } catch (IdIncorrecto ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
     }//GEN-LAST:event_btnAgregarEstudiantesActionPerformed
 
     private void btnAgregarHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarHorarioActionPerformed
-        int idCurso = Integer.parseInt(txtId.getText());
-        VentanaAgregarHorarios ventanaAH = new VentanaAgregarHorarios(administrativo, idCurso);
-        ventanaAH.setVisible(true);
-        this.dispose();
+        try {
+            int idCurso = Integer.parseInt(txtId.getText());
+            VentanaAgregarHorarios ventanaAH = new VentanaAgregarHorarios(administrativo, idCurso);
+            ventanaAH.setVisible(true);
+            this.dispose();
+        } catch (IdIncorrecto ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
     }//GEN-LAST:event_btnAgregarHorarioActionPerformed
 
     private void limpiarCampos() {
@@ -283,12 +317,20 @@ public class VentanaCursos extends javax.swing.JFrame {
         estsCurso = reset;
     }
 
-    private void añadirNotificacionEstudiante(Notificacion notificacion) {
-        for (int i = 0; i < estsCurso.size(); i++) {
-            estsCurso.get(i).getNotificaciones().add(notificacion);
+    public void llenarTablaCursos() {
+        DefaultTableModel modelo = new DefaultTableModel(new String[]{"Id", "Programa", "Materia", "Periodo", "Jornada", "Docente"}, controlVC.getCursos().size());
+        tablaCursos.setModel(modelo);
+        TableModel modeloCurso = tablaCursos.getModel();
+        for (int i = 0; i < controlVC.getCursos().size(); i++) {
+            Curso curso = controlVC.getCursos().get(i);
+            modeloCurso.setValueAt(curso.getId(), i, 0);
+            modeloCurso.setValueAt(curso.getPrograma(), i, 1);
+            modeloCurso.setValueAt(curso.getMateria(), i, 2);
+            modeloCurso.setValueAt(curso.getPeriodo(), i, 3);
+            modeloCurso.setValueAt(curso.getJornada(), i, 4);
+            modeloCurso.setValueAt(curso.getDocente().getNombre(), i, 5);
         }
     }
-
     /**
      * @param args the command line arguments
      */
@@ -306,6 +348,7 @@ public class VentanaCursos extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboJornada;
     private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCrearCursos;
     private javax.swing.JLabel lblDocente;
     private javax.swing.JLabel lblFondo;
@@ -315,6 +358,7 @@ public class VentanaCursos extends javax.swing.JFrame {
     private javax.swing.JLabel lblPeriodo;
     private javax.swing.JLabel lblPeriodo2;
     private javax.swing.JLabel lblPrograma;
+    private javax.swing.JTable tablaCursos;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtMateria;
     // End of variables declaration//GEN-END:variables

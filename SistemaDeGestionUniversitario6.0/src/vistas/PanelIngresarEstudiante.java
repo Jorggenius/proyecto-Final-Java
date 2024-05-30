@@ -19,6 +19,7 @@ import modelo.Estudiante;
  * @author JORGE
  */
 public class PanelIngresarEstudiante extends javax.swing.JFrame {
+
     Administrativo administrativo;
     ControladorEstudiante controlE;
 
@@ -164,20 +165,50 @@ public class PanelIngresarEstudiante extends javax.swing.JFrame {
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        // TODO add your handling code here: 
         try {
             String nombre = txtNombre.getText();
-            int id = Integer.parseInt(txtId.getText());
+            String idText = txtId.getText();
             String programa = txtPrograma.getText();
             Date birthDate = datebirthDate.getDate();
             String contraseña = txtContraseña.getText();
+            // Validar que los campos no estén vacíos
+            if (nombre.isEmpty() || idText.isEmpty() || programa.isEmpty() || birthDate == null || contraseña.isEmpty()) {
+                throw new IllegalArgumentException("Todos los campos son obligatorios.");
+            }
+            // Validar que el ID sea un número válido
+            int id;
+            try {
+                id = Integer.parseInt(idText);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("El ID debe ser un número válido.");
+            }
+            // Crear el objeto Estudiante
             Estudiante estudiante = new Estudiante(birthDate, nombre, id, contraseña, programa);
+
+            // Intentar agregar el objeto Estudiante
             controlE.agregarEstudiante(estudiante);
+            // Limpiar los campos si todo es exitoso
+            limpiarCampos();
+        } catch (IllegalArgumentException ex) {
+            // Mostrar mensaje de error si falta algún campo o el ID no es válido
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         } catch (NoIngresadoIdExistenteException ex) {
+            // Manejar la excepción específica para IDs existentes
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-
-        limpiarCampos();
+//        try {
+//            String nombre = txtNombre.getText();
+//            int id = Integer.parseInt(txtId.getText());
+//            String programa = txtPrograma.getText();
+//            Date birthDate = datebirthDate.getDate();
+//            String contraseña = txtContraseña.getText();
+//            Estudiante estudiante = new Estudiante(birthDate, nombre, id, contraseña, programa);
+//            controlE.agregarEstudiante(estudiante);
+//        } catch (NoIngresadoIdExistenteException ex) {
+//            JOptionPane.showMessageDialog(null, ex.getMessage());
+//        }
+//
+//        limpiarCampos();
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -212,11 +243,11 @@ public class PanelIngresarEstudiante extends javax.swing.JFrame {
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         // TODO add your handling code here:
-        try{
-        int id = Integer.parseInt(txtId.getText());
-        controlE.borrarEstudiante(id);
-        limpiarCampos();
-        }catch (ImposibleBorrar ex){
+        try {
+            int id = Integer.parseInt(txtId.getText());
+            controlE.borrarEstudiante(id);
+            limpiarCampos();
+        } catch (ImposibleBorrar ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
             limpiarCampos();
         }
